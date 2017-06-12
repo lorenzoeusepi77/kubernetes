@@ -1,6 +1,6 @@
 
 ---
-- hosts: master
+- hosts: kubernetes-master
   become: yes
   become_user: root
   become_method: sudo
@@ -11,7 +11,7 @@
   roles:
     - master 
     
-- hosts: edge
+- hosts: kubernetes-edge
   become: yes
   become_user: root
   become_method: sudo
@@ -21,69 +21,3 @@
   #      https_proxy: http://10.222.1.1:8080
   roles:
     - edge
-
-
-
----
-# tasks disable SE LINUX
-- name: == SYSTEM == Turn Off SELinux
-  selinux:
-    state: disabled
-
-# tasks install Docker
-- name: == YUM == Uninstall old versions
-  yum: name={{ item }} state=absent
-  with_items:
-   - docker
-   - docker-common
-   - container-selinux
-   - docker-selinux
-   - docker-engine
-
-- name: == YUM == Install Docker utility
-  yum: name={{ item }} state=lastest
-  with_items:
-   - yum-utils
-   - device-mapper-persistent-data
-   - lvm2
-
-- name: Install add Docker repo
-    yum_repository:
-      name: Docker
-      description: Docker repo
-      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-      gpgcheck: no
-
-
-#  - yum: name=docker state=latest
-#  - yum: name=kubelet state=latest
-#  - yum: name=kubeadm state=latest
-#  - yum: name=kubectl state=latest
-#  - yum: name=kubernetes-cni state=latest
-#  - service:
-#      name: docker
-#      state: started
-#      enabled: yes
-#  - service:
-#      name: kubelet
-#      state: started
-#      enabled: yes
-      
-
-#- name: == YUM == Install Docker
-
-#- name: == REPO == Add Kubernetes Repository
-#  copy: src=kubernetes.repo dest=/etc/yum.repos.d/kubernetes.repo
-
-#- name: == YUM == Install Kubernetes
-#  yum: name={{ item }} state=latest
-#  with_items: "{{ kubernetes_items }}"
-
-#- name: == SERVICE == Enable/Start Kubelet Service
-#  raw: systemctl enable kubelet && systemctl start kubelet
-
-#- name: == SERVICE == Make sure Kubelet is running
-#  service:
-#    name: kubelet
-#    enabled: yes
-#    state: started
