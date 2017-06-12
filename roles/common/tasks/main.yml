@@ -38,7 +38,7 @@
     gpgcheck: no
 
 - name: == YUM == Install Docker
-  yum: name={{ item }} state=lastest
+  yum: name={{ item }} state=latest
   with_items:
    - docker
 
