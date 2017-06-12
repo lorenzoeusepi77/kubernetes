@@ -1,10 +1,10 @@
 ---
-# tasks disable SE LINUX
+# tasks disable "SE LINUX"
 - name: == SYSTEM == Turn Off SELinux
   selinux:
     state: disabled
 
-# tasks install Docker
+# tasks install "Docker"
 - name: == YUM == Uninstall old versions
   yum: name={{ item }} state=absent
   with_items:
@@ -28,16 +28,24 @@
     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
     gpgcheck: no
 
+- name: == YUM == Install Docker
+  yum: name={{ item }} state=lastest
+  with_items:
+   - docker
 
-#  - yum: name=docker state=latest
+- name: == Service Start == start Docker
+- service:
+    name: docker
+    state: started
+    enabled: yes
+
+# tasks install "Kubectl"
+
+
 #  - yum: name=kubelet state=latest
 #  - yum: name=kubeadm state=latest
 #  - yum: name=kubectl state=latest
 #  - yum: name=kubernetes-cni state=latest
-#  - service:
-#      name: docker
-#      state: started
-#      enabled: yes
 #  - service:
 #      name: kubelet
 #      state: started
