@@ -3,6 +3,13 @@
 - name: change file etc/hosts
   template: src=hosts.j2 dest=/etc/hosts
 
+# Disable Firewalld
+- name: == Service Stop - Disable == firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: no
+
 # enable chrony
 - name: Install chrony
   yum: name=chrony
