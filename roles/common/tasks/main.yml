@@ -35,7 +35,7 @@
     name: Docker
     description: Docker repo
     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-    gpgcheck: no
+    gpgcheck: yes
 
 - name: == YUM == Install Docker
   yum: name={{ item }} state=latest
