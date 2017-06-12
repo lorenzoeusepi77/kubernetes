@@ -1,2 +1,2 @@
 dependencies:
-  - { role:c common }
+  - { role: common }
