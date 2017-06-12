@@ -1,9 +1,9 @@
 [all:vars]
 dns_domain=test.local
 
-[edge]
+[kubernetes-edge]
 Edge1 ansible_user=centos
 Edge2 ansible_user=centos
 
-[master]
+[kubernetes-master]
 Master ansible_user=centos
