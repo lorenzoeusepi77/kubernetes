@@ -53,9 +53,11 @@
     
 
 # tasks install "Kubectl"
+  vars:
+  - kubectl_version: $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 - name: download kubctl and make executable in folder  /usr/local/bin/
   get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    url: https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version}}/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
     mode: 0750
