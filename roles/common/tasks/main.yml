@@ -1,9 +1,11 @@
 ---
 # Create etc/hosts file on Servers
 - name: "Build hosts file"
-  lineinfile: dest=/etc/hosts regexp='.*{{ item }}$' line="{{ hostvars[item].ansible_default_ipv4.address }} {{item}}" state=present
-  when: hostvars[item].ansible_default_ipv4.address is defined
-  with_items: groups['all']
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ hostvars[item].ansible_host }} {{ hostvars[item].inventory_hostname }} {{ hostvars[item].inventory_hostname_short }}"
+    state: present
+  with_items: "{{ groups.all }}"
 
 # enable chrony
 - name: Install chrony
@@ -77,7 +79,7 @@
     gpgcheck: yes
     enabled: yes
     gpgkey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
-    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+ #   gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
     
 - name: == YUM == Install kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=latest
