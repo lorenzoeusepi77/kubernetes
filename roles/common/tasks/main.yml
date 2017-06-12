@@ -43,7 +43,7 @@
    - docker
 
 - name: == Service Start - Enable == start Docker
-- service:
+  service:
     name: docker
     state: started
     enabled: yes
