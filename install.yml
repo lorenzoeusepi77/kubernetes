@@ -4,7 +4,7 @@
   selinux:
     state: disabled
 
-# tasks installa docker
+# tasks install Docker
 - name: == YUM == Uninstall old versions
   yum: name={{ item }} state=absent
   with_items:
@@ -14,14 +14,35 @@
    - docker-selinux
    - docker-engine
 
-- name: == YUM == install Docker CE
+- name: == YUM == Install Docker utility
   yum: name={{ item }} state=lastest
   with_items:
    - yum-utils
    - device-mapper-persistent-data
    - lvm2
 
+- name: Install add Docker repo
+    yum_repository:
+      name: Docker
+      description: Docker repo
+      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+      gpgcheck: no
 
+
+#  - yum: name=docker state=latest
+#  - yum: name=kubelet state=latest
+#  - yum: name=kubeadm state=latest
+#  - yum: name=kubectl state=latest
+#  - yum: name=kubernetes-cni state=latest
+#  - service:
+#      name: docker
+#      state: started
+#      enabled: yes
+#  - service:
+#      name: kubelet
+#      state: started
+#      enabled: yes
+      
 
 #- name: == YUM == Install Docker
 
