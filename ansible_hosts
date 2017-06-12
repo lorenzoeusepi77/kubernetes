@@ -1,0 +1,9 @@
+[all:vars]
+dns_domain=test.local
+
+[kubernetes-edge]
+Edge1 ansible_user=centos
+Edge2 ansible_user=centos
+
+[kubernetes-master]
+Master ansible_user=centos
