@@ -24,7 +24,7 @@
   ignore_errors: True
 
 - name: == YUM == Install Docker utility
-  yum: name={{ item }} state=lastest
+  yum: name={{ item }} state=latest
   with_items:
    - yum-utils
    - device-mapper-persistent-data
