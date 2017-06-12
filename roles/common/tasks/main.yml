@@ -50,8 +50,6 @@
     state: started
     enabled: yes
     
-    
-
 # tasks install "Kubectl"
 #  vars:
 #  - kubectl_version: '$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)'
@@ -64,6 +62,30 @@
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
     mode: 0750
+
+# tasks Installing kubelet and kubeadm
+- name: Install Kubernetes Repository
+  yum_repository:
+    name: Kubernetes
+    description: Kubernetes repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
+    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+    
+- name: == YUM == Install kubelet kubeadm kubernetes-cni
+  yum: name={{ item }} state=latest
+  with_items:
+   - kubelet
+   - kubeadm
+   - kubernetes-cni
+
+- name: == Service Start - Enable == start kubelet
+  service:
+    name: kubelet
+    state: started
+    enabled: yes
 
 
 ######  ignore_errors: True
