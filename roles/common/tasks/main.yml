@@ -75,7 +75,7 @@
     gpgcheck: yes
     enabled: yes
     gpgkey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
- #   gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
     
 - name: == YUM == Install kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=latest
