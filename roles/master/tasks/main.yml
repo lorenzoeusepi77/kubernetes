@@ -1,1 +1,6 @@
-
+---
+#Inizializing Master Node
+- name: initialize the master
+  shell: kubeadm init
+  register: kubeadm
+- debug: var= kubeadm.stdout_lines
