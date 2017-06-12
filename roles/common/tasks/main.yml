@@ -21,7 +21,7 @@
    - device-mapper-persistent-data
    - lvm2
 
-- name: Install add Docker repo
+- name: Install add Docker repository
   yum_repository:
     name: Docker
     description: Docker repo
@@ -33,7 +33,7 @@
   with_items:
    - docker
 
-- name: == Service Start == start Docker
+- name: == Service Start - Enable == start Docker
 - service:
     name: docker
     state: started
