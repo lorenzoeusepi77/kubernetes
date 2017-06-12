@@ -22,11 +22,11 @@
    - lvm2
 
 - name: Install add Docker repo
-    yum_repository:
-      name: Docker
-      description: Docker repo
-      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-      gpgcheck: no
+  yum_repository:
+    name: Docker
+    description: Docker repo
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+    gpgcheck: no
 
 
 #  - yum: name=docker state=latest
