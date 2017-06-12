@@ -1,3 +1,29 @@
+
+---
+- hosts: master
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  #environment:
+  #      http_proxy: http://10.222.1.1:8080
+  #      https_proxy: http://10.222.1.1:8080
+  roles:
+    - master 
+    
+- hosts: edge
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  #environment:
+  #      http_proxy: http://10.222.1.1:8080
+  #      https_proxy: http://10.222.1.1:8080
+  roles:
+    - edge
+
+
+
 ---
 # tasks disable SE LINUX
 - name: == SYSTEM == Turn Off SELinux
