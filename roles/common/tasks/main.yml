@@ -1,4 +1,12 @@
 ---
+
+# enable chrony
+- name: Install chrony
+  yum: name=chrony
+
+- name: Start the chronyd service
+  action: service name=chronyd state=started
+  
 # tasks disable "SE LINUX"
 - name: == SYSTEM == Turn Off SELinux
   selinux:
@@ -13,6 +21,7 @@
    - container-selinux
    - docker-selinux
    - docker-engine
+  ignore_errors: True
 
 - name: == YUM == Install Docker utility
   yum: name={{ item }} state=lastest
@@ -38,8 +47,20 @@
     name: docker
     state: started
     enabled: yes
+    
+    
 
 # tasks install "Kubectl"
+- name: download kubctl and make executable in folder  /usr/local/bin/
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    force_basic_auth: yes
+    mode: 0750
+
+
+######  ignore_errors: True
+#####   when: service_mysql_alredy_exist.changed == false
 
 
 #  - yum: name=kubelet state=latest
