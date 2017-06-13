@@ -4,9 +4,6 @@
   become_user: root
   become_method: sudo
   gather_facts: no
-  #environment:
-  #      http_proxy: http://IP_ADDREDD:PORT
-  #      https_proxy: http://IP_ADDREDD:PORT
   roles:
     - pre 
 
@@ -15,9 +12,6 @@
   become_user: root
   become_method: sudo
   gather_facts: no
-  #environment:
-  #      http_proxy: http://IP_ADDREDD:PORT
-  #      https_proxy: http://IP_ADDREDD:PORT
   roles:
     - master 
     
@@ -26,9 +20,6 @@
   become_user: root
   become_method: sudo
   gather_facts: no
-  #environment:
-  #      http_proxy: http://IP_ADDREDD:PORT
-  #      https_proxy: http://IP_ADDREDD:PORT
   roles:
     - edge
 
@@ -37,9 +28,6 @@
   become_user: root
   become_method: sudo
   gather_facts: no
-  #environment:
-  #      http_proxy: http://IP_ADDREDD:PORT
-  #      https_proxy: http://IP_ADDREDD:PORT
   roles:
     - confmaster 
 
@@ -48,8 +36,5 @@
   become_user: root
   become_method: sudo
   gather_facts: no
-  #environment:
-  #      http_proxy: http://IP_ADDREDD:PORT
-  #      https_proxy: http://IP_ADDREDD:PORT
   roles:
     - confedge
