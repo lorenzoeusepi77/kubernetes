@@ -67,7 +67,7 @@
     baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
     gpgcheck: yes
     enabled: yes
-    gpgkey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
+    gpgcakey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
     gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
     
 - name: == YUM == Install kubelet kubeadm kubernetes-cni
