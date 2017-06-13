@@ -1,3 +1,21 @@
-Installazione di ansible
-File di configurazione /etc/ansible/
-File .ssh/config
+Server Detail: OS: CentOS 7.x
+
+--- Ansible Install guide ---
+To get Ansible for CentOS 7 add CentOS 7 EPEL repository is installed:
+#sudo yum install epel-release
+
+Once the repository is installed, install Ansible with yum:
+#sudo yum install ansible
+
+--- Disable Host Key Checking ---
+Copy /root/.ssh/:
+File 
+
+Configuring Ansible Hosts
+Edit  /etc/ansible/hosts
+
+--- Installazione di GIT ---
+Install git with yum:
+#sudo yum install git
+Verify git version:
+#git --version
