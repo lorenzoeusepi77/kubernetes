@@ -1,3 +1,7 @@
 #tasks Add "Kubectl" bash comletion environment
-- name: return stable.txt to registered var
-  command: echo "source <(kubectl completion bash)" >> ~/.bashrc
+- lineinfile:
+    path: ~/.bashrc
+    line: 'source <(kubectl completion bash)'
+
+#- name: Add Kubectl bash comletion environment
+#  command: echo "source <(kubectl completion bash)" >> ~/.bashrc
