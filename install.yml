@@ -41,7 +41,7 @@
   #      http_proxy: http://IP_ADDREDD:PORT
   #      https_proxy: http://IP_ADDREDD:PORT
   roles:
-    - clustermaster 
+    - confmaster 
 
 - hosts: kubernetes-edge
   become: yes
@@ -52,4 +52,4 @@
   #      http_proxy: http://IP_ADDREDD:PORT
   #      https_proxy: http://IP_ADDREDD:PORT
   roles:
-    - clusteredge
+    - confedge
