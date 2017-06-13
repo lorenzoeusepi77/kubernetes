@@ -1,7 +1,6 @@
 #tasks install "Kubectl"
 - name: download kubctl and make executable in folder  /usr/local/bin/
-  uri:
-    url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+    shell: 'curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt'
     register: version
 
   get_url:
