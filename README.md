@@ -1,26 +1,35 @@
 # kubernetes
-Ansible playbook to create a kubernetes cluster latest release 1.6.4 using "kubeadm" on system(CentOS-7.x). 
-Ansible version is 2.3.0.0
-Git Hub Version 2.7.4
+Ansible playbook to create a Kubernetes cluster latest release 1.6.4 using "kubeadm" on system(CentOS-7.x). 
+- Ansible version is 2.3.0.0
+- Git Hub Version 2.7.4
 
-There are 8 roles define in this ansible playbook.
+There are 5 roles defined in this ansible playbook.
+
 Ansible Role Description:
-"pre" with base configuration for all Server:
-- Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
-- Disable "SELinux"
-- Disable "firewalld"
-- Install "chronyd" for NTP synch
-- Install "wget"
-- Install "bash-completion"
+"pre" with base configuration for "all hosts":
+  - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
+  - Disable "SELinux"
+  - Disable "firewalld"
+  - Install "chronyd" for NTP synch
+  - Install "wget"
+  - Install "bash-completion"
 
-"master":
-
-"edge":
-
-"confmaster":
-
-"confedge":
-
+"master" with initial Kubernetes setup for "kubernetes-master" 
+  - 
+  -
+  
+"edge" with initial Kubernetes setup for "kubernetes-edge"
+  -
+  -
+  
+"confmaster" with configuration for "kubernetes-master"
+  -
+  -
+  
+"confedge" with configuration for "kubernetes-edge"
+  -
+  -
+  
 
 Following the below steps to create Kubernetes setup on Centos-7.
 Prerequisite: 
