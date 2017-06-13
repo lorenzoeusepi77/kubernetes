@@ -3,5 +3,13 @@ Ansible playbook to create a kubernetes cluster latest release 1.6.4 using "kube
 Ansible version is 2.3.0.0
 Git Hub Version 2.7.4
 
-Description:
+Role Description:
+"pre":
 
+"master":
+
+"edge":
+
+"confmaster":
+
+"confedge":
