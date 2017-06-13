@@ -7,7 +7,7 @@
     
 - name: download kubctl and make executable in folder  /usr/local/bin/
   vars:
-     contents: "{{ lookup('file', '/etc/stable.txt') }}"
+     contents: "{{ lookup('file', '/tmp/stable.txt') }}"
   
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{contents}}/bin/linux/amd64/kubectl
