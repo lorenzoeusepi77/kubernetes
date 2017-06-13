@@ -1,16 +1,3 @@
-#tasks install "Kubectl"
-- name: check "kubctl" stable version
-  get_url: 
-    url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
-    dest: /tmp/stable.txt
-
+#tasks Add "Kubectl" bash comletion environment
 - name: return stable.txt to registered var
-  command: cat /tmp/stable.txt
-  register: version
-
-- name: download kubctl and make executable in folder  /usr/local/bin/
-  get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/{{ version.stdout }}/bin/linux/amd64/kubectl
-    dest: /usr/local/bin/kubectl
-    force_basic_auth: yes
-    mode: 0750
+  command: echo "source <(kubectl completion bash)" >> ~/.bashrc
