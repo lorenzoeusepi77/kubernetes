@@ -22,7 +22,7 @@
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ item }}/bin/linux/amd64/kubectl
 #    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
-    with_items: with_items:
+    with_items= with_items:
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
     mode: 0750
