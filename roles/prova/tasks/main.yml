@@ -8,6 +8,7 @@
 - name: download kubctl and make executable in folder  /usr/local/bin/
   vars:
      contents: "{{ lookup('file', '/tmp/stable.txt') }}"
+     
   tasks:
      - debug: msg="the value of stable.txt is {{ contents }}"
   get_url:
