@@ -54,6 +54,11 @@
     force_basic_auth: yes
     mode: 0750
 
+#tasks Add "Kubectl" bash comletion environment
+- lineinfile:
+    name: /root/.bashrc
+    line: 'source <(kubectl completion bash)'
+
 # tasks Installing kubelet and kubeadm
 - name: Install Kubernetes Repository
   yum_repository:
