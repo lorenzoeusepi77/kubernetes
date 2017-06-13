@@ -45,5 +45,10 @@ Prerequisite:
   - Download the "Kubernetes" playbook and: 
       - modify /kubernetes/ansible/hosts and replace /etc/ansible/hosts (Needed for Server hosts entry deploy);
       - copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
+  - Create ssh key and copy an all Kubernetes Server:
+    - ssh-keygen
+    - ssh-copy-id centos@MasterServerIP
+    - ssh-copy-id centos@Edge1ServerIP
+    - ssh-copy-id centos@Edge2ServerIP
 
 Run install.yml playbook to create Kubernetes Cluster.
