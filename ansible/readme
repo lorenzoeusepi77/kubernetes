@@ -1,20 +1,20 @@
-Server Detail: OS: CentOS 7.x
+Ansible Server OS: CentOS 7.x
 
---- Ansible Install guide ---
-To get Ansible for CentOS 7 add CentOS 7 EPEL repository is installed:
+--------- Ansible Install & Configuration Guide ---------
+
+- To get Ansible for CentOS 7 add CentOS 7 EPEL repository is installed:
 #sudo yum install epel-release
-
-Once the repository is installed, install Ansible with yum:
+- Once the repository is installed, install Ansible with yum:
 #sudo yum install ansible
 
---- Disable Host Key Checking ---
-Copy /root/.ssh/:
-File 
+- Disable Host Key Checking
+Copy https://github.com/lorenzoeusepi77/kubernetes/ansible/config on "Ansible Server" /root/.ssh/ 
 
-Configuring Ansible Hosts
-Edit  /etc/ansible/hosts
+- Kubernetes Ansible hosts config 
+Edit https://github.com/lorenzoeusepi77/kubernetes/ansible/hosts with Kubernetes Server hostname & ip address. 
+Copy on on "Ansible Server" /etc/ansible/
 
---- Installazione di GIT ---
+---------- Installazione di GIT ----------
 Install git with yum:
 #sudo yum install git
 Verify git version:
