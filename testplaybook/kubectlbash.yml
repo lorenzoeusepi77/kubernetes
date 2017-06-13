@@ -1,0 +1,4 @@
+#tasks Add "Kubectl" bash comletion environment
+- lineinfile:
+    name: /root/.bashrc
+    line: 'source <(kubectl completion bash)'
