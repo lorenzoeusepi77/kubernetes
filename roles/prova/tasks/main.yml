@@ -1,12 +1,12 @@
 #tasks install "Kubectl"
-- name: last "kubctl" stable version
+- name: check "kubctl" stable version
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt
-  command: cat /tmp/stable.txt
-  register: version
 
 - name: download kubctl and make executable in folder  /usr/local/bin/
+  command: cat /tmp/stable.txt
+  register: version
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ version }}/bin/linux/amd64/kubectl
 #    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
