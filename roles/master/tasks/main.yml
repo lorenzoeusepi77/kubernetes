@@ -1,6 +1,75 @@
 ---
-#Inizializing Master Node
-#- name: initialize the master
-#  shell: kubeadm init
-#  register: kubeadm
-#- debug: var=kubeadm.stdout_lines
+# tasks install "Docker"
+- name: == YUM == Uninstall old versions
+  yum: name={{ item }} state=absent
+  with_items:
+   - docker
+   - docker-common
+   - container-selinux
+   - docker-selinux
+   - docker-engine
+  ignore_errors: True
+
+- name: == YUM == Install Docker utility
+  yum: name={{ item }} state=latest
+  with_items:
+   - yum-utils
+   - device-mapper-persistent-data
+   - lvm2
+
+- name: Install add Docker repository
+  yum_repository:
+    name: Docker CE Stable
+    description: Docker repo
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: "https://download.docker.com/linux/centos/gpg"
+    
+- name: == YUM == Install Docker
+  yum: name={{ item }} state=latest
+  with_items:
+   - docker
+
+- name: == Service Start - Enable == start Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+    
+# tasks install "Kubectl"
+#  vars:
+#  - kubectl_version: '$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)'
+#  - kubectl_version: 'v1.6.4'
+
+- name: download kubctl and make executable in folder  /usr/local/bin/
+  get_url:
+#    url: https://storage.googleapis.com/kubernetes-release/release/'{{kubectl_version}}'/bin/linux/amd64/kubectl
+    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    force_basic_auth: yes
+    mode: 0750
+
+# tasks Installing kubelet and kubeadm
+- name: Install Kubernetes Repository
+  yum_repository:
+    name: Kubernetes
+    description: Kubernetes repo
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
+    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+    
+- name: == YUM == Install kubelet kubeadm kubernetes-cni
+  yum: name={{ item }} state=latest
+  with_items:
+   - kubelet
+   - kubeadm
+   - kubernetes-cni
+
+- name: == Service Start - Enable == start kubelet
+  service:
+    name: kubelet
+    state: started
+    enabled: yes
