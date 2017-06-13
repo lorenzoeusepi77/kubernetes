@@ -8,21 +8,20 @@
 #  sudo: True
 #  with_items: nodejs_path.stdout
 
+#- hosts: all
+#  vars:
+#     contents: "{{ lookup('file', '/etc/foo.txt') }}"
+#  tasks:
+#     - debug: msg="the value of foo.txt is {{ contents }}"
 
-# tasks install "Kubectl"
-# vars:
-#  - kubectl_version: '$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)'
-#  - kubectl_version: 'v1.6.4'
-
-#- name: Find path to nodejs
-#  command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
-#  register: stable.txt
-
+#tasks install "Kubectl"
+  
 - name: download kubctl and make executable in folder  /usr/local/bin/
+  vars:
+     - content: "{{ lookup (curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)}}"
   get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    url: https://storage.googleapis.com/kubernetes-release/release/{{content}}/bin/linux/amd64/kubectl
 #    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
-#    with_items= with_items:
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
     mode: 0750
