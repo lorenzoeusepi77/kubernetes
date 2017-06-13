@@ -4,9 +4,11 @@
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt
 
-- name: download kubctl and make executable in folder  /usr/local/bin/
+- name: return stable.txt to registered var
   command: cat /tmp/stable.txt
   register: version
+
+- name: download kubctl and make executable in folder  /usr/local/bin/
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ version }}/bin/linux/amd64/kubectl
 #    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
