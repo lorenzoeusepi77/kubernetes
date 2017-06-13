@@ -1,22 +1,15 @@
 #tasks install "Kubectl"
-#- name: view last "kubctl" stable version
-#  get_url: 
-#    url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
-#    dest: /tmp/stable.txt
-
-- name: return motd to registered var
-  command: cat /etc/motd
-  register: mymotd
-
-
-- name: download kubctl and make executable in folder  /usr/local/bin/
+- name: last "kubctl" stable version
+  get_url: 
+    url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+    dest: /tmp/stable.txt
   command: cat /tmp/stable.txt
   register: version
-#  vars:
-#     contents: "{{ lookup('file', '/tmp/stable.txt') }}"
-#  get_url:
-#    url: https://storage.googleapis.com/kubernetes-release/release/{{ version }}/bin/linux/amd64/kubectl
+
+- name: download kubctl and make executable in folder  /usr/local/bin/
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ version }}/bin/linux/amd64/kubectl
 #    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
-#    dest: /usr/local/bin/kubectl
-#    force_basic_auth: yes
-#    mode: 0750
+    dest: /usr/local/bin/kubectl
+    force_basic_auth: yes
+    mode: 0750
