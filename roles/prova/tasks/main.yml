@@ -1,1 +1,28 @@
+---
+#- name: Find path to nodejs
+#  command: which nodejs
+#  register: nodejs_path
 
+#- name: symlink the nodejs executable to node
+#  command: "ln -sf {{ item }} /usr/bin/node"
+#  sudo: True
+#  with_items: nodejs_path.stdout
+
+
+# tasks install "Kubectl"
+# vars:
+#  - kubectl_version: '$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)'
+#  - kubectl_version: 'v1.6.4'
+
+- name: Find path to nodejs
+  command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+  register: stable.txt
+
+- name: download kubctl and make executable in folder  /usr/local/bin/
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ item }}/bin/linux/amd64/kubectl
+#    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
+    with_items: with_items:
+    dest: /usr/local/bin/kubectl
+    force_basic_auth: yes
+    mode: 0750
