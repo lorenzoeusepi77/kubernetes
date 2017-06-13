@@ -1,26 +1,11 @@
----
-#- name: Find path to nodejs
-#  command: which nodejs
-#  register: nodejs_path
-
-#- name: symlink the nodejs executable to node
-#  command: "ln -sf {{ item }} /usr/bin/node"
-#  sudo: True
-#  with_items: nodejs_path.stdout
-
-#- hosts: all
-#  vars:
-#     contents: "{{ lookup('file', '/etc/foo.txt') }}"
-#  tasks:
-#     - debug: msg="the value of foo.txt is {{ contents }}"
-
 #tasks install "Kubectl"
-  
 - name: download kubctl and make executable in folder  /usr/local/bin/
-  vars:
-     - content: "{{ lookup (curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)}}"
+  uri:
+    url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
+    register: version
+
   get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/{{content}}/bin/linux/amd64/kubectl
+    url: https://storage.googleapis.com/kubernetes-release/release/{{version}}/bin/linux/amd64/kubectl
 #    url: https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
