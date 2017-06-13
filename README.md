@@ -4,6 +4,7 @@ Ansible version is 2.3.0.0
 Git Hub Version 2.7.4
 
 Role Description:
+
 "pre":
 
 "master":
@@ -13,3 +14,4 @@ Role Description:
 "confmaster":
 
 "confedge":
+
