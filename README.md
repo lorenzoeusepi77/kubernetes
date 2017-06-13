@@ -38,7 +38,8 @@ Prerequisite:
 - Kubernetes: 2 or more "Edge" Server
 - On Kubernetes Server:
     - Create User "centos";
-    - Configure User "centos" in /etc/sudoers;
+    - Configure User "centos" in /etc/sudoers. Execute as root:
+      #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
 - 1 Server/Client with Ansbile and Git
   - Download the "Kubernetes" playbook and: 
