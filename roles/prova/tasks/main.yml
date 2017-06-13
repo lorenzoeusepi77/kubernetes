@@ -6,10 +6,8 @@
 
     
 - name: download kubctl and make executable in folder  /usr/local/bin/
-  tasks:
-
-      - shell: cat /tmp/stable.txt
-        register: stable_contents
+  command: cat /tmp/stable.txt
+  register: stable_contents
 
 #  vars:
 #     contents: "{{ lookup('file', '/tmp/stable.txt') }}"
