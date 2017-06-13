@@ -8,8 +8,6 @@
   command: cat /tmp/stable.txt
   register: version
 
-- var=version.stdout
-
 - name: download kubctl and make executable in folder  /usr/local/bin/
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ version.stdout }}/bin/linux/amd64/kubectl
