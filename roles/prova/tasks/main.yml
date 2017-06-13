@@ -3,6 +3,7 @@
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt
+    mode: 0440
     
 - name: download kubctl and make executable in folder  /usr/local/bin/
   vars:
