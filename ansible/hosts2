@@ -1,0 +1,51 @@
+ANSIBLE INVENTORY EXAMPLE
+#
+# Launch playbook
+# ansible-playbook install-cluster.yml -e cluster_name=kubernetes
+#
+#
+# Example Inventory file Ansible 
+# Change "clustername" var
+
+
+# [clustername]
+# Create an inventory group with "clustername"
+#
+[kubernetes]
+
+
+# [clustername:children]
+# The cluster group contains two children groups: master and edge 
+#
+[kubernetes:children]
+kubernetes_master
+kubernetes_edge
+
+
+# [clustername_master]
+# The master group should have:
+# hostname 
+# ansible_ssh_host=IP ADDRESS 
+# ansible_user=centos  (not needed to be root)
+[kubernetes_master]
+Master ansible_ssh_host=192.168.234.143 ansible_user=centos
+
+
+[kubernetes_master:vars]
+# master_ip_address_configured=1.2.3.4
+# If you need to specify a specific ip address for the master, uncomment the above and edit
+
+
+# [clustername_edge]
+# The master group should have:
+# hostname 
+# ansible_ssh_host=IP ADDRESS 
+# ansible_user=centos  (not needed to be root)
+[kubernetes_edge]
+Edge1 ansible_ssh_host=192.168.234.144 ansible_user=centos
+Edge2 ansible_ssh_host=192.168.234.146 ansible_user=centos
+
+
+# Specify domain for master and edge nodes
+[all:vars]
+dns_domain=test.local
