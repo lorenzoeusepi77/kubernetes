@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+
+  roles:
+
+    - role: admission_token
+      tags:
+        - token
+
+  tasks:
+
+    - debug:
+        var: admission_token
+      tags:
+        - token
