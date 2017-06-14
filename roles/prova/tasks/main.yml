@@ -13,12 +13,12 @@
   
 - name: Set Kubernetes Version 
   set_fact:
-    version: kubernetes_version
+    version: "{{ kubernetes_version }}"
   when: kubernetes_version is defined
 
 - name: Set Kubernetes Version 
   set_fact:
-    version: version_stdout.stdout
+    version: "{{ version_stdout.stdout }}"
   when: kubernetes_version is not defined
 
 - name: download kubctl and make executable in folder  /usr/local/bin/
