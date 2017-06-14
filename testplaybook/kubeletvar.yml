@@ -1,16 +1,29 @@
 #tasks install "Kubectl"
+
 - name: check "kubctl" stable version
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt
-
+  when: "{{ kubernetes_version }}" is not defined
+  
 - name: return stable.txt to registered var
   command: cat /tmp/stable.txt
-  register: version
+  register: version_stdout
+  when: "{{ kubernetes_version }}" is not defined
+  
+- name: Set Kubernetes Version 
+  set_fact:
+    version: kubernetes_version
+  when: "{{ kubernetes_version }}" is defined
+
+- name: Set Kubernetes Version 
+  set_fact:
+    version: version_stdout.stdout
+  when: "{{ kubernetes_version }}" is not defined
 
 - name: download kubctl and make executable in folder  /usr/local/bin/
   get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/{{ version.stdout }}/bin/linux/amd64/kubectl
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ version }}/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
     mode: 0750
