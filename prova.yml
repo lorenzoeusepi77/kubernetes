@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ cluster_name }}_master"
+- hosts: "{{ clustername }}_master"
   become: yes
   become_user: root
   become_method: sudo
