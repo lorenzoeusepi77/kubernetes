@@ -1,5 +1,10 @@
 #tasks install "Kubectl"
 
+- name: Clean old kubectl file
+  file:
+    state: absent
+    path: /usr/local/bin/kubectl
+    
 - name: check "kubctl" stable version
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
