@@ -1,12 +1,12 @@
 ---
 
 - name: Generate admission_token
-  shell: echo ciao
+  raw: echo ciao
   #shell: python -c 'import random; print "%0x.%0x" % (random.SystemRandom().getrandbits(3*8), random.SystemRandom().getrandbits(8*8))'
   register: token_raw
 
 - set_fact:
-    admission_token: '{{ token_raw.stdout_lines }}'
+    admission_token: '{{ token_raw.stdout }}'
 
 - file:
     path: cfg/{{ clustername }}
