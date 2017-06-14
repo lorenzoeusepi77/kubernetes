@@ -1,11 +1,7 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
-pre_tasks:
-
     - name: Read token from file
       include_vars: cfg/{{ clustername }}/token.yml
-
-    tasks:
 
     - set_fact:
         master_ip_address: "{{ master_ip_address_configured }}"
