@@ -4,12 +4,12 @@
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt
-  when: kubernetes_version is not defined
+  when: kubernetes_version is undefined
   
 - name: return stable.txt to registered var
   command: cat /tmp/stable.txt
   register: version_stdout
-  when: kubernetes_version is not defined
+  when: kubernetes_version is undefined
   
 - name: Set Kubernetes Version 
   set_fact:
@@ -19,7 +19,7 @@
 - name: Set Kubernetes Version 
   set_fact:
     version: "{{ version_stdout.stdout }}"
-  when: kubernetes_version is not defined
+  when: kubernetes_version is undefined
 
 - name: download kubctl and make executable in folder  /usr/local/bin/
   get_url:
