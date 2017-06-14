@@ -1,3 +1,7 @@
+#
+# Example launch playbook:
+#    ansible-playbook install-cluster.yml -e "cluster_name=kubernetes"
+#
 ---
 - hosts: all
   become: yes
