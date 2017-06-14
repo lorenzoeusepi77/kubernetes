@@ -14,15 +14,15 @@
       register: master_init
       ignore_errors: true
     
-    - copy:
-        src: /etc/kubernetes/admin.conf
-        dest: $HOME/
-        owner: $(id -u)
-        group: $(id -g)
-        mode: 0600
-    
-#    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
-#      fetch:
+#    - copy:
 #        src: /etc/kubernetes/admin.conf
-#        dest: cfg/{{ clustername }}/admin.conf
-#        flat: true
+#        dest: $HOME/
+#        owner: root
+#        group: root
+#        mode: 0600
+    
+    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
+      fetch:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/admin.conf
+        flat: true
