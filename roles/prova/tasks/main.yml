@@ -17,8 +17,11 @@
     - name: cccc
       command: cp /etc/kubernetes/admin.conf $HOME/
     
-#    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
-#      fetch:
-#        src: /etc/kubernetes/admin.conf
-#        dest: /root/admin.conf
-#        flat: true
+    - name: bbbb
+      command: chown $(id -u):$(id -g) $HOME/admin.conf
+      
+    - name: ffff
+      command: export KUBECONFIG=$HOME/admin.conf
+    
+    - name: gggg
+      command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
