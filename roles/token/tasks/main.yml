@@ -5,8 +5,8 @@
     path:  cfg/{{ clustername }}/token.yml
   register: token_file
 
-- include: view.yml
+- include: retrieve.yml
   when: token_file.stat.exists
 
-- include: create.yml
+- include: generate.yml
   when: not token_file.stat.exists
