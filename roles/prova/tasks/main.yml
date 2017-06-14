@@ -8,15 +8,14 @@
       delegate_to: 127.0.0.1
       become: false
 
-#    - name: Initialize master
-#      command: kubeadm init --token {{ admission_token }}
-#      args:
-#      register: master_init
-#      ignore_errors: true
+    - name: Initialize master
+      command: kubeadm init --token {{ admission_token }}
+      args:
+      register: master_init
+      ignore_errors: true
       
-#    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
-#      fetch:
-#        src: /etc/kubernetes/admin.conf
-#        dest: cfg/{{ clustername }}/admin.conf
-#        flat: true
-           
+    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
+      fetch:
+        src: /etc/kubernetes/admin.conf
+        dest: cfg/{{ clustername }}/admin.conf
+        flat: true
