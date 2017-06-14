@@ -18,6 +18,7 @@
   roles:
     - pre 
     
+    
 # Installing kubelet and kubeadm on master node
 - hosts: "{{ clustername }}_master"
   become: yes
@@ -26,6 +27,7 @@
   gather_facts: no
   roles:
     - master 
+
 
 # Installing kubelet and kubeadm on edge nodes
 - hosts: "{{ clustername }}_edge"
@@ -36,6 +38,21 @@
   roles:
     - edge
 
+
+# Create tokek for cluster initialization
+- hosts: localhost
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - role: admission_token
+
+  tasks:
+    - debug:
+        var: token
+        
+        
 # Initializing master
 - hosts: "{{ clustername }}_master"
   become: yes
@@ -45,7 +62,8 @@
   roles:
     - confmaster 
 
-# Installing a pod network
+
+# Installing a pod network on master
 - hosts: "{{ clustername }}_master"
   become: yes
   become_user: root
@@ -53,6 +71,7 @@
   gather_facts: no
   roles:
     - podnet 
+
 
 # Joining edge nodes to cluster
 - hosts: "{{ clustername }}_edge"
