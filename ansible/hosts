@@ -1,11 +1,12 @@
 # ANSIBLE INVENTORY EXAMPLE
 #
 # Launch playbook
-# ansible-playbook install-cluster.yml -e cluster_name=kubernetes
+# ansible-playbook install-cluster.yml -e clustername=kubernetes -u centos
 #
-#
-# Example Inventory file Ansible 
-# Change "clustername" var
+# 
+# Change vars:
+# clustername="var"
+# username for remote systems -u "var" 
 
 
 # [clustername]
