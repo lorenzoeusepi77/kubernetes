@@ -1,4 +1,4 @@
-ANSIBLE INVENTORY EXAMPLE
+# ANSIBLE INVENTORY EXAMPLE
 #
 # Launch playbook
 # ansible-playbook install-cluster.yml -e cluster_name=kubernetes
