@@ -19,22 +19,27 @@ base configuration for "all hosts":
 
 Role: "master" 
 initial Kubernetes setup for "kubernetes-master" 
+  - Install Start and Enable "Docker"
+  - Install "Kubectl"
+  - Install Start and Enable "Kubelet"
+  - Install "Kubeadm"
   - 
-  -
   
 Role: "edge" 
 initial Kubernetes setup for "kubernetes-edge"
-  -
-  -
-
+  - Install Start and Enable "Docker"
+  - Install Start and Enable "Kubelet"
+  - Install "Kubeadm" 
+  
 Role: "admission_token"
 create token needed for cluster initialization
-  -
-  -
-  
+  - Generate toked that will be used for:
+    - Master cluster inizialization
+    - Node cluster join
   
 Role: "confmaster" 
 configuration for "kubernetes-master"
+  -
   -
   -
   
@@ -42,8 +47,8 @@ Role: "confedge"
 configuration for "kubernetes-edge"
   -
   -
+  -
   
-
 Following the below steps to create Kubernetes setup on Centos-7.
 
 Prerequisite: 
