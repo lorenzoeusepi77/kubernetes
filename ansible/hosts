@@ -22,6 +22,12 @@ kubernetes_edge
 Master ansible_ssh_host=192.168.234.143
 
 
+#[clustername_master:vars]
+# Insert master ip address var for cluster init
+[kubernetes_master:vars]
+master_ip_address=192.168.234.143
+
+
 # [clustername_edge]
 # The master group should have:
 # hostname 
