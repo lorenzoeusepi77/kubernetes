@@ -13,4 +13,4 @@
 - name: Save token as tokens/clustername.yml
   copy:
     dest: cfg/{{ clustername }}/token.yml
-    content: "admission_token: {{ admission_token }}"
+    content: "{{ admission_token }}"
