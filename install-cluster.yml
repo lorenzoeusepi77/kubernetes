@@ -1,25 +1,30 @@
+# http://kubernetes.io/docs/getting-started-guides/kubeadm/
 #
-# Example launch playbook:
+# Example to start playbook:
 #    ansible-playbook install-cluster.yml -e "cluster_name=kubernetes"
 #
+
+# Basic task requirement
 ---
-- hosts: all
+- hosts: "{{ cluster_name }}"
   become: yes
   become_user: root
   become_method: sudo
   gather_facts: no
   roles:
     - pre 
-
-- hosts: kubernetes-master
+    
+# Installing kubelet and kubeadm on master node
+- hosts: "{{ cluster_name }}_master"
   become: yes
   become_user: root
   become_method: sudo
   gather_facts: no
   roles:
     - master 
-    
-- hosts: kubernetes-edge
+
+# Installing kubelet and kubeadm on edge nodes
+- hosts: "{{ cluster_name }}_edge"
   become: yes
   become_user: root
   become_method: sudo
@@ -27,7 +32,8 @@
   roles:
     - edge
 
-- hosts: kubernetes-master
+# Initializing master
+- hosts: "{{ cluster_name }}_master"
   become: yes
   become_user: root
   become_method: sudo
@@ -35,7 +41,17 @@
   roles:
     - confmaster 
 
-- hosts: kubernetes-edge
+# Installing a pod network
+- hosts: "{{ cluster_name }}_master"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - podnet 
+
+# Joining edge nodes to cluster
+- hosts: "{{ cluster_name }}_edge"
   become: yes
   become_user: root
   become_method: sudo
