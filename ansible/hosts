@@ -26,7 +26,6 @@ kubernetes_edge
 # The master group should have:
 # hostname 
 # ansible_ssh_host=IP ADDRESS 
-# ansible_user=centos  (not needed to be root)
 [kubernetes_master]
 Master ansible_ssh_host=192.168.234.143
 
@@ -35,7 +34,6 @@ Master ansible_ssh_host=192.168.234.143
 # The master group should have:
 # hostname 
 # ansible_ssh_host=IP ADDRESS 
-# ansible_user=centos  (not needed to be root)
 [kubernetes_edge]
 Edge1 ansible_ssh_host=192.168.234.144
 Edge2 ansible_ssh_host=192.168.234.146
