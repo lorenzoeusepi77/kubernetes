@@ -1,1 +1,35 @@
+# Cluster inizialization on Master Node with kubeadm
+---
+pre_tasks:
 
+    - name: Read token from file
+      include_vars: cfg/{{ clustername }}/token.yml
+
+  tasks:
+
+#    - set_fact:
+#        master_ip_address: "{{ master_ip_address_configured }}"
+#      when: master_ip_address_configured is defined
+
+    - set_fact:
+        master_ip_address: "{{ ansible_default_ipv4['address'] }}"
+      when: master_ip_address_configured is not defined
+
+    - name: Save master_ip_address
+      shell: "echo master_ip_address{{ ':' }} {{ master_ip_address }} > cfg/{{ clustername }}/master_ip_address.yml"
+      delegate_to: 127.0.0.1
+      become: false
+
+#    - name: Initialize master
+#      command: kubeadm init --token {{ admission_token }}
+#      args:
+#      register: master_init
+#      ignore_errors: true
+      
+
+#    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
+#      fetch:
+#        src: /etc/kubernetes/admin.conf
+#        dest: cfg/{{ clustername }}/admin.conf
+#        flat: true
+           
