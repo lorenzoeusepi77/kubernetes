@@ -66,13 +66,22 @@ Prerequisite:
 
   - On Ansbile machine:
     - Download the "Kubernetes" playbook from Git and: 
-      - Copy /kubernetes/ansible/hosts and replace /etc/ansible/hosts;
+    
+    - Copy /kubernetes/ansible/hosts and replace /etc/ansible/hosts;
         - Change [clustername] var with your cluster name;
         - Insert your master Server hostname, ip address in [clustername_master]
+          - Example:
+            Master ansible_ssh_host=192.168.234.143
         - Insert your edge node Servers hostname, ip address in [clustername_edge]
+          - Example:
+            Edge1 ansible_ssh_host=192.168.234.144
+            Edge2 ansible_ssh_host=192.168.234.145
+        - Insert [clustername_master:vars] master ip address
+          - Example:
+            master_ip_address=192.168.234.143
         - Insert var required in [all:vars]
         
-      - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
+    - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
   
     - Create ssh key and copy an all Kubernetes Server:
       - ssh-keygen
