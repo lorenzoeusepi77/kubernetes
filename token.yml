@@ -5,7 +5,7 @@
   become_method: sudo
   gather_facts: no
   roles:
-    - role: token
+    - role: admission_token
 
   tasks:
     - debug:
