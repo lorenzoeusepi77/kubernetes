@@ -14,8 +14,8 @@
       register: master_init
       ignore_errors: true
       
-    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
-      fetch:
-        src: /etc/kubernetes/admin.conf
-        dest: cfg/{{ clustername }}/admin.conf
-        flat: true
+#    - name: Copy /etc/kubernetes/admin.conf on master to cfg/clustername/admin.conf
+#      fetch:
+#        src: /etc/kubernetes/admin.conf
+#        dest: cfg/{{ clustername }}/admin.conf
+#        flat: true
