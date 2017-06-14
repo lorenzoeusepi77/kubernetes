@@ -1,4 +1,4 @@
-# Kubernetes Cluster using kubeadm
+# Create Kubernetes Cluster using kubeadm #
 
 Ansible playbook to create a Kubernetes cluster latest release 1.6.4 using "kubeadm" on system(CentOS-7.x). 
 - Ansible version is 2.3.0.0
@@ -23,7 +23,6 @@ initial Kubernetes setup for "kubernetes-master"
   - Install "Kubectl"
   - Install Start and Enable "Kubelet"
   - Install "Kubeadm"
-  - 
   
 Role: "edge" 
 initial Kubernetes setup for "kubernetes-edge"
@@ -39,15 +38,15 @@ create token needed for cluster initialization
   
 Role: "confmaster" 
 configuration for "kubernetes-master"
-  -
-  -
-  -
+  - TBD
+  - TBD
+  - TBD
   
 Role: "confedge" 
 configuration for "kubernetes-edge"
-  -
-  -
-  -
+  - TBD
+  - TBD
+  - TBD
   
 Following the below steps to create Kubernetes setup on Centos-7.
 
@@ -68,7 +67,7 @@ Prerequisite:
   - On Ansbile machine:
     - Download the "Kubernetes" playbook from Git and: 
       - Copy /kubernetes/ansible/hosts and replace /etc/ansible/hosts;
-        - Change clustername var with your cluster name;
+        - Change [clustername] var with your cluster name;
         - Insert your master Server hostname, ip address in [clustername_master]
         - Insert your edge node Servers hostname, ip address in [clustername_edge]
         - Insert var required in [all:vars]
@@ -82,8 +81,8 @@ Prerequisite:
       - ssh-copy-id centos@"Edge2ServerIP"
 
 
-# How to Run Ansible playbook
-ansible-playbook install-cluster.yml -e clustername=kubernetes -u centos
-# Change vars:
-# clustername="var"
-# username for remote systems -u "var" 
+How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
+  ansible-playbook install-cluster.yml -e clustername=kubernetes -u centos
+You can change vars:
+  - clustername = your cluster name
+  - username = user for remote systems access -u username 
