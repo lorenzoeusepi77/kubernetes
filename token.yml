@@ -1,12 +1,12 @@
 ---
-
-- hosts: localhost
-  gather_facts: false
-
+- hosts: "localhost"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
   roles:
-    - role: admission_token
+    - role: token
 
   tasks:
-
     - debug:
-        var: admission_token
+        var: token
