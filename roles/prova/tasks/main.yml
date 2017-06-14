@@ -5,11 +5,11 @@ pre_tasks:
     - name: Read token from file
       include_vars: cfg/{{ clustername }}/token.yml
 
-tasks:
+    tasks:
 
-#    - set_fact:
-#        master_ip_address: "{{ master_ip_address_configured }}"
-#      when: master_ip_address_configured is defined
+    - set_fact:
+        master_ip_address: "{{ master_ip_address_configured }}"
+      when: master_ip_address_configured is defined
 
     - set_fact:
         master_ip_address: "{{ ansible_default_ipv4['address'] }}"
