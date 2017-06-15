@@ -19,9 +19,6 @@
       args:
       register: master_init
       ignore_errors: true
-
-#      vars:
-#        local_home: "{{ lookup('env','HOME') }}" 
       
     - name: Copy admin file on user $HOME
       command: cp /etc/kubernetes/admin.conf $HOME/
@@ -32,9 +29,16 @@
 #      command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
 
     - name: Update bashrc for PythonBrew for foo user
+#      vars:
+#        local_home: "{{ lookup('env','HOME') }}"        
       lineinfile:
       dest=~/.bashrc
         line="KUBECONFIG= {{ local_home }} /admin.conf"
         state=present
         insertafter=EOF
         create=True
+    
+    - name: source bashrc
+      shell: source $HOME/.bashrc
+      args:
+      executable: /bin/bash
