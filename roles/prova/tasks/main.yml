@@ -34,4 +34,4 @@
         create=True
     
     - name: source bashrc
-      action: shell source /root/.bashrc
+      shell: . /root/.bashrc
