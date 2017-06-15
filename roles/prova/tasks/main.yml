@@ -35,7 +35,7 @@
          local_home: "{{ lookup('env','HOME') }}" 
       lineinfile:
       dest=~/.bashrc
-        line="KUBECONFIG={{ local_home }}/admin.conf"
+        line="KUBECONFIG= {{ local_home }} /admin.conf"
         state=present
         insertafter=EOF
         create=True
