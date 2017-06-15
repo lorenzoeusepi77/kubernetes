@@ -22,13 +22,13 @@
       
     - name: Copy admin file on user $HOME
       command: cp /etc/kubernetes/admin.conf $HOME/
-      environment:
-        KUBECONFIG: /root/admin.conf
+#      environment:
+#        KUBECONFIG: /root/admin.conf
             
     - name: Update bashrc
       lineinfile:
         dest=/root/.bashrc 
-        line="KUBECONFIG=/root/admin.conf"
+        line="export KUBECONFIG=/root/admin.conf"
         state=present
         insertafter=EOF
         create=True
