@@ -1,0 +1,9 @@
+# Basic task requirement
+---
+- hosts: "{{ clustername }}"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - pre

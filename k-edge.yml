@@ -1,0 +1,8 @@
+# Joining edge nodes to cluster
+- hosts: "{{ clustername }}_edge"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - confedge

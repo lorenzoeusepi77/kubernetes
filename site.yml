@@ -1,8 +1,14 @@
 # RUN PLAYBOOK
 #
-# ansible-playbook -i inventories/production/hosts site.yml -u centos -e 
+# Read README.md for detail
+#
+# ansible-playbook -i kubernetes/inventories/production/hosts site.yml -e clustername=kubernetes -u centos
 
 ---
-# file: site.yml
-#- include: webservers.yml
-#- include: dbservers.yml
+# Main file: site.yml
+- include: all-node.yml
+- include: master-node.yml
+- include: edge-nodes.yml
+- include: localhost.yml
+- include: k-master.yml
+- include: k-edge.yml
