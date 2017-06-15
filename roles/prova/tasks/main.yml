@@ -21,11 +21,15 @@
       ignore_errors: true
       
     - name: Copy admin file on user $HOME
+      vars:
+         local_home: "{{ lookup('env','HOME') }}"
       command: cp /etc/kubernetes/admin.conf $HOME/
       environment:
         KUBECONFIG: $HOME/admin.conf
             
     - name: Update bashrc
+      vars:
+         local_home: "{{ lookup('env','HOME') }}"
       lineinfile:
         dest=~/.bashrc 
         line="KUBECONFIG= $HOME/admin.conf"
@@ -34,4 +38,6 @@
         create=True
     
     - name: source bashrc
+      vars:
+         local_home: "{{ lookup('env','HOME') }}"  
       shell: . $HOME/.bashrc
