@@ -1,5 +1,8 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
+    vars:
+     local_home: "{{ lookup('env','HOME') }}"
+     
     - name: delete old kubernetes conf file
       command: rm -f $HOME/admin.conf
     
@@ -22,8 +25,12 @@
     
     - name: Copy admin file on user $HOME
       command: cp /etc/kubernetes/admin.conf $HOME/
+      vars:
+         local_home: "{{ lookup('env','HOME') }}"
       environment:
         KUBECONFIG: $HOME/admin.conf
             
     - name: Insert permanent env var
+      vars:
+         local_home: "{{ lookup('env','HOME') }}"
       command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
