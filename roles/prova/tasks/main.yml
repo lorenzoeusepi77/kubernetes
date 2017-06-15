@@ -1,8 +1,7 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
-    - file: delete old kubernetes conf file
-        path: $HOME/admin.conf
-        state: absent
+    - name: delete old kubernetes conf file
+      command: rm -f $HOME/admin.conf
     
     - name: reset old kubernetes installation
       command: kubeadm reset
