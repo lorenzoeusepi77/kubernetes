@@ -1,8 +1,5 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
-    vars:
-     local_home: "{{ lookup('env','HOME') }}"
-     
     - name: delete old kubernetes conf file
       command: rm -f $HOME/admin.conf
     
