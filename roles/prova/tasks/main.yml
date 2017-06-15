@@ -27,7 +27,7 @@
             
     - name: Update bashrc
       lineinfile:
-        path=~/.bashrc 
+        dest=~/.bashrc 
         line="KUBECONFIG= $HOME/admin.conf"
         state=present
         insertafter=EOF
