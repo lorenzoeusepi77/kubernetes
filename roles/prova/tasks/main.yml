@@ -34,6 +34,4 @@
         create=True
     
     - name: source bashrc
-      shell: source /root/.bashrc
-      args: /bin/bash
-         executable: /bin/bash
+      action: shell source /root/.bashrc
