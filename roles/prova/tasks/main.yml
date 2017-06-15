@@ -20,8 +20,8 @@
       register: master_init
       ignore_errors: true
 
-      vars:
-         local_home: "{{ lookup('env','HOME') }}" 
+#      vars:
+#        local_home: "{{ lookup('env','HOME') }}" 
       
     - name: Copy admin file on user $HOME
       command: cp /etc/kubernetes/admin.conf $HOME/
@@ -40,4 +40,6 @@
         create=True
     
     - name: source bashrc
-      action: shell source ~/.bashrc
+      shell: source $HOME/.bashrc
+      args:
+      executable: /bin/bash
