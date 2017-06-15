@@ -26,5 +26,10 @@
     - name: Export temp env var
       command: export KUBECONFIG=$HOME/admin.conf
     
+    - name: Export temp env var
+      shell: "echo $KUBECONFIG"
+      environment:
+        KUBECONFIG: $HOME/admin.conf
+    
     - name: Insert permanent env var
       command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
