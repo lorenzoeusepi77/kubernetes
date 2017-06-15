@@ -1,6 +1,6 @@
-# EXAMPLE
-# ansible-playbook site.yml --limit webservers
-# ansible-playbook webservers.yml
+# RUN PLAYBOOK
+#
+# ansible-playbook -i inventories/production/hosts site.yml -u centos -e 
 
 ---
 # file: site.yml

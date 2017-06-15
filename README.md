@@ -91,7 +91,11 @@ Prerequisite:
 
 
 How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
+On Ansible server clone git repo:
+
+
   ansible-playbook install-cluster.yml -e clustername=kubernetes -u centos
+# TO BE  ansible-playbook -i inventories/production/hosts site.yml -e clustername=kubernetes -u centos
 You can change vars:
   - clustername = your cluster name
   - username = user for remote systems access -u username 
