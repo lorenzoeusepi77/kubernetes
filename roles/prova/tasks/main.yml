@@ -30,8 +30,10 @@
 
     - name: Update bashrc for PythonBrew for foo user
       lineinfile:
-        dest=~/.bashrc
-        line="KUBECONFIG=$HOME/admin.conf"
+      vars:
+         local_home: "{{ lookup('env','HOME') }}"  
+      dest=~/.bashrc
+        line="KUBECONFIG={{ local_home }}/admin.conf"
         state=present
         insertafter=EOF
         create=True
