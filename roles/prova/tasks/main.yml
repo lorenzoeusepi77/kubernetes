@@ -21,17 +21,19 @@
       ignore_errors: true
     
     - name: Copy admin file on user $HOME
+      vars:
+         local_home: "{{ lookup('env','HOME') }}" 
       command: cp /etc/kubernetes/admin.conf $HOME/
       environment:
-        KUBECONFIG: /root/admin.conf
+        KUBECONFIG: $HOME/admin.conf
             
 #    - name: Insert permanent env var
 #      command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
 
     - name: Update bashrc for PythonBrew for foo user
-      lineinfile:
       vars:
-         local_home: "{{ lookup('env','HOME') }}"  
+         local_home: "{{ lookup('env','HOME') }}" 
+      lineinfile:
       dest=~/.bashrc
         line="KUBECONFIG={{ local_home }}/admin.conf"
         state=present
