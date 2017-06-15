@@ -1,11 +1,18 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
-    - name: delete old kubernetes conf file
-      command: rm -f $HOME/admin.conf
+    delete old kubernetes conf file
+    - file: delete old kubernetes conf file
+        path: $HOME/admin.conf
+        state: absent
     
     - name: reset old kubernetes installation
       command: kubeadm reset
 
+    - lineinfile: remove old permanent env var
+        path: ~/.bashrc
+        state: absent
+        line: source KUBECONFIG=/root/admin.conf
+        
     - name: Read token from file
       include_vars: cfg/{{ clustername }}/token.yml
 
@@ -20,11 +27,11 @@
       register: master_init
       ignore_errors: true
     
-    - name: cccc
+    - name: Copy admin file on user $HOME
       command: cp /etc/kubernetes/admin.conf $HOME/
       
-    - name: ffff
+    - name: Export temp env var
       command: export KUBECONFIG=$HOME/admin.conf
     
-    - name: gggg
+    - name: Insert permanent env var
       command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
