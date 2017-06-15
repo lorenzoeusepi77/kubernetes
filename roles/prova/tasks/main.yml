@@ -33,5 +33,7 @@
         insertafter=EOF
         create=True
     
-    - name: source bashrc
-      shell: . /root/.bashrc
+#    - name: source bashrc to test master node
+#      shell: . /root/.bashrc && kubectl cluster-info
+      
+    
