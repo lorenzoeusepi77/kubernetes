@@ -25,15 +25,10 @@
       environment:
         KUBECONFIG: $HOME/admin.conf
             
-#    - name: Insert permanent env var
-#      command: echo "source KUBECONFIG=$HOME/admin.conf" >> ~/.bashrc
-
     - name: Update bashrc for PythonBrew for foo user
-#      vars:
-#        local_home: "{{ lookup('env','HOME') }}"        
       lineinfile:
       dest=~/.bashrc
-        line="KUBECONFIG= {{ local_home }} /admin.conf"
+        line="KUBECONFIG= $HOME/admin.conf"
         state=present
         insertafter=EOF
         create=True
