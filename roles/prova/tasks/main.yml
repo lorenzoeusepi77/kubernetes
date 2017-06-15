@@ -25,7 +25,7 @@
       environment:
         KUBECONFIG: $HOME/admin.conf
             
-    - name: Update bashrc for PythonBrew for foo user
+    - name: Update bashrc
       lineinfile:
       dest=~/.bashrc
         line="KUBECONFIG= $HOME/admin.conf"
@@ -33,7 +33,7 @@
         insertafter=EOF
         create=True
     
-    - name: source bashrc
-      shell: source $HOME/.bashrc
-      args:
-      executable: /bin/bash
+#    - name: source bashrc
+#      shell: source $HOME/.bashrc
+#      args:
+#      executable: /bin/bash
