@@ -33,7 +33,7 @@
         insertafter=EOF
         create=True
     
-#    - name: source bashrc
-#      shell: source $HOME/.bashrc
-#      args:
-#      executable: /bin/bash
+    - name: source bashrc
+      shell: source $HOME/.bashrc
+      args:
+      executable: /bin/bash
