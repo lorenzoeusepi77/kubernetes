@@ -25,14 +25,14 @@
          local_home: "{{ lookup('env','HOME') }}"
       command: cp /etc/kubernetes/admin.conf $HOME/
       environment:
-        KUBECONFIG: "{{ local_home }}"/admin.conf
+        KUBECONFIG: "{{ local_home }}" /admin.conf
             
     - name: Update bashrc
       vars:
          local_home: "{{ lookup('env','HOME') }}"
       lineinfile:
         dest=~/.bashrc 
-        line="KUBECONFIG= "{{ local_home }}"/admin.conf"
+        line="KUBECONFIG= "{{ local_home }}" /admin.conf"
         state=present
         insertafter=EOF
         create=True
@@ -40,4 +40,4 @@
     - name: source bashrc
       vars:
          local_home: "{{ lookup('env','HOME') }}"  
-      shell: . "{{ local_home }}"/.bashrc
+      shell: . "{{ local_home }}" /.bashrc
