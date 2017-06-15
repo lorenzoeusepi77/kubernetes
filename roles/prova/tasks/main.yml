@@ -40,5 +40,5 @@
         insertafter=EOF
         create=True
     
-    - name: source bashrc
-      action: shell source ~/.bashrc
+#    - name: source bashrc
+#      action: shell source ~/.bashrc
