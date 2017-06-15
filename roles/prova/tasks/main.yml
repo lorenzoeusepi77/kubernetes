@@ -28,10 +28,10 @@
     - name: Update bashrc
       lineinfile:
       dest=~/.bashrc
-        line="KUBECONFIG= $HOME/admin.conf"
-        state=present
-        insertafter=EOF
-        create=True
+      line="KUBECONFIG= $HOME/admin.conf"
+      state=present
+      insertafter=EOF
+      create=True
     
 #    - name: source bashrc
 #      shell: source $HOME/.bashrc
