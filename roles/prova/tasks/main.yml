@@ -5,11 +5,6 @@
     
     - name: reset old kubernetes installation
       command: kubeadm reset
-
-    - lineinfile: remove old permanent env var
-        path: ~/.bashrc
-        state: absent
-        line: source KUBECONFIG=/root/admin.conf
         
     - name: Read token from file
       include_vars: cfg/{{ clustername }}/token.yml
