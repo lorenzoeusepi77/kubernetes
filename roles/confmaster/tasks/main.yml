@@ -1,10 +1,3 @@
----
-#Inizializing Master Node
-#- name: initialize the master
-#  shell: kubeadm init
-#  register: kubeadm
-#- debug: var=kubeadm.stdout_lines
-
 # Cluster inizialization on Master Node with kubeadm
 ---
     - name: Delete old kubernetes conf file

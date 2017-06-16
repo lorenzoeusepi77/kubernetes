@@ -29,19 +29,12 @@
         line="export KUBECONFIG=/root/admin.conf"
         state=present
         insertafter=EOF
-        create=True
-    
-#    - name: Install pod network "weave-kube 1.6"
-#      command: /usr/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf apply -f https://git.io/weave-kube-1.6
-#      register: pod_network
-#      ignore_errors: true
+        create=True 
+        
+    - name: Install pod network "weave-kube 1.6"
+      command: /usr/bin/kubectl apply -f https://git.io/weave-kube-1.6
+      register: pod_network
+      ignore_errors: true
 
-#    - debug:
-#        var: pod_network.stdout_lines        
-
-#    - name: Wait for Kube-DNS pod running
-#      shell: "kubectl --kubeconfig /etc/kubernetes/admin.conf get pods --all-namespaces | grep kube-dns"
-#      register: result
-#      until: result.stdout.find("Running") != -1
-#      retries: 30
-#      delay: 10              
+    - debug:
+        var: pod_network.stdout_lines                  
