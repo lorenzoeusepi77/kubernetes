@@ -6,4 +6,4 @@
 
 ---
 # Main file: site.yml
-- include: includejob/prova.yml
+- include: prova.yml

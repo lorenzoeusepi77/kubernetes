@@ -6,12 +6,12 @@
 
 ---
 # Main file: site.yml
-- include: /includejob/all-node.yml
-- include: /includejob/master-node.yml
-- include: /includejob/edge-nodes.yml
-- include: /includejob/gentoken.yml
-- include: /includejob/k-master.yml
-- include: /includejob/k-edge.yml
-- include: /includejob/k-plugin.yml
-# TO DO - include: /includejob/glusterFS.yml
-# TO DO - include: /includejob/nexus.yml
+- include: all-node.yml
+- include: master-node.yml
+- include: edge-nodes.yml
+- include: gentoken.yml
+- include: k-master.yml
+- include: k-edge.yml
+- include: k-plugin.yml
+# TO DO - include: glusterFS.yml
+# TO DO - include: nexus.yml
