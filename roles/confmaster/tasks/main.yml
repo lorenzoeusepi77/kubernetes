@@ -10,7 +10,7 @@
       include_vars: cfg/{{ clustername }}/token.yml
 
     - name: Save master_ip_address
-      shell: echo "{{ master_ip_address }}" > cfg/{{ clustername }}/master_ip_address.yml
+      shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > cfg/{{ clustername }}/master_ip_address.yml
       delegate_to: 127.0.0.1
       become: false
 
