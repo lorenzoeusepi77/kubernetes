@@ -73,10 +73,14 @@
     mode: 0750
     
 # tasks Add "Kubectl" bash comletion environment
-- lineinfile:
-    name: /root/.bashrc
-    line: 'source <(kubectl completion bash)'
-
+- name: Export env var for Kubernetes
+  lineinfile:
+    dest=/root/.bashrc 
+    line="source <(kubectl completion bash)"
+    state=present
+    insertafter=EOF
+    create=True
+    
 # tasks Installing kubelet and kubeadm
 - name: Install Kubernetes Repository
   yum_repository:
