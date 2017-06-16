@@ -1,14 +1,10 @@
 # Join Edge Nodes to cluster with kubeadm
 ---  
-  pre_tasks:
-
     - name: Read token
       include_vars: cfg/{{ clustername }}/token.yml
       
     - name: Read master_ip_address
       include_vars: cfg/{{ clustername }}/master_ip_address.yml
-
-  tasks:
 
     - debug:
         var: admission_token
