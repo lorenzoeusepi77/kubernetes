@@ -1,6 +1,7 @@
-# TO DO kubeadm token generate
----
+# Save master_ip_address
+
+    # TO DO kubeadm token list
     - name: Save master_ip_address
       shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > cfg/{{ clustername }}/master_ip_address.yml
-#      delegate_to: 127.0.0.1
-#      become: false  
+      delegate_to: 127.0.0.1
+      become: false

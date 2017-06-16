@@ -6,4 +6,7 @@
 
 ---
 # Main file: site.yml
-- include: add-edge.yml
+- include: /includejob/all-node.yml
+- include: /includejob/edge-nodes.yml
+# - include: /includejob/k-edge.yml
+- include: /includejob/add-edge.yml
