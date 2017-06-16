@@ -1,5 +1,8 @@
 # Join Edge Nodes to cluster with kubeadm
 ---  
+    - name: Reset old kubernetes installation
+      command: kubeadm reset
+
     - name: Read token
       include_vars: cfg/{{ clustername }}/token.yml
       
