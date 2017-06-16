@@ -1,0 +1,8 @@
+# Delete edge nodes from cluster
+- hosts: "{{ clustername }}_edgedel"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - deledge

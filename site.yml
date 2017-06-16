@@ -12,3 +12,4 @@
 - include: localhost.yml
 - include: k-master.yml
 - include: k-edge.yml
+- include: plugin.yml
