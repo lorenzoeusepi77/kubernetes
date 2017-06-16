@@ -30,3 +30,8 @@
         state=present
         insertafter=EOF
         create=True
+    
+    - name: Install pod network "weave-kube 1.6"
+      command: /usr/bin/kubectl apply -f https://git.io/weave-kube-1.6
+      register: pod_network
+      ignore_errors: true

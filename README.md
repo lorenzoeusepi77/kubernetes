@@ -38,17 +38,16 @@ create token needed for cluster initialization
   
 Role: "confmaster" 
 configuration for "kubernetes-master"
-  - TBD
-  - TBD
-  - TBD
+  - Initialize master with kubeadm 
+  - Export env var for Kubernetes
+  - Install pod network "weave-kube 1.6"
   
 Role: "confedge" 
 configuration for "kubernetes-edge"
-  - TBD
-  - TBD
-  - TBD
+  - Join Edge Nodes to cluster with kubeadm
   
-Following the below steps to create Kubernetes setup on Centos-7.
+ 
+Following the below steps to create Kubernetes cluster on Centos-7.
 
 Prerequisite: 
   - Full network connectivty between Servers and Ansible;
