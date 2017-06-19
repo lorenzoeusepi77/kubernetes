@@ -93,7 +93,7 @@
     
 # tasks Installing kubelet and kubeadm
 - name: Install Kubernetes Repository
-  yum_repository:
+    yum_repository:
     name: Kubernetes
     description: Kubernetes repo
     baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
