@@ -16,7 +16,12 @@
    - yum-utils
    - device-mapper-persistent-data
    - lvm2
-  
+
+- name: yum-clean-metadata
+  command: yum clean all
+  args:
+    warn: no
+    
 #- name: Remove repository (and clean up left-over metadata)
 #  yum_repository:
 #    name: Docker_CE_Stable
