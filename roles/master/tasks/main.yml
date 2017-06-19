@@ -22,11 +22,11 @@
   args:
     warn: no
     
-#- name: Remove repository (and clean up left-over metadata)
-#  yum_repository:
-#    name: Docker_CE_Stable
-#    state: absent
-#  notify: yum-clean-all
+- name: Remove repository (and clean up left-over metadata)
+  yum_repository:
+    name: Docker_CE_Stable
+    state: absent
+  notify: yum-clean-all
    
 - name: add Docker repository
   yum_repository:
@@ -36,7 +36,7 @@
     gpgcheck: yes
     enabled: yes
     gpgkey: "https://download.docker.com/linux/centos/gpg"
-    
+    state: update
 - name: == YUM == Install Docker
   yum: name={{ item }} state=latest
   with_items:
