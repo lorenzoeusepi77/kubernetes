@@ -26,7 +26,7 @@
 #    state: absent
 #  notify: yum-clean-metadata
   
-- name: add Docker repository
+- name: Docker repository
   yum_repository:
     name: DockerCEStable
     state: present
