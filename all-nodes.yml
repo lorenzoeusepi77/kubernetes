@@ -1,7 +1,6 @@
 # Basic task requirement
 ---
 - hosts: "{{ clustername }}"
-  serial: 1
   become: yes
   become_user: root
   become_method: sudo

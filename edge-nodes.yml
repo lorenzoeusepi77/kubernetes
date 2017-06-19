@@ -1,6 +1,5 @@
 # Installing kubelet and kubeadm on edge nodes
 - hosts: "{{ clustername }}_edge"
-  serial: 1
   become: yes
   become_user: root
   become_method: sudo
