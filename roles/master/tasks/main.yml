@@ -1,5 +1,5 @@
 ---
- tasks install "Docker"
+#tasks install "Docker"
 - name: == YUM == Uninstall old versions
   yum: name={{ item }} state=absent
   with_items:
