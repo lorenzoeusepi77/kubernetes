@@ -27,15 +27,16 @@
 #  notify: yum-clean-metadata
 
     
-#- name: Docker repository
-#  yum_repository:
-#    name: DockerCEStable
-#    description: Docker repo
-#    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-#    gpgcheck: yes
-#    enabled: yes
-#    gpgkey: https://download.docker.com/linux/centos/gpg
-#    state: present    
+- name: Docker repository
+  yum_repository:
+    name: DockerCEStable
+    description: Docker repo
+    filename: DockerCEStable
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    state: present    
     
 - name: == YUM == Install Docker
   yum: name={{ item }} state=latest
