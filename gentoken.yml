@@ -8,6 +8,6 @@
   roles:
     - role: admission_token
 
-  tasks:
-    - debug:
-        var: token
+#  tasks:
+#    - debug:
+#        var: token
