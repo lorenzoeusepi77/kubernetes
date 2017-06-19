@@ -25,16 +25,17 @@
 #    name: DockerCEStable
 #    state: absent
 #  notify: yum-clean-metadata
-  
-- name: Docker repository
-  yum_repository:
-    name: DockerCEStable
-    description: Docker repo
-    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-    gpgcheck: yes
-    enabled: yes
-    gpgkey: https://download.docker.com/linux/centos/gpg
-    state: present    
+
+    
+#- name: Docker repository
+#  yum_repository:
+#    name: DockerCEStable
+#    description: Docker repo
+#    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+#    gpgcheck: yes
+#    enabled: yes
+#    gpgkey: https://download.docker.com/linux/centos/gpg
+#    state: present    
     
 - name: == YUM == Install Docker
   yum: name={{ item }} state=latest
@@ -101,6 +102,18 @@
 #    enabled: yes
 #    gpgcakey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
 #    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+
+- name: Add Kubernetes yum repo
+  yum_repository:
+    name: Kubernetes
+    description: Kubernetes
+    file: kubernetes
+    baseurl: http://yum.kubernetes.io/repos/kubernetes-el7-x86_64
+    enabled: true
+    gpgcakey: https://packages.cloud.google.com/yum/doc/yum-key.gpg
+    gpgkey: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg  
+    gpgcheck: true
+    state: present
     
 - name: == YUM == Install kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=latest
