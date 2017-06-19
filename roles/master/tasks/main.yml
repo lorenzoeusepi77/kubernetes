@@ -16,15 +16,21 @@
    - yum-utils
    - device-mapper-persistent-data
    - lvm2
-   
+
+- name: Remove repository (and clean up left-over metadata)
+  yum_repository:
+    name: DockerCEStable
+    state: absent
+  notify: yum-clean-metadata
+  
 - name: add Docker repository
   yum_repository:
-     name: Docker_CE_Stable
-     description: Docker repo
-     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-     gpgcheck: yes
-     enabled: yes
-     gpgkey: "https://download.docker.com/linux/centos/gpg"
+    name: DockerCEStable
+    description: Docker repo
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: "https://download.docker.com/linux/centos/gpg"
     
 - name: == YUM == Install Docker
   yum: name={{ item }} state=latest
