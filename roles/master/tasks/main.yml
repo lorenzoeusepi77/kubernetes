@@ -1,4 +1,5 @@
 ---
+# tasks install "Docker"
 - name: == YUM == Uninstall old versions
   yum: name={{ item }} state=absent
   with_items:
@@ -10,7 +11,7 @@
    - yum-utils
    - device-mapper-persistent-data
    - lvm2
-#  ignore_errors: True
+  ignore_errors: True
 
 - name: == YUM == Install Docker utility
   yum: name={{ item }} state=latest
@@ -18,13 +19,12 @@
    - yum-utils
    - device-mapper-persistent-data
    - lvm2
-#  ignore_errors: True
 
-- name: Remove repository and clean up left-over metadata
-  yum_repository:
-    name: DockerCEStable
-    state: absent
-  notify: yum-clean-metadata
+#- name: Remove repository and clean up left-over metadata
+#  yum_repository:
+#    name: DockerCEStable
+#    state: absent
+#  notify: yum-clean-metadata
   
 - name: add Docker repository
   yum_repository:
