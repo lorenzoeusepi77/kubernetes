@@ -1,17 +1,17 @@
 ---
 # tasks install "Docker"
-- name: == YUM == Uninstall old versions
-  yum: name={{ item }} state=absent
-  with_items:
-   - docker
-   - docker-common
-   - container-selinux
-   - docker-selinux
-   - docker-engine
-   - yum-utils
-   - device-mapper-persistent-data
-   - lvm2
-  ignore_errors: True
+#- name: == YUM == Uninstall old versions
+#  yum: name={{ item }} state=absent
+#  with_items:
+#   - docker
+#   - docker-common
+#   - container-selinux
+#   - docker-selinux
+#   - docker-engine
+#   - yum-utils
+#   - device-mapper-persistent-data
+#   - lvm2
+#  ignore_errors: True
 
 #- name: == YUM == Install Docker utility
 #  yum: name={{ item }} state=latest
