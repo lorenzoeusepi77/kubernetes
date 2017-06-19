@@ -16,7 +16,8 @@
    - yum-utils
    - device-mapper-persistent-data
    - lvm2
-
+  ignore_errors: True
+  
 - name: Install add Docker repository
   yum_repository:
     name: Docker CE Stable
