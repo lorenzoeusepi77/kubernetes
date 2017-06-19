@@ -1,6 +1,6 @@
 # Initializing master
 - hosts: "{{ clustername }}_master"
-  order: inventory
+  serial: 1
   become: yes
   become_user: root
   become_method: sudo
