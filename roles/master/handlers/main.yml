@@ -1,2 +1,6 @@
+# Handler clean yum metadata cache
+---
 - name: yum-clean-metadata
-  shell: env yum clean all
+  command: yum clean metadata
+  args:
+    warn: no
