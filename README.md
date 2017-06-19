@@ -89,22 +89,23 @@ Prerequisite:
       - ssh-copy-id centos@"Edge2ServerIP"
 
 
-# Create Kubernetes cluster	  
+	  
+# Create Kubernetes cluster	with Kubeadm  
 How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
 On Ansible server clone git repo:
 
 root@Ansible:~# cd /etc/ansible/
 root@Ansible:/etc/ansible# git init
 git clone https://github.com/lorenzoeusepi77/kubernetes.git
-ansible-playbook -i kubernetes/inventories/production/hosts site.yml -e clustername=kubernetes -u centos
+ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
 
-You can change vars:
+You need to change this vars:
   - clustername = your cluster name
   - username = user for remote systems access -u username 
 
   
-# Add Kubernetes cluster edge node
-ansible-playbook -i kubernetes/inventories/production/addedge site-addedge.yml -e clustername=kubernetes -u centos
+# Add to Kubernetes cluster "edge nodes"
+ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
   
-# Delete Kubernetes cluster edge node
-ansible-playbook -i kubernetes/inventories/production/deledge site-deledge.yml -e clustername=kubernetes -u centos
+# Delete from Kubernetes cluster "edge nodes"
+ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
