@@ -1,1 +1,2 @@
-
+- name: yum-clean-metadata
+  shell: env yum clean all

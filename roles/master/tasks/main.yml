@@ -21,6 +21,7 @@
   yum_repository:
     name: Docker_CE_Stable
     state: absent
+  notify: yum-clean-metadata
    
 - name: add Docker repository
   yum_repository:
