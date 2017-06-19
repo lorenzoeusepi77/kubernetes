@@ -7,7 +7,7 @@
 ---
 # Main file: site.yml
 - include: all-nodes.yml
-#- include: master-node.yml
+- include: master-node.yml
 - include: edge-nodes.yml
 - include: gentoken.yml
 - include: master-config.yml
