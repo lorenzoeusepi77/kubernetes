@@ -18,7 +18,7 @@
    - lvm2
    
 - name: add Docker repository
-    yum_repository:
+    yumrepo:
       name: Docker_CE_Stable
       description: Docker repo
       baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
