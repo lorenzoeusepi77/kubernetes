@@ -27,6 +27,7 @@
 - name: add Docker repository
   yum_repository:
     name: DockerCEStable
+    state: present
     description: Docker repo
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
     gpgcheck: yes
