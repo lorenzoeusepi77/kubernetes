@@ -19,13 +19,12 @@
 
 - name: Remove repository (and clean up left-over metadata)
   yum_repository:
-    name: Docker CE Stable
+    name: Docker_CE_Stable
     state: absent
-  notify: yum-clean-metadata
    
 - name: add Docker repository
   yum_repository:
-    name: Docker CE Stable
+    name: Docker_CE_Stable
     description: Docker repo
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
     gpgcheck: yes
