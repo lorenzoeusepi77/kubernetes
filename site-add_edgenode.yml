@@ -6,7 +6,8 @@
 
 ---
 # Main file: site.yml
-- include: /includejob/all-node.yml
-- include: /includejob/edge-nodes.yml
-# - include: /includejob/k-edge.yml
-- include: /includejob/add-edge.yml
+- include: all-nodes.yml
+- include: edge-nodes.yml
+- include: viewtoken.yml
+- include: edge-config.yml
+# TO DO - include: glusterFS.yml

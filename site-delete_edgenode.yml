@@ -6,4 +6,4 @@
 
 ---
 # Main file: site.yml
-- include: del-edge.yml
+- include: remove-edge.yml

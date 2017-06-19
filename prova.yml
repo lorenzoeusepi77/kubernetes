@@ -1,5 +1,6 @@
 ---
 - hosts: "{{ clustername }}_master"
+  order: inventory
   become: yes
   become_user: root
   become_method: sudo

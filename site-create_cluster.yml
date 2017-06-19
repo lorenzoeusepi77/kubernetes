@@ -6,12 +6,11 @@
 
 ---
 # Main file: site.yml
-- include: all-node.yml
+- include: all-nodes.yml
 - include: master-node.yml
 - include: edge-nodes.yml
 - include: gentoken.yml
-- include: k-master.yml
-- include: k-edge.yml
-- include: k-plugin.yml
+- include: master-config.yml
+- include: edge-config.yml
+- include: plugins.yml
 # TO DO - include: glusterFS.yml
-# TO DO - include: nexus.yml

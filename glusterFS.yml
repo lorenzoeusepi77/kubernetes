@@ -1,0 +1,9 @@
+# Add GlusterFS on edge nodes
+- hosts: "{{ clustername }}_edge"
+  order: inventory
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - glusterfs

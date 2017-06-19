@@ -1,0 +1,14 @@
+# Create tokek for cluster initialization
+#- hosts: localhost
+- hosts: "{{ clustername }}_master"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - role: view_token
+    - role: masteripaddr
+
+  tasks:
+    - debug:
+        var: token

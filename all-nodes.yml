@@ -1,9 +1,10 @@
 # Basic task requirement
 ---
 - hosts: "{{ clustername }}"
+  order: inventory
   become: yes
   become_user: root
   become_method: sudo
   gather_facts: no
   roles:
-    - pre
+    - role: base

@@ -1,5 +1,6 @@
 # Add and joining edge nodes to cluster
 - hosts: "{{ clustername }}_edgeadd"
+  order: inventory
   become: yes
   become_user: root
   become_method: sudo
