@@ -3,10 +3,11 @@
 # Read README.md for detail
 #
 # ansible-playbook -i kubernetes/inventories/production/hosts site.yml -e clustername=kubernetes -u centos
+---
 # Main file: site.yml
 - include: all-nodes.yml
 - include: master-node.yml
-- include: edge-nodes.yml
+#- include: edge-nodes.yml
 - include: gentoken.yml
 - include: master-config.yml
 - include: edge-config.yml
