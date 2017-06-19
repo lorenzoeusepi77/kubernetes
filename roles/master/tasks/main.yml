@@ -13,18 +13,18 @@
    - lvm2
   ignore_errors: True
 
-- name: == YUM == Install Docker utility
-  yum: name={{ item }} state=latest
-  with_items:
-   - yum-utils
-   - device-mapper-persistent-data
-   - lvm2
+#- name: == YUM == Install Docker utility
+#  yum: name={{ item }} state=latest
+#  with_items:
+#   - yum-utils
+#   - device-mapper-persistent-data
+#   - lvm2
 
-#- name: Remove repository and clean up left-over metadata
-#  yum_repository:
-#    name: DockerCEStable
-#    state: absent
-#  notify: yum-clean-metadata
+- name: Remove repository and clean up left-over metadata
+  yum_repository:
+    name: DockerCEStable
+    state: absent
+  notify: yum-clean-metadata
   
 - name: add Docker repository
   yum_repository:
