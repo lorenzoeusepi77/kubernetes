@@ -103,7 +103,7 @@
 #    gpgcakey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
 #    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
 
-- name: Add Kubernetes yum repo
+ name: Add Kubernetes yum repo
   yum_repository:
     name: Kubernetes
     description: Kubernetes
