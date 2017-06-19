@@ -1,0 +1,6 @@
+# Install dashboard on Master Node
+---
+    - name: Install dashboard
+      command: /usr/bin/kubectl create -f https://git.io/kube-dashboard
+      register: dashboard
+      ignore_errors: true
