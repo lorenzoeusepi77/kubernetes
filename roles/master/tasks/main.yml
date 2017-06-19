@@ -84,6 +84,9 @@
     create=True
     
 # tasks Installing kubelet and kubeadm
+- copy:
+    src: /files/kubernetes.repo"
+    dest: /etc/yum.repos.d/
 #- name: Install Kubernetes Repository
 #  yum_repository:
 #    name: Kubernetes
