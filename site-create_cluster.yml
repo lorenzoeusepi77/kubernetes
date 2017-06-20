@@ -7,9 +7,10 @@
 # Main file: site.yml
 - include: all-nodes.yml
 - include: master-node.yml
-#- include: edge-nodes.yml
+- include: edge-nodes.yml
 - include: gentoken.yml
 - include: master-config.yml
 - include: edge-config.yml
 - include: plugins.yml
 # TO DO - include: glusterFS.yml
+# TO DO - include: containers.yml
