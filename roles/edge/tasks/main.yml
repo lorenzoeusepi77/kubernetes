@@ -1,6 +1,6 @@
 ---
-# tasks install "Docker"
-- name: == YUM == Uninstall old versions
+#Tasks install "Docker"
+- name: == YUM == Uninstall Docker & Utility old versions
   yum: name={{ item }} state=absent
   with_items:
    - docker
@@ -8,6 +8,9 @@
    - container-selinux
    - docker-selinux
    - docker-engine
+   - yum-utils
+   - device-mapper-persistent-data
+   - lvm2
   ignore_errors: True
 
 - name: == YUM == Install Docker utility
@@ -17,37 +20,44 @@
    - device-mapper-persistent-data
    - lvm2
 
-- name: Install add Docker repository
-  yum_repository:
-    name: Docker CE Stable
-    description: Docker repo
-    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
-    gpgcheck: yes
-    enabled: yes
-    gpgkey: "https://download.docker.com/linux/centos/gpg"
+- name: Check if Docker repo is already configured
+  stat: path={{ docker_repofile_path }}  
+  register: docker_repofile_result
     
+- name: Add Docker repository
+  command: yum-config-manager --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
+  when: not docker_repofile_result.stat.exists
+  
 - name: == YUM == Install Docker
   yum: name={{ item }} state=latest
   with_items:
    - docker
 
-- name: == Service Start - Enable == start Docker
+- name: == Service Start - Enable & Start Docker
   service:
     name: docker
     state: started
     enabled: yes
+        
+# Tasks Install Kubernetes Repository
+- name: Clean old kubectl file if already present
+  file:
+    state: absent
+    path: /etc/yum.repos.d/kubernetes.repo
 
-# tasks Installing kubelet and kubeadm
-- name: Install Kubernetes Repository
-  yum_repository:
-    name: Kubernetes
-    description: Kubernetes repo
-    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-    gpgcheck: yes
-    enabled: yes
-    gpgkey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
-    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
-    
+- copy:
+    src: kubernetes.repo
+    dest: /etc/yum.repos.d/
+
+# Tasks Installing kubelet and kubeadm    
+- name: == YUM == Uninstall old versions kubelet kubeadm kubernetes-cni
+  yum: name={{ item }} state=absent
+  with_items:
+   - kubelet
+   - kubeadm
+   - kubernetes-cni
+  ignore_errors: True
+
 - name: == YUM == Install kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=latest
   with_items:
@@ -55,7 +65,7 @@
    - kubeadm
    - kubernetes-cni
 
-- name: == Service Start - Enable == start kubelet
+- name: == Service Start - Enable & Start kubelet
   service:
     name: kubelet
     state: started

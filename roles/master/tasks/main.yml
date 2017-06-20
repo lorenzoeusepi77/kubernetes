@@ -1,6 +1,6 @@
 ---
-#tasks install "Docker"
-- name: == YUM == Uninstall old versions
+#Tasks install "Docker"
+- name: == YUM == Uninstall Docker & Utility old versions
   yum: name={{ item }} state=absent
   with_items:
    - docker
@@ -24,7 +24,7 @@
   stat: path={{ docker_repofile_path }}  
   register: docker_repofile_result
     
-- name: Docker repository
+- name: Add Docker repository
   command: yum-config-manager --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
   when: not docker_repofile_result.stat.exists
   
@@ -33,48 +33,46 @@
   with_items:
    - docker
 
-- name: == Service Start - Enable == start Docker
+- name: == Service Start - Enable & Start Docker
   service:
     name: docker
     state: started
     enabled: yes
     
-# tasks install "Kubectl" last version or specific version if defined in ansible hosts variable
-
+# Tasks install "Kubectl" last version or specific version if defined in ansible hosts variable
 - name: Clean old kubectl file if already present
   file:
     state: absent
     path: /usr/local/bin/kubectl
     
-- name: check "kubctl" stable version
+- name: Check kubctl stable version
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt
   when: kubectl_version is undefined
   
-- name: return stable.txt to registered var
+- name: Return stable.txt kubectl to registered var
   command: cat /tmp/stable.txt
   register: version_stdout
   when: kubectl_version is undefined
   
-- name: Set Kubernetes Version if defined in hosts var 
+- name: Set Kubectl Version if defined in hosts var 
   set_fact:
     version: "{{ kubectl_version }}"
   when: kubectl_version is defined
 
-- name: Set Kubernetes Version last stable
+- name: Set Kubectl Version last stable
   set_fact:
     version: "{{ version_stdout.stdout }}"
   when: kubectl_version is undefined
 
-- name: download kubctl and make executable in folder  /usr/local/bin/
+- name: Download kubectl and make executable in folder /usr/local/bin/
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ version }}/bin/linux/amd64/kubectl
     dest: /usr/local/bin/kubectl
     force_basic_auth: yes
     mode: 0750
     
-# tasks Add "Kubectl" bash comletion environment
 - name: Export env var for Kubernetes
   lineinfile:
     dest=/root/.bashrc 
@@ -83,7 +81,7 @@
     insertafter=EOF
     create=True
     
-# tasks Install Kubernetes Repository
+# Tasks Install Kubernetes Repository
 - name: Clean old kubectl file if already present
   file:
     state: absent
@@ -103,8 +101,8 @@
 #    gpgcakey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
 #    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
 
-# tasks Installing kubelet and kubeadm    
-- name: == YUM == Uninstall old versions
+# Tasks Installing kubelet and kubeadm    
+- name: == YUM == Uninstall old versions kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=absent
   with_items:
    - kubelet
@@ -119,7 +117,7 @@
    - kubeadm
    - kubernetes-cni
 
-- name: == Service Start - Enable == start kubelet
+- name: == Service Start - Enable & Start kubelet
   service:
     name: kubelet
     state: started
