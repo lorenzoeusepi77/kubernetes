@@ -6,4 +6,3 @@
   gather_facts: no
   roles:
     - edgeadd
-    
