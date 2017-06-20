@@ -83,10 +83,16 @@
     insertafter=EOF
     create=True
     
-# tasks Installing kubelet and kubeadm
+# tasks Install Kubernetes Repository
+- name: Clean old kubectl file if already present
+  file:
+    state: absent
+    path: /etc/yum.repos.d/kubernetes.repo
+
 - copy:
-    src: /files/kubernetes.repo"
+    src: kubernetes.repo
     dest: /etc/yum.repos.d/
+
 #- name: Install Kubernetes Repository
 #  yum_repository:
 #    name: Kubernetes
@@ -96,7 +102,16 @@
 #    enabled: yes
 #    gpgcakey: "https://packages.cloud.google.com/yum/doc/yum-key.gpg"
 #    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
-    
+
+# tasks Installing kubelet and kubeadm    
+- name: == YUM == Uninstall old versions
+  yum: name={{ item }} state=absent
+  with_items:
+   - kubelet
+   - kubeadm
+   - kubernetes-cni
+  ignore_errors: True
+
 - name: == YUM == Install kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=latest
   with_items:

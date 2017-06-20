@@ -8,7 +8,7 @@ There are 5 roles defined in this ansible playbook.
 
 Role Description:
 
-Role: "pre" 
+Role: "base" 
 base configuration for "all hosts":
   - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
   - Disable "SELinux"
@@ -36,15 +36,20 @@ create token needed for cluster initialization
     - Master cluster inizialization
     - Node cluster join
   
-Role: "confmaster" 
+Role: "configmaster" 
 configuration for "kubernetes-master"
   - Initialize master with kubeadm 
   - Export env var for Kubernetes
   - Install pod network "weave-kube 1.6"
   
-Role: "confedge" 
+Role: "configedge" 
 configuration for "kubernetes-edge"
   - Join Edge Nodes to cluster with kubeadm
+
+Role: "plugins" 
+
+
+Role: "containers" 
   
  
 Following the below steps to create Kubernetes cluster on Centos-7.
