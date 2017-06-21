@@ -1,5 +1,5 @@
 # Install dashboard on Master Node
 ---
     - name: Install dashboard
-      command: /usr/bin/kubectl create -f https://git.io/kube-dashboard
+      command: /usr/bin/kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
       ignore_errors: true
