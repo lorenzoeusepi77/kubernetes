@@ -22,3 +22,7 @@
       args:
       register: node_join
       ignore_errors: true
+    
+    - debug:
+        var: node_join.stdout_lines
+      ignore_errors: true
