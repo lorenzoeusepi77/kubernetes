@@ -40,12 +40,12 @@
     enabled: yes
         
 # Tasks Install Kubernetes Repository
-- name: Clean old kubectl file if already present
+- name: Clean old kubernetes repo file if already present
   file:
     state: absent
     path: /etc/yum.repos.d/kubernetes.repo
 
-- copy:
+- copy: Add kubernetes repo file
     src: kubernetes.repo
     dest: /etc/yum.repos.d/
 
