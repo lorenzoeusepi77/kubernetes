@@ -82,7 +82,7 @@
     create=True
     
 # Tasks Install Kubernetes Repository
-- name: Clean old kubernetes repo file if already present
+- name: Clean old repo and install kubernetes repo 
   file:
     state: absent
     path: /etc/yum.repos.d/kubernetes.repo
