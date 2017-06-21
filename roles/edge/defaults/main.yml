@@ -1,1 +1,2 @@
-
+---
+docker_repofile_path: "/etc/yum.repos.d/docker.repo"
