@@ -18,6 +18,7 @@
 - name: == SYSTEM == Turn Off SELinux
   selinux:
     state: disabled
+  ignore_errors: yes
   tags:
     - selinux_dis
 
