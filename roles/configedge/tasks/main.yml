@@ -30,6 +30,6 @@
     - name: Wait for Nodes to be ready
       shell: "kubectl get nodes"
       register: task_result
-      until: task_result.stdout.find("Running") != -1
+      until: task_result.stdout.find("Ready") != -1
       retries: 30
       delay: 10    
