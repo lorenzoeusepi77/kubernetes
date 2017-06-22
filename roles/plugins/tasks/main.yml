@@ -2,4 +2,8 @@
 ---
     - name: Install dashboard
       command: /usr/bin/kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
+      register: dashboard
       ignore_errors: true
+
+    - debug:
+        var: dashboard.stdout_lines   
