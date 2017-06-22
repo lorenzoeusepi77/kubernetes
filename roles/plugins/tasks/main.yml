@@ -1,26 +1,10 @@
 # Install dashboard on Master Node
 ---
     - name: Wait for Nodes to be ready 1
-      shell: "kubectl get nodes"
+      shell: "/usr/bin/kubectl get nodes"
       register: task_result
       until: task_result.stdout.find("Ready") != -1
-      retries: 5
-      delay: 10
-      ignore_errors: true    
-
-    - name: Wait for Nodes to be ready 2
-      shell: "kubectl get nodes"
-      register: task_result
-      until: task_result.stdout.find("Ready") != -1
-      retries: 5
-      delay: 10
-      ignore_errors: true    
-
-    - name: Wait for Nodes to be ready 2
-      shell: "kubectl get nodes"
-      register: task_result
-      until: task_result.stdout.find("Ready") != -1
-      retries: 5
+      retries: 15
       delay: 10
       ignore_errors: true    
       
