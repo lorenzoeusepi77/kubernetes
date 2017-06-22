@@ -30,8 +30,7 @@
         insertafter=EOF
         create=True
     
-    # Cluster add CNI network weave-kube
-
+    # Wait for Kube-DNS running
 #    - name: Wait for Kube-DNS pod running
 #      shell: "kubectl --kubeconfig /etc/kubernetes/admin.conf get pods --all-namespaces | grep kube-dns"
 #      register: result
@@ -45,7 +44,8 @@
 
     - name: Wait for dns to be ready
       wait_for: host={{ kubednsaddress.stdout }} port=53 state=started timeout=1800
-
+    
+    # Cluster add CNI network weave-kube
     - name: Install pod network "weave-kube 1.6"
       command: /usr/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf apply -f https://git.io/weave-kube-1.6
       register: pod_network

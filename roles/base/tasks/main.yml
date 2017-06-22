@@ -20,7 +20,11 @@
     state: disabled
   tags:
     - selinux_dis
-    
+
+- name: Disable SELinux now
+  command: setenforce 0
+  ignore_errors: yes
+
 # Install and enable "chronyd" for ntp synchronization
 - name: Install chrony
   yum: name=chrony
