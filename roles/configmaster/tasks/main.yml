@@ -30,6 +30,9 @@
         insertafter=EOF
         create=True
     
+    - pause:
+        minutes: 5
+
     # Wait for Kube-DNS running
     - name: Wait for Kube-DNS pod running 1
       shell: "kubectl --kubeconfig /etc/kubernetes/admin.conf get pods --all-namespaces | grep kube-dns"
