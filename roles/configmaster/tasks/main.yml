@@ -31,7 +31,7 @@
         create=True
     
     - pause:
-        minutes: 5
+        minutes: 2
 
     # Wait for Kube-DNS running
     - name: Wait for Kube-DNS pod running 1
