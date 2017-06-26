@@ -58,9 +58,9 @@ install container images:
 
 # Following the below steps to create Kubernetes cluster on Centos-7.
 
-  Prerequisite: 
-  
-  1) Main:
+Prerequisite: 
+
+1) Main:
     - Full network connectivty between Servers and Ansible;
     - Ansible can ssh into all Server and can sudo with no password prompt;
     - Servers have access to the Internet;
@@ -68,12 +68,12 @@ install container images:
     - Kuberneter: N°1 "Master" Server
     - Kubernetes: N°1 or more "Edge" Server
   
-  2) On Kubernetes Server:
+2) On Kubernetes Server:
     - Create User "centos";
     - Configure User "centos" in /etc/sudoers. Execute as root:
       #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
-  3) On Ansbile machine:
+3) On Ansbile machine:
     - Download the "Kubernetes" playbook from Git and: replace /etc/ansible/hosts;
         - Change [clustername] var with your cluster name;
         - Insert your master Server hostname, ip address in [clustername_master]
@@ -97,7 +97,7 @@ install container images:
       - ssh-copy-id centos@"Edge2ServerIP"
 
   
-# Create Kubernetes cluster	with Kubeadm  
+### Create Kubernetes cluster	with Kubeadm ###  
 How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
 
 On Ansible server clone git repo:
@@ -116,8 +116,8 @@ Edit all the necessary parameters in accordance with your environment.
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
   
 
-# Add to Kubernetes cluster "edge nodes"
+### Add to Kubernetes cluster "edge nodes" ###
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
   
-# Delete from Kubernetes cluster "edge nodes"
+### Delete from Kubernetes cluster "edge nodes" ###
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
