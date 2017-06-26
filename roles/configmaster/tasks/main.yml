@@ -2,7 +2,7 @@
 ---
 
     - name: Read token from file
-      include_vars: /cfg/{{ clustername }}/token.yml
+      include_vars: /cfgt/{{ clustername }}/token.yml
 
     - name: Delete old kubernetes conf file
       command: rm -f $HOME/admin.conf
