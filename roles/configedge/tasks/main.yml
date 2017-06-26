@@ -29,4 +29,4 @@
       ignore_errors: true
     
     - pause:
-        minutes: 3
+        minutes: 1
