@@ -6,8 +6,8 @@
     - name: Reset old kubernetes installation
       command: kubeadm reset
         
-    - name: Read token from file
-      include_vars: /cfg/{{ clustername }}/token.yml
+#    - name: Read token from file
+#      include_vars: /cfg/{{ clustername }}/token.yml
 
     # TO DO kubeadm token generate
     - name: Save master_ip_address
