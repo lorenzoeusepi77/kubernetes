@@ -86,21 +86,26 @@ Prerequisite:
       - root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
     Edit all the necessary parameters in accordance with your environment in hosts file:
-    "kubernetes/inventories/production/hosts"  
+    "kubernetes/inventories/production/hosts"
+
         - Change [clustername] var with your cluster name;
+    
         - Insert your master Server hostname, ip address in [clustername_master]
-          - Example:
-            Master ansible_ssh_host=192.168.234.143
+            - Example:
+              Master ansible_ssh_host=192.168.234.143
+    
         - Insert your edge node Servers hostname, ip address in [clustername_edge]
-          - Example:
-            Edge1 ansible_ssh_host=192.168.234.144
-            Edge2 ansible_ssh_host=192.168.234.145
+            - Example:
+              Edge1 ansible_ssh_host=192.168.234.144
+              Edge2 ansible_ssh_host=192.168.234.145
+    
         - Insert [clustername_master:vars] master ip address
-          - Example:
-            master_ip_address=192.168.234.143
+            - Example:
+              master_ip_address=192.168.234.143
+    
         - Insert var required in [all:vars]
-            dns_domain=test.local
-            #kubectl_version=v1.6.4
+              dns_domain=test.local
+              #kubectl_version=v1.6.4
 
     - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
   
