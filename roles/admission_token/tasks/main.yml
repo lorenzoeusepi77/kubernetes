@@ -1,8 +1,8 @@
 ---
 
-- name: stat tokens/clustername.yml
+- name: Verify tokens.yml
   stat:
-    path:  /cfg/{{ clustername }}/token.yml
+    path:  cfg/{{ clustername }}/token.yml
   register: token_file
 
 - include: retrieve.yml

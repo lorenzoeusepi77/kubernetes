@@ -1,9 +1,6 @@
 ---
 
-#- include_vars: /cfg/{{ clustername }}/token.yml
-- include_vars: 
-    dir: '/cfg/{{ clustername }}'
-    name: token.yml
+- include_vars: cfg/{{ clustername }}/token.yml
     
 - set_fact:
     admission_token: '{{ admission_token }}'
