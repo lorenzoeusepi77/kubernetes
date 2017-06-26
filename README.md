@@ -108,7 +108,8 @@ On Ansible server clone git repo:
 
   root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
-Edit all the necessary parameters in accordance with your environment. 
+Edit all the necessary parameters in accordance with your environment in hosts file:
+  "kubernetes/inventories/production/hosts"
 
 * You need to change this vars:
   - clustername = your cluster name
