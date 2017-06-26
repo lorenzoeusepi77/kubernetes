@@ -1,13 +1,18 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
+
+pre_tasks:
+
+    - name: Read token from file
+      include_vars: /cfg/{{ clustername }}/token.yml
+
+tasks:
+
     - name: Delete old kubernetes conf file
       command: rm -f $HOME/admin.conf
     
     - name: Reset old kubernetes installation
       command: kubeadm reset
-        
-    - name: Read token from file
-      include_vars: cfg/{{ clustername }}/token.yml
 
     - name: Save master_ip_address
       shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
