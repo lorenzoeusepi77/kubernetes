@@ -1,5 +1,4 @@
 # Basic task requirement
----
 - hosts: "{{ clustername }}"
   become: yes
   become_user: root

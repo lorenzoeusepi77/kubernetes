@@ -1,5 +1,4 @@
 # Create tokek for cluster initialization
-
 - hosts: "{{ clustername }}_master"
   become: yes
   become_user: root
@@ -7,7 +6,3 @@
   gather_facts: no
   roles:
     - role: admission_token
-
-  tasks:
-    - debug:
-        var: token
