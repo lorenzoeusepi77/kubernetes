@@ -7,11 +7,11 @@
       command: kubeadm reset
         
     - name: Read token from file
-      include_vars: cfg/{{ clustername }}/token.yml
+      include_vars: /cfg/{{ clustername }}/token.yml
 
     # TO DO kubeadm token generate
     - name: Save master_ip_address
-      shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > cfg/{{ clustername }}/master_ip_address.yml
+      shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
 
     - name: Initialize master
       command: kubeadm init --token {{ admission_token }}
