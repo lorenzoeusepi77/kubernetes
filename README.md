@@ -119,7 +119,7 @@ Edit all the necessary parameters in accordance with your environment in hosts f
   - username = user for remote systems access -u username 
   - hostname, ip address and var 
 
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
+  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
   
 
 ### Add to Kubernetes cluster "edge nodes" ###
