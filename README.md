@@ -108,7 +108,8 @@ Prerequisite:
               #kubectl_version=v1.6.4
 
     - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
-  
+          - cp /etc/ansible/kubernetes/cfg/Ansible-Git/file/config /root/.ssh/
+
     - Create ssh key and copy an all Kubernetes Server:
       - ssh-keygen
       - ssh-copy-id centos@"MasterServerIP"
@@ -124,6 +125,7 @@ How to Run Ansible playbook with kubernetes as clustername and centos as user fo
   - username = user for remote systems access -u username 
   - hostname, ip address and var 
 
+root@Ansible:~# cd /etc/ansible/
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
   
 
