@@ -1,5 +1,6 @@
 # Create tokek for cluster initialization
-- hosts: "{{ clustername }}_master"
+#- hosts: "{{ clustername }}_master"
+- hosts: 127.0.0.1
   become: yes
   become_user: root
   become_method: sudo
