@@ -6,4 +6,4 @@
   become_method: sudo
   gather_facts: no
   roles:
-    - role: admission_token
+    - role: create_token
