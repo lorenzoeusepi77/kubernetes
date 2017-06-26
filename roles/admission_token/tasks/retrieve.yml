@@ -1,6 +1,6 @@
 ---
 
-- include_vars: /cfgt/{{ clustername }}/token.yml
+- include_vars: /cfg/{{ clustername }}/token.yml
 
 #- include_vars: 
 #    dir: '/cfgt/{{ clustername }}' 
