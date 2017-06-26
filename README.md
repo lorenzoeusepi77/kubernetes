@@ -102,9 +102,11 @@ How to Run Ansible playbook with kubernetes as clustername and centos as user fo
 
 On Ansible server clone git repo:
 
-root@Ansible:~# cd /etc/ansible/
-root@Ansible:~# git init
-root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
+  root@Ansible:~# cd /etc/ansible/
+
+  root@Ansible:~# git init
+
+  root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
 Edit all the necessary parameters in accordance with your environment. 
 
@@ -113,11 +115,11 @@ Edit all the necessary parameters in accordance with your environment.
   - username = user for remote systems access -u username 
   - hostname, ip address and var 
 
-root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
+  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
   
 
 ### Add to Kubernetes cluster "edge nodes" ###
-root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
+  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
   
 ### Delete from Kubernetes cluster "edge nodes" ###
-root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
+  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
