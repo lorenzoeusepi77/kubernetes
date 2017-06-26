@@ -1,12 +1,8 @@
 # Cluster inizialization on Master Node with kubeadm
 ---
 
-pre_tasks:
-
     - name: Read token from file
       include_vars: /cfg/{{ clustername }}/token.yml
-
-tasks:
 
     - name: Delete old kubernetes conf file
       command: rm -f $HOME/admin.conf
