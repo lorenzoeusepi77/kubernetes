@@ -126,9 +126,15 @@ How to Run Ansible playbook with kubernetes as clustername and centos as user fo
   - hostname, ip address and var 
 
 root@Ansible:~# cd /etc/ansible/
+
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
 
-TO ADD    * SSH KEY --private-key ~/.ssh/lo.pem  
+If you are using ssh key to connect to hosts add this parameter to previous script 
+
+    --private-key key.pem     (specify key path for key that you copy on the ansible server)
+
+  Note: The key must have chmod 400 permission   
+
 
 ### Add to Kubernetes cluster "edge nodes" ###
   root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
