@@ -1,5 +1,8 @@
 # Install dashboard on Master Node
 ---
+    - pause:
+        minutes: 2
+
     - name: Wait for all pods to be Running
       shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces"
       register: task_result

@@ -74,8 +74,19 @@ Prerequisite:
       #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
 3) On Ansbile machine:
+    - Install git
+      - yum install git
+    - Install ansible
+      - yum install epel-release
+      - yum install ansible
+
     - Download the "Kubernetes" playbook from Git and: replace value in inventory file /etc/ansible/hosts;
-    
+      - root@Ansible:~# cd /etc/ansible/
+      - root@Ansible:~# git init
+      - root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
+
+    Edit all the necessary parameters in accordance with your environment in hosts file:
+    "kubernetes/inventories/production/hosts"  
         - Change [clustername] var with your cluster name;
         - Insert your master Server hostname, ip address in [clustername_master]
           - Example:
@@ -101,25 +112,14 @@ Prerequisite:
 
   
 ### Create Kubernetes cluster	with Kubeadm ###  
-How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
+How to Run Ansible playbook with kubernetes as clustername and centos as user for your server: 
 
-On Ansible server clone git repo:
-
-  root@Ansible:~# cd /etc/ansible/
-
-  root@Ansible:~# git init
-
-  root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
-
-Edit all the necessary parameters in accordance with your environment in hosts file:
-  "kubernetes/inventories/production/hosts"
-
-* You need to change this vars:
+ You need to change this vars according on previous step:
   - clustername = your cluster name
   - username = user for remote systems access -u username 
   - hostname, ip address and var 
 
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
+root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
   
 
 ### Add to Kubernetes cluster "edge nodes" ###
