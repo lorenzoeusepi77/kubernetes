@@ -12,7 +12,9 @@
 
     - name: Save master_ip_address
       shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
-
+      delegate_to: 127.0.0.1
+      become: false
+      
     - name: Initialize master
       command: kubeadm init --token {{ admission_token }}
       args:
@@ -31,7 +33,20 @@
         create=True
     
     - pause:
-        minutes: 2
+        minutes: 1
+        
+    # Cluster add CNI network weave-kube
+    - name: Install pod network "weave-kube 1.6"
+      command: /usr/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf apply -f https://git.io/weave-kube-1.6
+#      command: /usr/bin/kubectl apply -f https://git.io/weave-kube-1.6
+      register: pod_network
+      ignore_errors: true
+
+    - debug:
+        var: pod_network.stdout_lines
+
+    - pause:
+        minutes: 1
 
     # Wait for Kube-DNS running
     - name: Wait for Kube-DNS pod running 1
@@ -41,13 +56,4 @@
       retries: 30
       delay: 10
       ignore_errors: true          
-    
-    # Cluster add CNI network weave-kube
-    - name: Install pod network "weave-kube 1.6"
-#      command: /usr/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf apply -f https://git.io/weave-kube-1.6
-      command: /usr/bin/kubectl apply -f https://git.io/weave-kube-1.6
-      register: pod_network
-      ignore_errors: true
-
-    - debug:
-        var: pod_network.stdout_lines        
+        
