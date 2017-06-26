@@ -9,7 +9,6 @@
 #    - name: Read token from file
 #      include_vars: /cfg/{{ clustername }}/token.yml
 
-    # TO DO kubeadm token generate
     - name: Save master_ip_address
       shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
 
@@ -31,7 +30,7 @@
         create=True
     
     - pause:
-        minutes: 4
+        minutes: 2
 
     # Wait for Kube-DNS running
     - name: Wait for Kube-DNS pod running 1
