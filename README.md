@@ -47,14 +47,19 @@ configuration for "kubernetes-edge"
   - Join Edge Nodes to cluster with kubeadm
 
 Role: "plugins" 
+install add-on to kubernetes cluster
+  - Dashboard
 
-
-Role: "containers" 
+Role: "containers"
+install container images:
+  -
+  -
   
- 
-Following the below steps to create Kubernetes cluster on Centos-7.
 
-Prerequisite: 
+# Following the below steps to create Kubernetes cluster on Centos-7.
+
+  Prerequisite: 
+  
   - Full network connectivty between Servers and Ansible;
   - Ansible can ssh into all Server and can sudo with no password prompt;
   - Servers have access to the Internet;
@@ -93,8 +98,7 @@ Prerequisite:
       - ssh-copy-id centos@"Edge1ServerIP"
       - ssh-copy-id centos@"Edge2ServerIP"
 
-
-	  
+  
 # Create Kubernetes cluster	with Kubeadm  
 How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
 On Ansible server clone git repo:
