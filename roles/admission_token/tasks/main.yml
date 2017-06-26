@@ -2,7 +2,7 @@
 
 - name: Verify tokens.yml
   stat:
-    path:  /cfg/{{ clustername }}/token.yml
+    path:  /cfgt/{{ clustername }}/token.yml
   register: token_file
 
 - include: retrieve.yml

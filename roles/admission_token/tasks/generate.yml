@@ -7,10 +7,10 @@
     admission_token: '{{ token_raw.stdout }}'
 
 - file:
-    path: /cfg/{{ clustername }}
+    path: /cfgt/{{ clustername }}
     state: directory
 
 - name: Save token.yml
   copy:
-    dest: /cfg/{{ clustername }}/token.yml
+    dest: /cfgt/{{ clustername }}/token.yml
     content: "admission_token: {{ admission_token }}"
