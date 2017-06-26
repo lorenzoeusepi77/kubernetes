@@ -12,6 +12,5 @@
 - include: master-config.yml
 - include: edge-config.yml
 - include: plugins.yml
-- include: status.yml
 # TO DO - include: glusterFS.yml
 # TO DO - include: containers.yml
