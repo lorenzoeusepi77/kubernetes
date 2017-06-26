@@ -60,23 +60,21 @@ install container images:
 
   Prerequisite: 
   
-  - Full network connectivty between Servers and Ansible;
-  - Ansible can ssh into all Server and can sudo with no password prompt;
-  - Servers have access to the Internet;
-  - Servers are time-synchronized;
-
-  - Kuberneter: N°1 "Master" Server
-  - Kubernetes: N°1 or more "Edge" Server
+  1) Main:
+    - Full network connectivty between Servers and Ansible;
+    - Ansible can ssh into all Server and can sudo with no password prompt;
+    - Servers have access to the Internet;
+    - Servers are time-synchronized;
+    - Kuberneter: N°1 "Master" Server
+    - Kubernetes: N°1 or more "Edge" Server
   
-  - On Kubernetes Server:
+  2) On Kubernetes Server:
     - Create User "centos";
     - Configure User "centos" in /etc/sudoers. Execute as root:
       #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
-  - On Ansbile machine:
-    - Download the "Kubernetes" playbook from Git and: 
-    
-    - Copy /kubernetes/ansible/hosts and replace /etc/ansible/hosts;
+  3) On Ansbile machine:
+    - Download the "Kubernetes" playbook from Git and: replace /etc/ansible/hosts;
         - Change [clustername] var with your cluster name;
         - Insert your master Server hostname, ip address in [clustername_master]
           - Example:
@@ -101,20 +99,25 @@ install container images:
   
 # Create Kubernetes cluster	with Kubeadm  
 How to Run Ansible playbook with kubernetes as clustername and centos as user for your server 
+
 On Ansible server clone git repo:
 
 root@Ansible:~# cd /etc/ansible/
-root@Ansible:/etc/ansible# git init
-git clone https://github.com/lorenzoeusepi77/kubernetes.git
-ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
+root@Ansible:~# git init
+root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
-You need to change this vars:
+Edit all the necessary parameters in accordance with your environment. 
+
+* You need to change this vars:
   - clustername = your cluster name
   - username = user for remote systems access -u username 
+  - hostname, ip address and var 
 
+root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts site-create_cluster.yml -e clustername=kubernetes -u centos
   
+
 # Add to Kubernetes cluster "edge nodes"
-ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
+root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
   
 # Delete from Kubernetes cluster "edge nodes"
-ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
+root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
