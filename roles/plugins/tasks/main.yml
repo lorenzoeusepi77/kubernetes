@@ -1,7 +1,7 @@
 # Install dashboard on Master Node
 ---
     - name: Wait for Nodes to be ready 1
-      shell: "/usr/bin/kubectl get nodes"
+      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
       register: task_result
       until: task_result.stdout.find("Ready") != -1
       retries: 15
