@@ -74,7 +74,8 @@ Prerequisite:
       #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
 3) On Ansbile machine:
-    - Download the "Kubernetes" playbook from Git and: replace /etc/ansible/hosts;
+    - Download the "Kubernetes" playbook from Git and: replace value in inventory file /etc/ansible/hosts;
+    
         - Change [clustername] var with your cluster name;
         - Insert your master Server hostname, ip address in [clustername_master]
           - Example:
@@ -87,7 +88,9 @@ Prerequisite:
           - Example:
             master_ip_address=192.168.234.143
         - Insert var required in [all:vars]
-        
+            dns_domain=test.local
+            #kubectl_version=v1.6.4
+
     - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
   
     - Create ssh key and copy an all Kubernetes Server:
