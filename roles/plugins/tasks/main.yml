@@ -9,7 +9,7 @@
       ignore_errors: true    
       
     - name: Install dashboard
-      command: /usr/bin/kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
+      command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
       register: dashboard
       ignore_errors: true
 

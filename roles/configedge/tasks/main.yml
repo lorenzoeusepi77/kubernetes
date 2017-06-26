@@ -28,5 +28,3 @@
         var: node_join.stdout_lines
       ignore_errors: true
     
-    - pause:
-        minutes: 1

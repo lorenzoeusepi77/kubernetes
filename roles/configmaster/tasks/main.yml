@@ -32,8 +32,8 @@
         insertafter=EOF
         create=True
     
-    - pause:
-        minutes: 1
+#    - pause:
+#        minutes: 1
         
     # Cluster add CNI network weave-kube
     - name: Install pod network "weave-kube 1.6"
