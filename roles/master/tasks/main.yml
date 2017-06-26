@@ -112,3 +112,18 @@
     name: kubelet
     state: started
     enabled: yes
+
+# Add sysctl vars for Kubernetesnet.bridge.bridge-nf-call-ip6tables = 1
+- sysctl:
+    name: net.bridge.bridge-nf-call-ip6tables
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes
