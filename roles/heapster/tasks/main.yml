@@ -22,12 +22,12 @@
     clone: yes
 
 - name: Deploy Heapster containers 
-      command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f /home/centos/heapster/deploy/kube-config/influxdb/
-      register: heapster
-      ignore_errors: true
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f /home/centos/heapster/deploy/kube-config/influxdb/
+  register: heapster
+  ignore_errors: true
 
-    - debug:
-        var: heapster.stdout_lines
+- debug:
+    var: heapster.stdout_lines
 
 #- name: Wait for Heapster to be Running
 #      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces | grep heapster"
