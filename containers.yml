@@ -5,8 +5,4 @@
   become_method: sudo
   gather_facts: no
   roles:
-    - plugins
-    - status
-    - heapster
-# TO DO    - nexus
-# TO DO    - containers
+    - containers
