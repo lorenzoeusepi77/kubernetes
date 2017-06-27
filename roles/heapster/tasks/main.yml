@@ -6,7 +6,8 @@
     name: git
     state: absent
 
-- file: Delete local directory
+- name: Remove old cloned repo
+- file:
     path: /home/centos/heapster 
     state: absent
 
