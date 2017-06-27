@@ -10,15 +10,15 @@
     path: /home/centos/heapster 
     state: absent
 
-- name: install Git version 1.8.3.1 x86_64
-  yum:
-    name: git-1.8.3.1-6.el7_2.1.x86_64
-    state: present
+#- name: install Git version 1.8.3.1 x86_64
+#  yum:
+#    name: git-1.8.3.1-6.el7_2.1.x86_64
+#    state: present
 
-- git: 
-    repo: https://github.com/kubernetes/heapster.git
-    dest: /home/centos/heapster
-    clone: yes
+#- git: 
+#    repo: https://github.com/kubernetes/heapster.git
+#    dest: /home/centos/heapster
+#    clone: yes
 
 #- name: Deploy Heapster containers 
 #      command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f deploy/kube-config/influxdb/
