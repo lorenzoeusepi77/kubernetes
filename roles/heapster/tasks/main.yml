@@ -6,6 +6,10 @@
     name: git
     state: absent
 
+- file: Delete local directory
+    path: /home/centos/heapster 
+    state: absent
+
 - name: install Git version 1.8.3.1 x86_64
   yum:
     name: git-1.8.3.1-6.el7_2.1.x86_64
