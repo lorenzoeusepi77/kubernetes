@@ -1,6 +1,5 @@
 # Install Heapster with an InfluxDB backend and a Grafana UI
 
-# Install git (version 1.8.3) and clone Heapster repo
 - name: Verify and remove old version of Git
   yum:
     name: git
