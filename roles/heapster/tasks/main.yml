@@ -1,6 +1,4 @@
 # Install Heapster with an InfluxDB backend and a Grafana UI
----
-
 - name: Clone heapster official repo
     git:
       repo=https://github.com/kubernetes/heapster.git
