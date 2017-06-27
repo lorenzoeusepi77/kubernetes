@@ -1,5 +1,17 @@
 # Install Heapster with an InfluxDB backend and a Grafana UI
-- git:
+
+# Install git (version 1.8.3) and clone Heapster repo
+- name: Verify and remove old version of Git
+  yum:
+    name: git
+    state: absent
+
+- name: install Git version 1.8.3.1 x86_64
+  yum:
+    name: git-1.8.3.1-6.el7_2.1.x86_64
+    state: present
+
+- git: 
     repo: https://github.com/kubernetes/heapster.git
     dest: /home/centos
     clone: yes
