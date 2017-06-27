@@ -1,8 +1,8 @@
 # Install Heapster with an InfluxDB backend and a Grafana UI
-- name: Clone heapster official repo
-      git:
-      repo=https://github.com/kubernetes/heapster.git
-      dest=/home/centos
+git:
+  repo: https://github.com/kubernetes/heapster.git
+  dest: /home/centos
+  clone: yes
 
 #- name: Deploy Heapster containers 
 #      command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f deploy/kube-config/influxdb/
