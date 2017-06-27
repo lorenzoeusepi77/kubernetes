@@ -21,11 +21,15 @@
     dest: /home/centos/heapster
     clone: yes
 
-#- name: Delete old Heapster containers 
-#  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system heapster
-#  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-grafana
-#  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-influxdb
-#  ignore_errors: true
+- name: Delete old Heapster containers 
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system heapster
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-grafana
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-influxdb
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system heapster
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system monitoring-grafana
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system monitoring-influxdb
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete serviceaccount --namespace=kube-system heapster
+  ignore_errors: true
 
 - name: Deploy Heapster containers 
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f /home/centos/heapster/deploy/kube-config/influxdb/
