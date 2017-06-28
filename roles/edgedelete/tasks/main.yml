@@ -1,9 +1,0 @@
-# Delete edge node from cluster
-#kubectl drain <node name> --delete-local-data --force --ignore-daemonsets
-
-#kubectl delete node <node name>
-
-#kubeadm reset
-    
-    - name: Reset old kubernetes installation
-      command: kubeadm reset
