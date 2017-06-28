@@ -1,0 +1,50 @@
+# Install Heapster with an InfluxDB backend and a Grafana UI
+
+- name: Verify and remove old version of Git
+  yum:
+    name: git
+    state: absent
+
+- name: Remove old cloned repo
+  file:
+    state: absent
+    path: /home/centos/heapster 
+    
+- name: install Git version 1.8.3.1 x86_64
+  yum:
+    name: git-1.8.3.1-6.el7_2.1.x86_64
+    state: present
+
+- git: 
+    repo: https://github.com/kubernetes/heapster.git
+    dest: /home/centos/heapster
+    clone: yes
+
+- name: Delete old Heapster containers 
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system heapster
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-grafana
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-influxdb
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system heapster
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system monitoring-grafana
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system monitoring-influxdb
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete serviceaccount --namespace=kube-system heapster
+  ignore_errors: true
+
+- name: Deploy Heapster containers 
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f /home/centos/heapster/deploy/kube-config/influxdb/
+  register: heapster
+  ignore_errors: true
+
+- debug:
+    var: heapster.stdout_lines
+
+#- name: Wait for Heapster to be Running
+#      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces | grep heapster"
+#      register: task_result
+#      until: task_result.stdout.find("Running") != -1
+#      retries: 15
+#      delay: 10
+#      ignore_errors: true    
+      
+#    - debug:
+#        var: task_result.stdout_lines   cd je  

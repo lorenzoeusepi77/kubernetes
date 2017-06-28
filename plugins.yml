@@ -7,6 +7,6 @@
   roles:
     - dashboard
     - status
-    - heapster
-# TO DO    - nexus
-# TO DO    - containers
+# TO DO    - heapster
+# TO DO    - load balancer
+

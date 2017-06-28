@@ -13,4 +13,3 @@
 - include: edge-config.yml
 - include: plugin.yml
 # TO DO - include: glusterFS.yml
-# TO DO - include: containers.yml
