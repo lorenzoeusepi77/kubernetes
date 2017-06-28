@@ -55,11 +55,6 @@ Role Description:
   add-on to kubernetes cluster
     - Heapster with an InfluxDB backend and a Grafana UI
 
-  Role: "containers"
-  install container images:
-    - 
-    -
-  
 
 # Following the below steps to create Kubernetes cluster on Centos-7.
 
