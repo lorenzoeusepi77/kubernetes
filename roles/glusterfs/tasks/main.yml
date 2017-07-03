@@ -58,6 +58,34 @@
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
 
+# 
+- name: Ensure old Gluster volume is unmounted.
+  mount:
+    name: "{{ gluster_mount_dir }}"
+    src: "{{ inventory_hostname }}:/{{ gluster_brick_name }}"
+    fstype: glusterfs
+    opts: "defaults,_netdev"
+    state: unmounted
+
+- name: Stop existing Gluster Volume
+  shell: gluster volume stop glustervol1
+  register: gluster_stop_info
+  ignore_errors: True
+
+- debug:
+        var: gluster_stop_info.stdout_lines
+
+- name: Delete existing Gluster volume.
+  gluster_volume:
+    state: absent
+    name: "{{ gluster_brick_name }}"
+    brick: "{{ gluster_brick_dir }}"
+    transport: tcp
+    replicas: "{{ numedges }}"
+    cluster: "{{ groups.gfsedge | join(',') }}"
+    host: "{{ inventory_hostname }}"
+    force: yes
+  run_once: true
 
 - name: Edit fstab and unmount exixting XFS volume
   mount:
@@ -68,9 +96,6 @@
     state: unmounted
   ignore_errors: True
 
-- name:
-  shell: /usr/bin/umount -f /dev/vg_brick1/lv_brick1
-  ignore_errors: True
 
 - pause:
     seconds: 15
