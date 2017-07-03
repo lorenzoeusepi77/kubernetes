@@ -65,7 +65,7 @@
     src: /dev/vg_brick1/lv_brick1
     fstype: xfs
     opts: "noatime"
-    state: umounted
+    state: unmounted
   ignore_errors: True
 
 - name:
