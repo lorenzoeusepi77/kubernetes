@@ -29,7 +29,7 @@
     state: started
     enabled: yes
 
-#Tasks prepare server partition
+#Tasks inizialize disk and partition
 
 # Create a new primary partition for LVM
 
@@ -44,14 +44,14 @@
     state: present
     part_start: 0%
     part_end: 100%
-    register: task_result
+    register: dev_result
 
 - debug:
-        var: task_result.stdout_lines  
+        var: dev_result.stdout_lines  
 
 # Create PV
 - name: Create Physical Volume
-  pv: action=create disks="{{ glusterdev_name }}"
+  pv: action=create disks="/dev/{{ glusterdev_name }}"
 
 #- name: Create Volume Group
 #  vg: action="create" disks="{{ glusterdev_name }}"
@@ -85,8 +85,16 @@
     - "{{ gluster_brick_dir }}"
 
 # Edit fstab
+#- name: Edit fstab and mount the XFS volume permanently
+#  action: name=/bricks/brick1 src=/dev/vg_brick1/lv_brick1 fstype=xfs opts=noatime state=mounted
+
 - name: Edit fstab and mount the XFS volume permanently
-  action: name=/bricks/brick1 src=/dev/vg_brick1/lv_brick1 fstype=xfs opts=noatime state=mounted
+  mount:
+    name: /bricks/brick1
+    src: /dev/vg_brick1/lv_brick1
+    fstype: xfs
+    opts: "noatime"
+    state: mounted
 
 # create a directory with brick under the mount point
 #- file:

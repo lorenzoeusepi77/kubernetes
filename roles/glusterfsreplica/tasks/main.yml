@@ -7,25 +7,23 @@
   changed_when: false
   register: gluster_volume_info
 
+- debug:
+        var: gluster_volume_info.stdout_lines
 
 #- name: Create a replicated Glusterfs volume
 #  shell: gluster volume create glustervol1 replica 3 transport tcp {{ edge1gfs }}:/bricks/brick1/brick {{ edge2gfs }}:/bricks/brick1/brick {{ edge3gfs }}:/bricks/brick1/brick
 #  register: task_result
 
-- debug:
-        var: task_result.stdout_lines
-
 - name: Configure Gluster volume.
-     gluster_volume:
-       state: present
-       name: "{{ gluster_brick_name }}"
-       brick: "{{ gluster_brick_dir }}"
-       replicas: 3
-       cluster: "{{ groups.gluster | join(',') }}"
-       host: "{{ inventory_hostname }}"
-       force: yes
-     run_once: true
-
+  gluster_volume:
+    state: present
+    name: "{{ gluster_brick_name }}"
+    brick: "{{ gluster_brick_dir }}"
+    replicas: "{{ numedges }}"
+    cluster: "{{ groups.gluster | join(',') }}"
+    host: "{{ inventory_hostname }}"
+    force: yes
+  run_once: true
 
 - name:
   shell: gluster volume start glustervol1

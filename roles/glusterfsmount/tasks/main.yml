@@ -17,9 +17,9 @@
 #- mount: name=/glusterfs/volume1 src="{{inventory_hostname}}:/glustervol1" fstype=glusterfs state=mounted
 
 - name: Ensure Gluster volume is mounted.
-      mount:
-        name: "{{ gluster_mount_dir }}"
-        src: "{{ inventory_hostname }}:/{{ gluster_brick_name }}"
-        fstype: glusterfs
-        opts: "defaults,_netdev"
-        state: mounted
+  mount:
+    name: "{{ gluster_mount_dir }}"
+    src: "{{ inventory_hostname }}:/{{ gluster_brick_name }}"
+    fstype: glusterfs
+    opts: "defaults,_netdev"
+    state: mounted
