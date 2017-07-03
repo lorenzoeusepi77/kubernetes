@@ -69,7 +69,6 @@
     size: 100%FREE    
 
 #Format volume with XFS
-#- name: Format XFS new volume
 - filesystem: 
     fstype: xfs 
     dev: /dev/vg_brick1/lv_brick1
