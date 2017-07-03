@@ -95,6 +95,10 @@
     fstype: xfs 
     dev: /dev/vg_brick1/lv_brick1
     force: yes
+  ignore_errors: True
+
+# delete glusterfs TO DO 
+
 
 - name: Ensure Gluster brick directories exist.
   file: "path={{ item }} state=directory mode=0775"
