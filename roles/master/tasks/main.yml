@@ -45,7 +45,7 @@
     state: absent
     path: /usr/local/bin/kubectl
     
-- name: Check kubctl stable version
+- name: Check kubectl stable version
   get_url: 
     url: https://storage.googleapis.com/kubernetes-release/release/stable.txt
     dest: /tmp/stable.txt

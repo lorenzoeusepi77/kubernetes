@@ -1,0 +1,90 @@
+---
+#Tasks install and start "GlusterFS"
+
+- name: == YUM == Uninstall GlusterFS old repository
+  yum: name={{ item }} state=absent
+  with_items:
+   - centos-release-gluster
+  ignore_errors: True
+
+- name: == YUM == Install GlusterFS repository
+  yum: name={{ item }} state=latest
+  with_items:
+   - centos-release-gluster
+
+- name: == YUM == Uninstall GlusterFS old packages
+  yum: name={{ item }} state=absent
+  with_items:
+   - glusterfs-server
+  ignore_errors: True
+
+- name: == YUM == Install GlusterFS packages
+  yum: name={{ item }} state=latest
+  with_items:
+   - glusterfs-server
+
+- name: == Service Start - Enable & Start GlusterFS
+  service:
+    name: glusterd
+    state: started
+    enabled: yes
+
+#Tasks prepare server partition
+
+# Create a new primary partition for LVM
+
+- name: Set /dev/name defined in hosts var 
+  set_fact:
+    version: "{{ glusterdev_name }}"
+  
+- parted:
+    device: /dev/{{ glusterdev_name }}
+    number: 1
+    flags: [ lvm ]
+    state: present
+    part_start: 0%
+    part_end: 100%
+    register: task_result
+
+- debug:
+        var: task_result.stdout_lines  
+
+# Create PV
+- name: Create Physical Volume
+  pv: action=create disks="{{ glusterdev_name }}"
+
+#- name: Create Volume Group
+#  vg: action="create" disks="{{ glusterdev_name }}"
+#      vg_pattern="vg_bricks"
+
+#Create VG
+- lvg:
+    vg: vg_brick1
+    pvs: /dev/{{ glusterdev_name }}1
+
+#Create LV
+- lvol:
+    vg: vg_bricks
+    lv: lv_brick1
+    size: 100%FREE    
+
+#Format volume with XFS
+- name: Format XFS new volume
+  filesystem: fstype=xfs dev=/dev/vg_brick1/lv_brick1
+  force: yes
+
+#Create a directory if it doesn't exist
+- file:
+    path: /bricks/brick1
+    state: directory
+    mode: 0755
+
+# Edit fstab
+- name: Edit fstab and mount the XFS volume permanently
+  action: name=/bricks/brick1 src=/dev/vg_brick1/lv_brick1 fstype=xfs opts=noatime state=mounted
+
+# create a directory with brick under the mount point
+- file:
+    path: /bricks/brick1/brick
+    state: directory
+    mode: 0755

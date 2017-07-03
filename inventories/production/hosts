@@ -16,8 +16,7 @@ kubernetes_edge
 
 # [clustername_master]
 # The master group should have:
-# hostname 
-# ansible_ssh_host=IP ADDRESS 
+# hostname ansible_ssh_host=IP ADDRESS 
 [kubernetes_master]
 Master ansible_ssh_host=192.168.234.143
 
@@ -30,17 +29,31 @@ master_ip_address=192.168.234.143
 
 # [clustername_edge]
 # The master group should have:
-# hostname 
-# ansible_ssh_host=IP ADDRESS 
+# hostname ansible_ssh_host=IP ADDRESS 
 [kubernetes_edge]
-Edge1 ansible_ssh_host=192.168.234.144
-Edge2 ansible_ssh_host=192.168.234.146
+hostname1 ansible_ssh_host=192.168.234.144
+hostname2 ansible_ssh_host=192.168.234.145
+hostname3 ansible_ssh_host=192.168.234.146
 
+
+# [clustername_edge1]
+# The master group should have only edge1:
+# hostname ansible_ssh_host=IP ADDRESS 
+[kubernetes_edge1]
+hostname1 ansible_ssh_host=192.168.234.144
 
 # Specify domain for master and edge nodes
 [all:vars]
 # domain name var
 dns_domain=test.local
+
 # If you need specific kubelet version use below var. Otherwise last stable version will be installed 
 #kubectl_version=v1.6.4
 
+# Here "glusterdev_name" you need to specific device name for GlusterFS edge nodes filesystem. 
+#glusterdev_name=vdb
+
+# Here "edge1gfs" you need to repeat GlusterFS edge nodes ip addresses, same ip of [kubernetes_edge]  
+edge1gfs=192.168.234.144
+edge2gfs=192.168.234.145
+edge3gfs=192.168.234.146

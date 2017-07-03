@@ -1,0 +1,14 @@
+---
+#Tasks mount "GlusterFS" replicated FS
+
+#Create a directory if it doesn't exist
+- file:
+    path: /glusterfs/volume1
+    state: directory
+    mode: 0755
+
+# Edit fstab
+- name: Edit fstab and mount the XFS volume permanently
+  action: name=/bricks/brick1 src=/dev/vg_brick1/lv_brick1 fstype=xfs opts=noatime state=mounted
+
+- mount: name=/glusterfs/volume1 src="{{inventory_hostname}}:/glustervol1" fstype=glusterfs state=mounted
