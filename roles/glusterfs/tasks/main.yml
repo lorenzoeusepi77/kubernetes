@@ -44,10 +44,6 @@
     state: present
     part_start: 0%
     part_end: 100%
-    register: dev_result
-
-- debug:
-        var: dev_result.stdout_lines  
 
 # Create PV
 #- name: Create Physical Volume
