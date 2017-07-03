@@ -7,6 +7,3 @@
   roles:
     - dashboard
     - status
-# TO DO    - heapster
-# TO DO    - load balancer
-

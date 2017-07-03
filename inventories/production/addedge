@@ -24,7 +24,7 @@ master_ip_address=192.168.234.143
 # hostname 
 # ansible_ssh_host=IP ADDRESS 
 [kubernetes_edgeadd]
-Edge3 ansible_ssh_host=192.168.234.145
+Edge4 ansible_ssh_host=192.168.234.148
 
 
 # Specify domain for master and edge nodes

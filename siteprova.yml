@@ -1,9 +1,0 @@
-# RUN PLAYBOOK
-#
-# Read README.md for detail
-#
-# ansible-playbook -i kubernetes/inventories/production/hosts site.yml -e clustername=kubernetes -u centos
-
----
-# Main file: site.yml
-- include: prova.yml

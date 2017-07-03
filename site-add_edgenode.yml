@@ -2,12 +2,11 @@
 #
 # Read README.md for detail
 #
-# ansible-playbook -i kubernetes/inventories/production/addedge site.yml -e clustername=kubernetes -u centos
+# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
 
 ---
-# Main file: site.yml
+# Main file:
 - include: all-nodes.yml
 - include: edge-nodes.yml
 - include: viewtoken.yml
 - include: edge-config.yml
-# TO DO - include: glusterFS.yml

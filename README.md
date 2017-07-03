@@ -126,7 +126,8 @@ Prerequisites:
             - Example:
               Edge1 ansible_ssh_host=192.168.234.144
               Edge2 ansible_ssh_host=192.168.234.145
-    
+              Edge3 ansible_ssh_host=192.168.234.146
+
         - Insert [clustername_master:vars] master ip address
             - Example:
               master_ip_address=192.168.234.143
@@ -180,13 +181,6 @@ root@Ansible:~# cd /etc/ansible/
 
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
 
-If you are using ssh key to connect to hosts add this parameter to previous script 
-
-    --private-key key.pub 
-
-    Note: The key must have chmod 400 permission   
-
-
 ### Add to Kubernetes cluster "edge nodes" ###
 How to add edge node to existing cluster.
 
@@ -194,3 +188,16 @@ root@Ansible:~# cd /etc/ansible/
 
 root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
  
+### Add to Kubernetes cluster "GlusterFS" for Persistent Volume ###
+How to Gluster FS to cluster.
+
+root@Ansible:~# cd /etc/ansible/
+
+root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
+
+
+NOTE: If you are using ssh key to connect to hosts add this parameter to previous script 
+
+    --private-key key.pub 
+
+    Note: The key must have chmod 400 permission   
