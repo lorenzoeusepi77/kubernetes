@@ -1,12 +1,6 @@
 ---
 #Tasks mount "GlusterFS" replicated FS
 
-#Create a directory if it doesn't exist
-#- file:
-#    path: /glusterfs/volume1
-#    state: directory
-#    mode: 0755
-
 - name: Ensure Gluster mount directories exist.
   file: "path={{ item }} state=directory mode=0775"
   with_items:

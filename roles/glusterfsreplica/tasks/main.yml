@@ -21,7 +21,7 @@
     brick: "{{ gluster_brick_dir }}"
     transport: tcp
     replicas: "{{ numedges }}"
-    cluster: "{{ groups.{{ clustername }}_gfedge | join(',') }}"
+    cluster: "{{ groups.gfsedge | join(',') }}"
     host: "{{ inventory_hostname }}"
     force: yes
   run_once: true
