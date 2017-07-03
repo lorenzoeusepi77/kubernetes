@@ -8,5 +8,5 @@
 # Main file:
 - include: all-nodes.yml
 - include: edge-nodes.yml
-- include: viewtoken.yml
+- include: gentoken.yml
 - include: edge-config.yml
