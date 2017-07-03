@@ -26,11 +26,13 @@
     force: yes
   run_once: true
 
+
 - name: Stop existing Gluster Volume
   shell: gluster volume stop glustervol1
   register: gluster_stop_info
-  ignore_errors: yes
+  ignore_errors: True
   force: yes
+
 - debug:
         var: gluster_stop_info.stdout_lines
 
@@ -38,7 +40,8 @@
 - name: Start Gluster Volume
   shell: gluster volume start glustervol1
   register: gluster_start_info
-  ignore_errors: yes
+  ignore_errors: True
+
 - debug:
         var: gluster_start_info.stdout_lines
 
