@@ -73,7 +73,7 @@
   ignore_errors: True
 
 - pause:
-    seconds: 10
+    seconds: 15
 
 #Delete LV
 - lvol:
