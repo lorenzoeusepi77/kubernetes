@@ -3,6 +3,7 @@
 Ansible playbook to create a Kubernetes cluster latest release 1.6.6 using "kubeadm" on system with CentOS-7.x operating system.
 
 There are different roles defined in this ansible playbook.
+
 Role Description:
 
   Role: "base" 
@@ -27,7 +28,7 @@ Role Description:
     - Install Start and Enable "Kubelet"
     - Install "Kubeadm" 
     
-  Role: "admission_token"
+  Role: "create_token"
   create token needed for cluster initialization
     - Generate toked that will be used for:
       - Master cluster inizialization
@@ -62,17 +63,15 @@ Prerequisite:
 
 1) Main:
     - One server with git and ansible:
-      - On Centos we use:
         - Ansible version is 2.3.1.0
         - Git Hub Version 1.8.3.1
     - Kuberneter: N°1 "Master" Server
-    - Kubernetes: N°1 or more "Edge" Server
+    - Kubernetes: N°1 or more "Edge" Servers
     - Full network connectivty between Kubernetes Servers and Ansible;
     - Ansible can ssh into all Server and can sudo with no password prompt;
     - Servers have access to the Internet;
     - Servers are time-synchronized;
-    
-  
+     
 2) On Kubernetes Server:
     - Create User "centos";
     - Configure User "centos" in /etc/sudoers. Execute as root:
@@ -144,6 +143,4 @@ If you are using ssh key to connect to hosts add this parameter to previous scri
 
 ### Add to Kubernetes cluster "edge nodes" ###
   root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
-  
-### Delete from Kubernetes cluster "edge nodes" ###
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
+ 
