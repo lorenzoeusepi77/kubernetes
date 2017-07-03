@@ -64,13 +64,14 @@
     lv: lv_brick1
     state: absent
     force: yes
+  ignore_errors: True  
 
 #Create LV
 - lvol:
     vg: vg_brick1
     lv: lv_brick1
     size: 100%FREE    
-ignore_errors: True
+  ignore_errors: True
 
 #Format volume with XFS
 - filesystem: 
