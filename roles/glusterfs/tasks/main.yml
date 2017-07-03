@@ -69,9 +69,11 @@
     size: 100%FREE    
 
 #Format volume with XFS
-- name: Format XFS new volume
-  filesystem: fstype=xfs dev=/dev/vg_brick1/lv_brick1
-  force: yes
+#- name: Format XFS new volume
+- filesystem: 
+    fstype: xfs 
+    dev: /dev/vg_brick1/lv_brick1
+    force: yes
 
 #Create a directory if it doesn't exist
 #- file:
