@@ -7,13 +7,20 @@ There are different roles defined in this ansible playbook.
 Role Description:
 
   Role: "base" 
+  
   base configuration for "all hosts":
-    - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
-    - Disable "SELinux"
-    - Disable "firewalld"
-    - Install "chronyd" for NTP synch
-    - Install "wget"
-    - Install "bash-completion"
+  
+  - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
+  
+  - Disable "SELinux"
+  
+  - Disable "firewalld"
+  
+  - Install "chronyd" for NTP synch
+  
+  - Install "wget"
+  
+  - Install "bash-completion"
 
   Role: "master" 
   initial Kubernetes setup for "kubernetes-master" 
