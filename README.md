@@ -3,81 +3,101 @@
 Ansible playbook to create a Kubernetes cluster latest release 1.6.6 using "kubeadm" on system with CentOS-7.x operating system.
 
 There are different roles defined in this ansible playbook.
-Role Description:
 
-  Role: "base" 
-  base configuration for "all hosts":
-    - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
-    - Disable "SELinux"
-    - Disable "firewalld"
-    - Install "chronyd" for NTP synch
-    - Install "wget"
-    - Install "bash-completion"
 
-  Role: "master" 
-  initial Kubernetes setup for "kubernetes-master" 
-    - Install Start and Enable "Docker"
-    - Install "Kubectl"
-    - Install Start and Enable "Kubelet"
-    - Install "Kubeadm"
+Role: "base" -- Base configuration for "all hosts":
   
-  Role: "edge" 
-  initial Kubernetes setup for "kubernetes-edge"
-    - Install Start and Enable "Docker"
-    - Install Start and Enable "Kubelet"
-    - Install "Kubeadm" 
-    
-  Role: "admission_token"
-  create token needed for cluster initialization
-    - Generate toked that will be used for:
-      - Master cluster inizialization
-      - Node cluster join
-    
-  Role: "configmaster" 
-  configuration for "kubernetes-master"
-    - Initialize master with kubeadm 
-    - Export env var for Kubernetes
-    - Install pod network "weave-kube 1.6"
-    
-  Role: "configedge" 
-  configuration for "kubernetes-edge"
-    - Join Edge Nodes to cluster with kubeadm
+  - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
+  
+  - Disable "SELinux"
+  
+  - Disable "firewalld"
+  
+  - Install "chronyd" for NTP synch
+  
+  - Install "wget"
+  
+  - Install "bash-completion"
 
-  Role: "dashboard" 
-  add-on to kubernetes cluster
-    - Dashboard
+
+Role: "master" -- Initial Kubernetes setup for "kubernetes-master" 
+    
+  - Install Start and Enable "Docker"
   
-  Role: "Glusterfs" 
-  add-on to kubernetes cluster
-    - Persistent Storage using GlusterFS
+  - Install "Kubectl"
   
-  Role: "heapster" 
-  add-on to kubernetes cluster
-    - Heapster with an InfluxDB backend and a Grafana UI
+  - Install Start and Enable "Kubelet"
+  
+  - Install "Kubeadm"
+  
+
+Role: "edge" -- Initial Kubernetes setup for "kubernetes-edge"
+  
+  - Install Start and Enable "Docker"
+  
+  - Install Start and Enable "Kubelet"
+  
+  - Install "Kubeadm" 
+  
+  
+Role: "create_token" -- Create token needed for cluster initialization
+  
+  - Generate toked that will be used for:
+  
+  - Master cluster inizialization
+  
+  - Node cluster join
+    
+
+Role: "configmaster" -- Configuration for "kubernetes-master"
+  
+  - Initialize master with kubeadm 
+  
+  - Export env var for Kubernetes
+  
+  - Install pod network "weave-kube 1.6"
+
+
+Role: "configedge" -- Configuration for "kubernetes-edge"
+  
+  - Join Edge Nodes to cluster with kubeadm
+
+
+Role: "dashboard" -- Add-on to kubernetes cluster
+  
+  - Dashboard
+  
+
+Role: "Glusterfs" -- Add-on to kubernetes cluster
+  
+  - Persistent Storage using GlusterFS
+  
+
+Role: "heapster" -- Add-on to kubernetes cluster
+  
+  - Heapster with an InfluxDB backend and a Grafana UI
 
 
 # Following the below steps to create Kubernetes cluster on Centos-7.
 
-Prerequisite: 
+Prerequisites: 
 
 1) Main:
-    - One server with git and ansible:
-      - On Centos we use:
+    - One server with git and ansible software:
         - Ansible version is 2.3.1.0
         - Git Hub Version 1.8.3.1
     - Kuberneter: N°1 "Master" Server
-    - Kubernetes: N°1 or more "Edge" Server
+    - Kubernetes: N°1 or more "Edge" Servers
     - Full network connectivty between Kubernetes Servers and Ansible;
     - Ansible can ssh into all Server and can sudo with no password prompt;
     - Servers have access to the Internet;
     - Servers are time-synchronized;
-    
-  
+     
 2) On Kubernetes Server:
     - Create User "centos";
     - Configure User "centos" in /etc/sudoers. Execute as root:
       
-      #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
+        echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
 3) On Ansbile machine:
     - Install git
@@ -139,11 +159,9 @@ If you are using ssh key to connect to hosts add this parameter to previous scri
 
     --private-key key.pem     (specify key path for key that you copy on the ansible server)
 
-  Note: The key must have chmod 400 permission   
+    Note: The key must have chmod 400 permission   
 
 
 ### Add to Kubernetes cluster "edge nodes" ###
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
-  
-### Delete from Kubernetes cluster "edge nodes" ###
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/deledge site-delete_edgenode.yml -e clustername=kubernetes -u centos
+  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
+ 
