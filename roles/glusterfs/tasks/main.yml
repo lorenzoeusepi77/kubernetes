@@ -60,7 +60,7 @@
 
 #Create LV
 - lvol:
-    vg: vg_bricks
+    vg: vg_brick1
     lv: lv_brick1
     size: 100%FREE    
 
