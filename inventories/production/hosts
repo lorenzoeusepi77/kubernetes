@@ -18,7 +18,7 @@ kubernetes_edge
 # The master group should have:
 # hostname ansible_ssh_host=IP ADDRESS 
 [kubernetes_master]
-Master ansible_ssh_host=192.168.234.143
+master ansible_ssh_host=192.168.234.143
 
 
 #[clustername_master:vars]
@@ -35,19 +35,15 @@ hostname1 ansible_ssh_host=192.168.234.144
 hostname2 ansible_ssh_host=192.168.234.145
 hostname3 ansible_ssh_host=192.168.234.146
 
-# IP addresses of edge node for glusterfs cluster
+# IP addresses of edge nodes for Glusterfs cluster
 [gfsedge]
 192.168.234.144
 192.168.234.145
 192.168.234.146
 
-
-
-# [clustername_edge1]
-# The master group should have only edge1:
-# hostname ansible_ssh_host=IP ADDRESS 
-[kubernetes_edge1]
-hostname1 ansible_ssh_host=192.168.234.144
+# IP addresses of one edge node to create Glusterfs cluster
+[edge1]
+192.168.234.144
 
 # Specify domain for master and edge nodes
 [all:vars]
@@ -63,7 +59,7 @@ dns_domain=test.local
 # GlusterFS Number of edge nodes
 #numedges=3
 
-# Gluster configuration.
-#gluster_mount_dir=/glusterfs/volume1
-#gluster_brick_dir=/bricks/brick1/brick
-#gluster_brick_name=glustervol1
+# Gluster configuration var
+gluster_mount_dir=/glusterfs/volume1
+gluster_brick_dir=/bricks/brick1/brick
+gluster_brick_name=glustervol1

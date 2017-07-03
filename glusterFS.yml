@@ -7,7 +7,7 @@
   roles:
     - glusterfs
 
-- hosts: "{{ clustername }}_edge1"
+- hosts: edge1
   become: yes
   become_user: root
   become_method: sudo

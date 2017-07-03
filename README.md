@@ -1,6 +1,6 @@
 ## Create Kubernetes Cluster using kubeadm ##
 
-Ansible playbook to create a Kubernetes cluster, latest release 1.6.6, using "kubeadm" on system with CentOS-7.x operating system.
+Ansible playbook to create a Kubernetes cluster, latest release, using "kubeadm" on system with CentOS-7.x operating system.
 
 
 There are different roles defined in this ansible playbook.
@@ -89,10 +89,11 @@ Prerequisites:
         - Git Hub Version 1.8.3.1
     - Kuberneter: N°1 "Master" Server
     - Kubernetes: N°1 or more "Edge" Servers
-    - Full network connectivty between Kubernetes Servers and Ansible;
-    - Ansible can ssh into all Server and can sudo with no password prompt;
-    - Servers have access to the Internet;
-    - Servers are time-synchronized;
+        - If you need persistent storage add secondary disk to Edge Servers
+    - Full network connectivty between Kubernetes Servers and Ansible
+    - Ansible can ssh into all Server and can sudo with no password prompt
+    - Servers have access to the Internet
+    - Servers are time-synchronized
      
 2) On Kubernetes Server:
     - Create User "centos";
@@ -112,7 +113,7 @@ Prerequisites:
         - root@Ansible:~# git init
         - root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
-    Edit all the necessary parameters in accordance with your environment in hosts file:
+    - Edit all the necessary parameters in accordance with your environment in hosts file:
     "kubernetes/inventories/production/hosts"
 
         - Change [clustername] var with your cluster name;
@@ -129,10 +130,33 @@ Prerequisites:
         - Insert [clustername_master:vars] master ip address
             - Example:
               master_ip_address=192.168.234.143
-    
+
+        - List IP addresses of edge node for Glusterfs cluster in [gfsedge]
+            - Example
+            192.168.234.144
+            192.168.234.145
+            192.168.234.146
+        
+        - Insert IP addresses of one edge node to create Glusterfs cluster in [edge1]
+            - Example      
+            hostname1 ansible_ssh_host=192.168.234.144
+     
         - Insert var required in [all:vars]
-              dns_domain=test.local
-              #kubectl_version=v1.6.4
+            - Example  
+            dns_domain=test.local
+              
+        - Uncomment and change value for specific kubelet version 
+            - Example  
+            kubectl_version=v1.6.4
+
+        - Insert device name for GlusterFS edge nodes filesystem. 
+            - Example
+            glusterdev_name=vdb
+
+        - Insert GlusterFS Number of edge nodes
+            - Example
+            numedges=3
+        
 
     - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
           - cp /etc/ansible/kubernetes/cfg/Ansible-Git/file/config /root/.ssh/
@@ -145,7 +169,7 @@ Prerequisites:
 
   
 ### Create Kubernetes cluster	with Kubeadm ###  
-How to Run Ansible playbook with kubernetes as clustername and centos as user for your server: 
+How to run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server: 
 
  You need to change this vars according on previous step:
   - clustername = your cluster name
@@ -158,11 +182,15 @@ root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kube
 
 If you are using ssh key to connect to hosts add this parameter to previous script 
 
-    --private-key key.pub     (specify key path for key that you copy on the ansible server)
+    --private-key key.pub 
 
     Note: The key must have chmod 400 permission   
 
 
 ### Add to Kubernetes cluster "edge nodes" ###
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
+How to add edge node to existing cluster.
+
+root@Ansible:~# cd /etc/ansible/
+
+root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
  
