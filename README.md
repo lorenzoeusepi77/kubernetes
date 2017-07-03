@@ -80,10 +80,10 @@ Role: "heapster" -- Add-on to kubernetes cluster
 
 # Following the below steps to create Kubernetes cluster on Centos-7.
 
-Prerequisite: 
+Prerequisites: 
 
 1) Main:
-    - One server with git and ansible:
+    - One server with git and ansible software:
         - Ansible version is 2.3.1.0
         - Git Hub Version 1.8.3.1
     - Kuberneter: N°1 "Master" Server
@@ -159,9 +159,9 @@ If you are using ssh key to connect to hosts add this parameter to previous scri
 
     --private-key key.pem     (specify key path for key that you copy on the ansible server)
 
-  Note: The key must have chmod 400 permission   
+    Note: The key must have chmod 400 permission   
 
 
 ### Add to Kubernetes cluster "edge nodes" ###
-  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge site-add_edgenode.yml -e clustername=kubernetes -u centos
+  root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
  
