@@ -63,9 +63,9 @@
   mount:
     path: /bricks/brick1
     src: /dev/vg_brick1/lv_brick1
-#    fstype: xfs
-#    opts: "noatime"
-    state: unmounted
+    fstype: xfs
+    opts: "noatime"
+    state: absent
 
 - name:
   shell: /usr/bin/umount -f /dev/vg_brick1/lv_brick1
