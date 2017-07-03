@@ -4,11 +4,8 @@ Ansible playbook to create a Kubernetes cluster latest release 1.6.6 using "kube
 
 There are different roles defined in this ansible playbook.
 
-Role Description:
 
-  Role: "base" 
-  
-  base configuration for "all hosts":
+Role: "base" -- Base configuration for "all hosts":
   
   - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
   
@@ -22,46 +19,63 @@ Role Description:
   
   - Install "bash-completion"
 
-  Role: "master" 
-  initial Kubernetes setup for "kubernetes-master" 
-    - Install Start and Enable "Docker"
-    - Install "Kubectl"
-    - Install Start and Enable "Kubelet"
-    - Install "Kubeadm"
-  
-  Role: "edge" 
-  initial Kubernetes setup for "kubernetes-edge"
-    - Install Start and Enable "Docker"
-    - Install Start and Enable "Kubelet"
-    - Install "Kubeadm" 
-    
-  Role: "create_token"
-  create token needed for cluster initialization
-    - Generate toked that will be used for:
-      - Master cluster inizialization
-      - Node cluster join
-    
-  Role: "configmaster" 
-  configuration for "kubernetes-master"
-    - Initialize master with kubeadm 
-    - Export env var for Kubernetes
-    - Install pod network "weave-kube 1.6"
-    
-  Role: "configedge" 
-  configuration for "kubernetes-edge"
-    - Join Edge Nodes to cluster with kubeadm
 
-  Role: "dashboard" 
-  add-on to kubernetes cluster
-    - Dashboard
+Role: "master" -- Initial Kubernetes setup for "kubernetes-master" 
+    
+  - Install Start and Enable "Docker"
   
-  Role: "Glusterfs" 
-  add-on to kubernetes cluster
-    - Persistent Storage using GlusterFS
+  - Install "Kubectl"
   
-  Role: "heapster" 
-  add-on to kubernetes cluster
-    - Heapster with an InfluxDB backend and a Grafana UI
+  - Install Start and Enable "Kubelet"
+  
+  - Install "Kubeadm"
+  
+
+Role: "edge" -- Initial Kubernetes setup for "kubernetes-edge"
+  
+  - Install Start and Enable "Docker"
+  
+  - Install Start and Enable "Kubelet"
+  
+  - Install "Kubeadm" 
+  
+  
+Role: "create_token" -- Create token needed for cluster initialization
+  
+  - Generate toked that will be used for:
+  
+  - Master cluster inizialization
+  
+  - Node cluster join
+    
+
+Role: "configmaster" -- Configuration for "kubernetes-master"
+  
+  - Initialize master with kubeadm 
+  
+  - Export env var for Kubernetes
+  
+  - Install pod network "weave-kube 1.6"
+
+
+Role: "configedge" -- Configuration for "kubernetes-edge"
+  
+  - Join Edge Nodes to cluster with kubeadm
+
+
+Role: "dashboard" -- Add-on to kubernetes cluster
+  
+  - Dashboard
+  
+
+Role: "Glusterfs" -- Add-on to kubernetes cluster
+  
+  - Persistent Storage using GlusterFS
+  
+
+Role: "heapster" -- Add-on to kubernetes cluster
+  
+  - Heapster with an InfluxDB backend and a Grafana UI
 
 
 # Following the below steps to create Kubernetes cluster on Centos-7.
