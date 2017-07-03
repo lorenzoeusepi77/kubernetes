@@ -50,8 +50,8 @@
         var: dev_result.stdout_lines  
 
 # Create PV
-- name: Create Physical Volume
-  pv: action=create disks="/dev/{{ glusterdev_name }}"
+#- name: Create Physical Volume
+#  pv: action=create disks="/dev/{{ glusterdev_name }}"
 
 #- name: Create Volume Group
 #  vg: action="create" disks="{{ glusterdev_name }}"
