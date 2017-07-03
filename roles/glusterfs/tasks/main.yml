@@ -58,11 +58,19 @@
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
 
+#Delete LV
+- lvol:
+    vg: vg_brick1
+    lv: lv_brick1
+    state: absent
+    force: yes
+
 #Create LV
 - lvol:
     vg: vg_brick1
     lv: lv_brick1
     size: 100%FREE    
+ignore_errors: True
 
 #Format volume with XFS
 - filesystem: 
