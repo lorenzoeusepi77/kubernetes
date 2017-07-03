@@ -58,12 +58,13 @@
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
 
+
 - name: Edit fstab and unmount exixting XFS volume
   mount:
     name: /bricks/brick1
     src: /dev/vg_brick1/lv_brick1
     fstype: xfs
-    opts: "noatime"
+#    opts: "noatime"
     state: unmounted
 
 #Delete LV
