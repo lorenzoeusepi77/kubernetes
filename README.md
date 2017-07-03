@@ -97,7 +97,7 @@ Prerequisites:
     - Create User "centos";
     - Configure User "centos" in /etc/sudoers. Execute as root:
       
-      #echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
+        echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
 3) On Ansbile machine:
     - Install git
