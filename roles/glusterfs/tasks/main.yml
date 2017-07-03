@@ -67,6 +67,8 @@
 #    opts: "noatime"
     state: unmounted
 
+- command: umount /dev/vg_brick1/lv_brick1
+
 #Delete LV
 - lvol:
     vg: vg_brick1
