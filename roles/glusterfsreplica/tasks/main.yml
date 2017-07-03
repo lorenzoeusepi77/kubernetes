@@ -19,8 +19,9 @@
     state: present
     name: "{{ gluster_brick_name }}"
     brick: "{{ gluster_brick_dir }}"
+    transport: tcp
     replicas: "{{ numedges }}"
-    cluster: "{{ groups.gluster | join(',') }}"
+    cluster: "{{ groups.{{ clustername }}_edge | join(',') }}"
     host: "{{ inventory_hostname }}"
     force: yes
   run_once: true
