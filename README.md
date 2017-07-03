@@ -1,6 +1,7 @@
 ## Create Kubernetes Cluster using kubeadm ##
 
-Ansible playbook to create a Kubernetes cluster latest release 1.6.6 using "kubeadm" on system with CentOS-7.x operating system.
+Ansible playbook to create a Kubernetes cluster, latest release 1.6.6, using "kubeadm" on system with CentOS-7.x operating system.
+
 
 There are different roles defined in this ansible playbook.
 
@@ -157,7 +158,7 @@ root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kube
 
 If you are using ssh key to connect to hosts add this parameter to previous script 
 
-    --private-key key.pem     (specify key path for key that you copy on the ansible server)
+    --private-key key.pub     (specify key path for key that you copy on the ansible server)
 
     Note: The key must have chmod 400 permission   
 
