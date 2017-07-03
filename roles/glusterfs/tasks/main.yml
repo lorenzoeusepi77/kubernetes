@@ -65,11 +65,15 @@
     src: /dev/vg_brick1/lv_brick1
     fstype: xfs
     opts: "noatime"
-    state: absent
+    state: umounted
+  ignore_errors: True
 
 - name:
   shell: /usr/bin/umount -f /dev/vg_brick1/lv_brick1
   ignore_errors: True
+
+- pause:
+    secondes: 15
 
 #Delete LV
 - lvol:
