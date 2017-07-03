@@ -62,6 +62,6 @@ dns_domain=test.local
 #numedges=3
 
 # Gluster configuration.
-#gluster_mount_dir: /glusterfs/volume1
-#gluster_brick_dir: /bricks/brick1/brick
-#gluster_brick_name: glustervol1
+#gluster_mount_dir=/glusterfs/volume1
+#gluster_brick_dir=/bricks/brick1/brick
+#gluster_brick_name=glustervol1
