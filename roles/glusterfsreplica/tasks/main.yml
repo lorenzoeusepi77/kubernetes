@@ -1,7 +1,6 @@
 ---
 #Tasks configure "GlusterFS" replica
   
-# Gluster volume configuration.
 - name: Check if Gluster volumes already exist.
   shell: "gluster volume info"
   changed_when: false
@@ -10,11 +9,7 @@
 - debug:
         var: gluster_volume_info.stdout_lines
 
-#- name: Create a replicated Glusterfs volume
-#  shell: gluster volume create glustervol1 replica 3 transport tcp {{ edge1gfs }}:/bricks/brick1/brick {{ edge2gfs }}:/bricks/brick1/brick {{ edge3gfs }}:/bricks/brick1/brick
-#  register: task_result
-
-- name: Configure Gluster volume.
+- name: Configure Gluster volume cluster replica.
   gluster_volume:
     state: present
     name: "{{ gluster_brick_name }}"
@@ -26,22 +21,21 @@
     force: yes
   run_once: true
 
-
 - name: Start Gluster Volume
-  shell: gluster volume start glustervol1
+  shell: /usr/sbin/gluster volume start glustervol1
   register: gluster_start_info
   ignore_errors: True
 
 - debug:
         var: gluster_start_info.stdout_lines
 
-
-- name:
-  shell: gluster volume info
+- name: Check gluster volume info
+  shell: /usr/sbin/gluster volume info
   register: gluster_volume_info
+  until: result.stdout.find("Started") != -1
+  retries: 30
+  delay: 5
+  ignore_errors: true  
 
 - debug:
         var: gluster_volume_info.stdout_lines
-
-
-

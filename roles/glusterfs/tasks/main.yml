@@ -1,5 +1,5 @@
 ---
-#Tasks install and start "GlusterFS"
+#Tasks install and start "glusterd" service
 
 - name: == YUM == Uninstall GlusterFS old repository
   yum: name={{ item }} state=absent
@@ -29,11 +29,9 @@
     state: started
     enabled: yes
 
-#Tasks inizialize disk and partition
+#Tasks inizialize disk
 
-# Create a new primary partition for LVM
-
-- name: Set /dev/name defined in hosts var 
+- name: Set name and format gluster disk
   set_fact:
     version: "{{ glusterdev_name }}"
   
@@ -45,21 +43,12 @@
     part_start: 0%
     part_end: 100%
 
-# Create PV
-#- name: Create Physical Volume
-#  pv: action=create disks="/dev/{{ glusterdev_name }}"
-
-#- name: Create Volume Group
-#  vg: action="create" disks="{{ glusterdev_name }}"
-#      vg_pattern="vg_bricks"
-
-#Create VG
+#Create Volume Group
 - lvg:
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
 
-# 
-- name: Ensure old Gluster volume is unmounted.
+- name: Edit fstab and unmount existing Glusterfs volume.
   mount:
     name: "{{ gluster_mount_dir }}"
     src: "{{ inventory_hostname }}:/{{ gluster_brick_name }}"
@@ -96,7 +85,6 @@
     state: unmounted
   ignore_errors: True
 
-
 - pause:
     seconds: 15
 
@@ -122,10 +110,7 @@
     force: yes
   ignore_errors: True
 
-# delete glusterfs TO DO 
-
-
-- name: Ensure Gluster brick directories exist.
+- name: Verify Gluster brick directory.
   file: "path={{ item }} state=directory mode=0775"
   with_items:
     - "{{ gluster_brick_dir }}"
