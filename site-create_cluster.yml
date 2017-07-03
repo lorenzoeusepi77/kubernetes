@@ -11,5 +11,5 @@
 - include: gentoken.yml
 - include: master-config.yml
 - include: edge-config.yml
-- include: plugin.yml
+- include: plugins.yml
 # TO DO - include: glusterFS.yml
