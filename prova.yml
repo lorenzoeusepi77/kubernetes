@@ -1,8 +1,33 @@
----
-- hosts: "{{ clustername }}_master"
+# Add GlusterFS on edge nodes
+- hosts: "{{ clustername }}_edge"
   become: yes
   become_user: root
   become_method: sudo
   gather_facts: no
   roles:
-    - heapster
+    - glusterfs
+
+- hosts: "{{ clustername }}_edge1"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - glusterfsreplica
+
+- hosts: "{{ clustername }}_edge"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - glusterfsmount
+
+#---
+#- hosts: "{{ clustername }}_master"
+#  become: yes
+#  become_user: root
+#  become_method: sudo
+#  gather_facts: no
+#  roles:
+#    - heapster
