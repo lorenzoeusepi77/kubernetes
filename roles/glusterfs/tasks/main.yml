@@ -61,7 +61,7 @@
 
 - name: Edit fstab and unmount exixting XFS volume
   mount:
-#    name: /bricks/brick1
+    path: /bricks/brick1
     src: /dev/vg_brick1/lv_brick1
 #    fstype: xfs
 #    opts: "noatime"
