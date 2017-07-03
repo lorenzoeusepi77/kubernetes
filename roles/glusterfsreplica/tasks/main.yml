@@ -36,7 +36,6 @@
 - debug:
         var: gluster_stop_info.stdout_lines
 
-
 - name: Start Gluster Volume
   shell: gluster volume start glustervol1
   register: gluster_start_info
