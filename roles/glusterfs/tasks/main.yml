@@ -74,17 +74,22 @@
   force: yes
 
 #Create a directory if it doesn't exist
-- file:
-    path: /bricks/brick1
-    state: directory
-    mode: 0755
+#- file:
+#    path: /bricks/brick1
+#    state: directory
+#    mode: 0755
+
+- name: Ensure Gluster brick directories exist.
+  file: "path={{ item }} state=directory mode=0775"
+  with_items:
+    - "{{ gluster_brick_dir }}"
 
 # Edit fstab
 - name: Edit fstab and mount the XFS volume permanently
   action: name=/bricks/brick1 src=/dev/vg_brick1/lv_brick1 fstype=xfs opts=noatime state=mounted
 
 # create a directory with brick under the mount point
-- file:
-    path: /bricks/brick1/brick
-    state: directory
-    mode: 0755
+#- file:
+#    path: /bricks/brick1/brick
+#    state: directory
+#    mode: 0755

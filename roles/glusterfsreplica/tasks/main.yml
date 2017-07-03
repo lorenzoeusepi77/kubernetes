@@ -26,13 +26,21 @@
        force: yes
      run_once: true
 
-- name:
-- shell: gluster volume start glustervol1
 
 - name:
-- shell: gluster volume info
+  shell: gluster volume start glustervol1
+  register: gluster_start_info
+
+- debug:
+        var: gluster_start_info.stdout_lines
 
 
+- name:
+  shell: gluster volume info
+  register: gluster_volume_info
+
+- debug:
+        var: gluster_volume_info.stdout_lines
 
 
 
