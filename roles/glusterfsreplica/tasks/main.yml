@@ -31,7 +31,7 @@
   shell: gluster volume stop glustervol1
   register: gluster_stop_info
   ignore_errors: True
-  force: yes
+#  force: yes
 
 - debug:
         var: gluster_stop_info.stdout_lines
