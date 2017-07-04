@@ -17,7 +17,7 @@
       when: dashboard_output is defined
 
     - name: RBAC for Dashboard
-      command: /usr/bin/kubectl --kubeconfig /etc/{{ cluster_name }}/admin.conf create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
+      command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
       register: rbac_raw
       ignore_errors: true
 
@@ -28,13 +28,13 @@
         var: rbac_output
       when: rbac_output is defined
 
-    - name: Install WeaveScope
-      command: /usr/bin/kubectl --kubeconfig /etc/{{ cluster_name }}/admin.conf apply -f https://cloud.weave.works/launch/k8s/weavescope.yaml
-      register: weavescope_raw
+#    - name: Install WeaveScope
+#      command: /usr/bin/kubectl --kubeconfig /etc/{{ cluster_name }}/admin.conf apply -f https://cloud.weave.works/launch/k8s/weavescope.yaml
+#      register: weavescope_raw
 
-    - set_fact:
-        weavescope_output: "{{ weavescope_raw.stdout_lines }}"
+#    - set_fact:
+#        weavescope_output: "{{ weavescope_raw.stdout_lines }}"
 
-    - debug:
-        var: weavescope_output
-      when: weavescope_output is defined
+#    - debug:
+#        var: weavescope_output
+#      when: weavescope_output is defined
