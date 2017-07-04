@@ -5,7 +5,9 @@ Ansible playbook to create a Kubernetes cluster, latest release, using "kubeadm"
 There are different roles defined in this ansible playbook.
 
   Role: "base" -- Base configuration for "all hosts":
+    
     - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
+    
     - Disable "SELinux"
     
     - Disable "firewalld"
