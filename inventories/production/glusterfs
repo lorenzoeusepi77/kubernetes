@@ -27,14 +27,14 @@ hostname2 ansible_ssh_host=192.168.1.145
 hostname3 ansible_ssh_host=192.168.1.146
 
 # IP addresses of edge nodes for Glusterfs cluster
-#[gfsedge]
-#192.168.1.144
-#192.168.1.145
-#192.168.1.146
+[gfsedge]
+192.168.1.144
+192.168.1.145
+192.168.1.146
 
 # IP addresses of one edge node to create Glusterfs cluster
-#[edge1]
-#192.168.1.144
+[edge1]
+192.168.1.144
 
 [all:vars]
 # Specify domain for master and edge nodes
@@ -45,3 +45,14 @@ master_ip_address=192.168.1.143
 
 # If you need specific kubelet version use below var. Otherwise last stable version will be installed 
 #kubectl_version=v1.6.4
+
+# Here "glusterdev_name" you need to specific device name for GlusterFS edge nodes filesystem. 
+glusterdev_name=vdb
+
+# GlusterFS Number of edge nodes
+numedges=3
+
+# Gluster configuration var
+gluster_mount_dir=/glusterfs/volume1
+gluster_brick_dir=/bricks/brick1/brick
+gluster_brick_name=glustervol1
