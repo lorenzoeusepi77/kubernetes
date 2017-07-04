@@ -169,39 +169,40 @@ Prerequisites:
 
 
     f) Create ssh key and copy an all Kubernetes Server:
-      - ssh-keygen
-      - ssh-copy-id centos@"MasterServerIP"
-      - ssh-copy-id centos@"Edge1ServerIP"
-      - ssh-copy-id centos@"Edge2ServerIP"
-
+      
+       root@Ansible:~#ssh-keygen
+       root@Ansible:~#ssh-copy-id centos@"MasterServerIP"
+       root@Ansible:~#ssh-copy-id centos@"Edge1ServerIP"
+       root@Ansible:~#ssh-copy-id centos@"Edge2ServerIP"
+       root@Ansible:~#ssh-copy-id centos@"Edge3ServerIP"
 
 #### Create Kubernetes cluster with Kubeadm ####  
-How to run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server: 
+Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
 
  You need to change this vars according on previous step:
-  - clustername = your cluster name
-  - username = user for remote systems access -u username 
-  - hostname, ip address and var 
+    - clustername = your cluster name
+    - username = user for remote systems access -u username 
+    - hostname, ip address and var 
 
-root@Ansible:~# cd /etc/ansible/
+       root@Ansible:~# cd /etc/ansible/
 
-root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
+       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
 
 
 ### Add to Kubernetes cluster "edge nodes" ###
 How to add edge node to existing cluster.
 
-root@Ansible:~# cd /etc/ansible/
+       root@Ansible:~# cd /etc/ansible/
 
-root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
+       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
 
 
 ### Add to Kubernetes cluster "GlusterFS" for Persistent Volume ###
-How to Gluster FS to cluster.
+How to add Gluster File System to kubernetes cluster.
 
-root@Ansible:~# cd /etc/ansible/
+       root@Ansible:~# cd /etc/ansible/
 
-root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
+       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
 
 NOTE: If you are using ssh key to connect to hosts add this parameter to previous script 
