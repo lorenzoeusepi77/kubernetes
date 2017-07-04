@@ -6,3 +6,11 @@
   gather_facts: no
   roles:
     - configedge
+
+- hosts: "{{ clustername }}_edgeadd"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  roles:
+    - configedge

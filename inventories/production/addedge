@@ -12,6 +12,9 @@
 [kubernetes:children]
 kubernetes_edgeadd
 
+# [clustername_master]
+# The master group should be empty 
+[kubernetes_master]
 
 #[clustername_master:vars]
 # Insert master ip address var for cluster init
