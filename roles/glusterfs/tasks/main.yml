@@ -77,7 +77,8 @@
     host: "{{ inventory_hostname }}"
     force: yes
   run_once: true
-
+  ignore_errors: True
+  
 - name: Edit fstab and unmount exixting XFS volume
   mount:
     path: /bricks/brick1
