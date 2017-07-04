@@ -115,62 +115,20 @@ Prerequisites:
        root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
     d) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
-       environment in hosts file:
-       
-        "kubernetes/inventories/production/hosts"
-
-        -- Change [clustername] var with your cluster name;
+       environment in hosts file: "kubernetes/inventories/production/hosts"
     
-        -- Insert your master Server hostname, ip address in [clustername_master]
-            - Example:
-              Master ansible_ssh_host=192.168.234.143
+    e) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
+       environment in hosts file: "kubernetes/inventories/production/addedge"
     
-        -- Insert your edge node Servers hostname, ip address in [clustername_edge]
-            - Example:
-              Edge1 ansible_ssh_host=192.168.234.144
-              Edge2 ansible_ssh_host=192.168.234.145
-              Edge3 ansible_ssh_host=192.168.234.146
-
-
-        -- Insert var required in [all:vars]
-          
-            - Insert domani name for servers
-              - Example  
-                dns_domain=test.local
-                
-            - Uncomment and change value for specific kubelet version 
-              - Example  
-                kubectl_version=v1.6.4
-          
-            - Insert master ip address nedded for cluster nodes init
-              - Example:
-                master_ip_address=192.168.234.143
-
-            - Insert device name for GlusterFS edge nodes filesystem. 
-              - Example
-                glusterdev_name=vdb
-
-            - Insert IP addresses of edge node for Glusterfs cluster
-              - Example
-                gfsedge=192.168.234.144,192.168.234.145,192.168.234.146     
-
-            - Insert IP addresses of one edge node to create Glusterfs cluster
-              - Example
-                edge1=192.168.234.144
-
-            - Insert GlusterFS Number of edge nodes
-              - Example
-                numedges=3
-
-    
+    f) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
+       environment in hosts file: "kubernetes/inventories/production/glusterfs"
         
-
-    e) Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
+    g) Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
        
        root@Ansible:~#cp /etc/ansible/kubernetes/cfg/Ansible-Git/file/config /root/.ssh/
 
 
-    f) Create ssh key and copy an all Kubernetes Server:
+    h) Create ssh key and copy an all Kubernetes Server:
       
        root@Ansible:~#ssh-keygen
        root@Ansible:~#ssh-copy-id centos@"MasterServerIP"
