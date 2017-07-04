@@ -11,3 +11,4 @@
 - include: gentoken.yml
 - include: edge-config.yml
 - include: checknodes.yml
+- include: checkpods.yml
