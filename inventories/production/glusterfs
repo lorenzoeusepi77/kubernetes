@@ -9,14 +9,7 @@
 # The cluster group contains two children groups: master and edge 
 #
 [kubernetes:children]
-kubernetes_master
 kubernetes_edge
-
-# [clustername_master]
-# The master group should have:
-# hostname ansible_ssh_host=IP ADDRESS 
-[kubernetes_master]
-master ansible_ssh_host=192.168.1.143
 
 # [clustername_edge]
 # The master group should have:
@@ -37,15 +30,6 @@ hostname3 ansible_ssh_host=192.168.1.146
 192.168.1.144
 
 [all:vars]
-# Specify domain for master and edge nodes
-dns_domain=test.local
-
-# Insert master ip address var for cluster init
-master_ip_address=192.168.1.143
-
-# If you need specific kubelet version use below var. Otherwise last stable version will be installed 
-#kubectl_version=v1.6.4
-
 # Here "glusterdev_name" you need to specific device name for GlusterFS edge nodes filesystem. 
 glusterdev_name=vdb
 

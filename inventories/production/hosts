@@ -26,16 +26,6 @@ hostname1 ansible_ssh_host=192.168.1.144
 hostname2 ansible_ssh_host=192.168.1.145
 hostname3 ansible_ssh_host=192.168.1.146
 
-# IP addresses of edge nodes for Glusterfs cluster
-#[gfsedge]
-#192.168.1.144
-#192.168.1.145
-#192.168.1.146
-
-# IP addresses of one edge node to create Glusterfs cluster
-#[edge1]
-#192.168.1.144
-
 [all:vars]
 # Specify domain for master and edge nodes
 dns_domain=test.local
