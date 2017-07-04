@@ -6,7 +6,7 @@ There are different roles defined in this ansible playbook.
 
   Role: "base" -- Base configuration for "all hosts":
     
-    - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server for hostname resolution) 
+    - Create and insert all entry on file "hosts" for all Server (If you don't have a DNS Server) 
     
     - Disable "SELinux"
     
