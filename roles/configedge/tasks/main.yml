@@ -31,4 +31,12 @@
     - debug:
         var: node_join.stdout_lines
       ignore_errors: true
+
+    - name: Wait for Nodes to be ready 1
+      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
+      register: task_result
+      until: task_result.stdout.find("Ready") != -1
+      retries: 15
+      delay: 10
+      ignore_errors: true    
     

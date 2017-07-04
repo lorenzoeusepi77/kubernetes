@@ -1,4 +1,4 @@
-# ANSIBLE INVENTORY EXAMPLE
+# ANSIBLE INVENTORY MASTER TEMPLATE EXAMPLE
 
 # [clustername]
 # Create an inventory group with "clustername"
@@ -18,46 +18,43 @@ kubernetes_edge
 # The master group should have:
 # hostname ansible_ssh_host=IP ADDRESS 
 [kubernetes_master]
-master ansible_ssh_host=192.168.234.143
-
-
-#[clustername_master:vars]
-# Insert edge ip address var for cluster init
-[kubernetes_master:vars]
-master_ip_address=192.168.234.143
+master ansible_ssh_host=192.168.1.143
 
 
 # [clustername_edge]
 # The master group should have:
 # hostname ansible_ssh_host=IP ADDRESS 
 [kubernetes_edge]
-hostname1 ansible_ssh_host=192.168.234.144
-hostname2 ansible_ssh_host=192.168.234.145
-hostname3 ansible_ssh_host=192.168.234.146
+hostname1 ansible_ssh_host=192.168.1.144
+hostname2 ansible_ssh_host=192.168.1.145
+hostname3 ansible_ssh_host=192.168.1.146
 
 # IP addresses of edge nodes for Glusterfs cluster
 [gfsedge]
-192.168.234.144
-192.168.234.145
-192.168.234.146
+192.168.1.144
+192.168.1.145
+192.168.1.146
 
 # IP addresses of one edge node to create Glusterfs cluster
 [edge1]
-192.168.234.144
+192.168.1.144
 
-# Specify domain for master and edge nodes
+
 [all:vars]
-# domain name var
+# Specify domain for master and edge nodes
 dns_domain=test.local
+
+# Insert master ip address var for cluster init
+master_ip_address=192.168.1.143
 
 # If you need specific kubelet version use below var. Otherwise last stable version will be installed 
 #kubectl_version=v1.6.4
 
 # Here "glusterdev_name" you need to specific device name for GlusterFS edge nodes filesystem. 
-#glusterdev_name=vdb
+glusterdev_name=vdb
 
 # GlusterFS Number of edge nodes
-#numedges=3
+numedges=3
 
 # Gluster configuration var
 gluster_mount_dir=/glusterfs/volume1

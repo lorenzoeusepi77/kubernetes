@@ -128,35 +128,36 @@ Prerequisites:
               Edge2 ansible_ssh_host=192.168.234.145
               Edge3 ansible_ssh_host=192.168.234.146
 
-        - Insert [clustername_master:vars] master ip address
-            - Example:
-              master_ip_address=192.168.234.143
-
         - List IP addresses of edge node for Glusterfs cluster in [gfsedge]
             - Example
-            192.168.234.144
-            192.168.234.145
-            192.168.234.146
+              192.168.234.144
+              192.168.234.145
+              192.168.234.146
         
         - Insert IP addresses of one edge node to create Glusterfs cluster in [edge1]
             - Example      
-            hostname1 ansible_ssh_host=192.168.234.144
+              hostname1 ansible_ssh_host=192.168.234.144
      
         - Insert var required in [all:vars]
+          - Insert domani name for servers
             - Example  
-            dns_domain=test.local
+              dns_domain=test.local
               
-        - Uncomment and change value for specific kubelet version 
+          - Uncomment and change value for specific kubelet version 
             - Example  
-            kubectl_version=v1.6.4
+              kubectl_version=v1.6.4
+        
+          - Insert master ip address nedded for cluster nodes init
+            - Example:
+              master_ip_address=192.168.234.143
 
-        - Insert device name for GlusterFS edge nodes filesystem. 
+          - Insert device name for GlusterFS edge nodes filesystem. 
             - Example
-            glusterdev_name=vdb
+              glusterdev_name=vdb
 
-        - Insert GlusterFS Number of edge nodes
+          - Insert GlusterFS Number of edge nodes
             - Example
-            numedges=3
+              numedges=3
         
 
     - Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 

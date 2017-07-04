@@ -16,24 +16,22 @@ kubernetes_edgeadd
 # The master group should be empty 
 [kubernetes_master]
 
-#[clustername_master:vars]
-# Insert master ip address var for cluster init
-[kubernetes_master:vars]
-master_ip_address=192.168.234.143
-
 
 # [clustername_edgeadd]
 # The edge group should have:
 # hostname 
 # ansible_ssh_host=IP ADDRESS 
 [kubernetes_edgeadd]
-Edge4 ansible_ssh_host=192.168.234.148
+Edge4 ansible_ssh_host=192.168.1.148
 
 
-# Specify domain for master and edge nodes
+
 [all:vars]
-# domain name var
+# Specify domain for master and edge nodes
 dns_domain=test.local
+
 # If you need specific kubelet version use below var. Otherwise last stable version will be installed 
 #kubectl_version=v1.6.4
 
+# Insert master ip address var for cluster init
+master_ip_address=192.168.1.143
