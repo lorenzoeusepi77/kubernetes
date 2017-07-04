@@ -1,0 +1,17 @@
+---
+- hosts: "{{ clustername }}_master"
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+
+- pause:
+        seconds: 30
+        
+    - name: Wait for Nodes to be ready 1
+      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
+      register: task_result
+      until: task_result.stdout.find("Ready") != -1
+      retries: 15
+      delay: 10
+      ignore_errors: true    
