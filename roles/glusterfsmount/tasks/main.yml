@@ -26,3 +26,11 @@
     fstype: glusterfs
     opts: "defaults,_netdev"
     state: mounted
+
+- name: Check gluster volume info
+  shell: /usr/sbin/gluster volume info
+  register: gluster_volume_info
+  ignore_errors: true  
+
+- debug:
+        var: gluster_volume_info.stdout_lines
