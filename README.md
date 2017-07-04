@@ -1,4 +1,4 @@
-#### Create Kubernetes Cluster using kubeadm ###
+# Create Kubernetes Cluster using kubeadm
 
 Ansible playbook to create a Kubernetes cluster, latest release, using "kubeadm" on system with CentOS-7.x operating system.
 
@@ -78,7 +78,7 @@ There are different roles defined in this ansible playbook.
 
 
 
-# Following the below steps to create Kubernetes cluster on Centos-7.
+## Following the below steps to create Kubernetes cluster on Centos-7.
 
 Prerequisites: 
 
