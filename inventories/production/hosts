@@ -5,7 +5,6 @@
 #
 [kubernetes]
 
-
 # [clustername:children]
 # The cluster group contains two children groups: master and edge 
 #
@@ -13,13 +12,11 @@
 kubernetes_master
 kubernetes_edge
 
-
 # [clustername_master]
 # The master group should have:
 # hostname ansible_ssh_host=IP ADDRESS 
 [kubernetes_master]
 master ansible_ssh_host=192.168.1.143
-
 
 # [clustername_edge]
 # The master group should have:
@@ -52,6 +49,12 @@ master_ip_address=192.168.1.143
 # Here "glusterdev_name" you need to specific device name for GlusterFS edge nodes filesystem. 
 glusterdev_name=vdb
 
+# IP addresses of edge nodes for Glusterfs cluster
+gfsedge=192.168.1.144,192.168.1.145,192.168.1.146
+
+# IP addresses of one edge node to create Glusterfs cluster
+edge1=192.168.1.144
+
 # GlusterFS Number of edge nodes
 numedges=3
 
@@ -59,8 +62,3 @@ numedges=3
 gluster_mount_dir=/glusterfs/volume1
 gluster_brick_dir=/bricks/brick1/brick
 gluster_brick_name=glustervol1
-
-#
-edge1=192.168.1.144
-#
-gfsedge=192.168.1.144,192.168.1.145,192.168.1.146

@@ -129,16 +129,6 @@ Prerequisites:
               Edge2 ansible_ssh_host=192.168.234.145
               Edge3 ansible_ssh_host=192.168.234.146
 
-        -- List IP addresses of edge node for Glusterfs cluster in [gfsedge]
-            - Example
-              192.168.234.144
-              192.168.234.145
-              192.168.234.146
-        
-        -- Insert IP addresses of one edge node to create Glusterfs cluster in [edge1]
-            - Example      
-              hostname1 ansible_ssh_host=192.168.234.144
-     
 
         -- Insert var required in [all:vars]
           
@@ -157,6 +147,14 @@ Prerequisites:
             - Insert device name for GlusterFS edge nodes filesystem. 
               - Example
                 glusterdev_name=vdb
+
+            - Insert IP addresses of edge node for Glusterfs cluster
+              - Example
+                gfsedge=192.168.234.144,192.168.234.145,192.168.234.146     
+
+            - Insert IP addresses of one edge node to create Glusterfs cluster
+              - Example
+                edge1=192.168.234.144
 
             - Insert GlusterFS Number of edge nodes
               - Example
