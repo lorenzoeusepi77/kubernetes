@@ -6,7 +6,7 @@
 [kubernetes]
 
 # [clustername:children]
-# The cluster group contains two children groups: edge 
+# The cluster group contains one children group: edge 
 [kubernetes:children]
 kubernetes_edgeadd
 
@@ -14,10 +14,8 @@ kubernetes_edgeadd
 # The master group should be empty 
 [kubernetes_master]
 
-
 # [clustername_edgeadd]
-# The edge group should have:
-# hostname ansible_ssh_host=IP ADDRESS 
+# The edge group should have hostname and ip address for new node 
 [kubernetes_edgeadd]
 Edge4 ansible_ssh_host=192.168.1.148
 
