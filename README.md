@@ -114,8 +114,10 @@ Prerequisites:
        root@Ansible:~# git init
        root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
-    d) Edit all the necessary parameters in accordance with your environment in hosts file:
-       "kubernetes/inventories/production/hosts"
+    d) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
+       environment in hosts file:
+       
+        "kubernetes/inventories/production/hosts"
 
         -- Change [clustername] var with your cluster name;
     
@@ -159,6 +161,8 @@ Prerequisites:
             - Insert GlusterFS Number of edge nodes
               - Example
                 numedges=3
+
+    
         
 
     e) Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
@@ -200,7 +204,7 @@ How to add Gluster File System to kubernetes cluster.
 
        root@Ansible:~# cd /etc/ansible/
 
-       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
+       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/glusterfs kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
 
 NOTE: If you are using ssh key to connect to hosts add this parameter to previous script 
