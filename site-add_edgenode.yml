@@ -10,3 +10,4 @@
 - include: edge-nodes.yml
 - include: gentoken.yml
 - include: edge-config.yml
+- include: checknodes.yml

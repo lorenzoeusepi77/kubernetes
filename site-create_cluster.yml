@@ -12,4 +12,5 @@
 - include: gentoken.yml
 - include: master-config.yml
 - include: edge-config.yml
+- include: checknodes.yml
 - include: plugins.yml
