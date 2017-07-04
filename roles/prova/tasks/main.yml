@@ -35,14 +35,14 @@
         var: rbac_output
       when: rbac_output is defined
 
-    - name: Install WeaveScope
-      command: /usr/bin/kubectl --kubeconfig /etc/{{ cluster_name }}/admin.conf apply -f https://cloud.weave.works/launch/k8s/weavescope.yaml
-      register: weavescope_raw
+#    - name: Install WeaveScope
+#      command: /usr/bin/kubectl --kubeconfig /etc/{{ cluster_name }}/admin.conf apply -f https://cloud.weave.works/launch/k8s/weavescope.yaml
+#      register: weavescope_raw
 
-    - set_fact:
-        weavescope_output: "{{ weavescope_raw.stdout_lines }}"
+#    - set_fact:
+#        weavescope_output: "{{ weavescope_raw.stdout_lines }}"
 
-    - debug:
-        var: weavescope_output
-      when: weavescope_output is defined
+#    - debug:
+#        var: weavescope_output
+#      when: weavescope_output is defined
    

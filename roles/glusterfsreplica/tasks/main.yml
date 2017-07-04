@@ -32,9 +32,6 @@
 - name: Check gluster volume info
   shell: /usr/sbin/gluster volume info
   register: gluster_volume_info
-  until: result.stdout.find("Started") != -1
-  retries: 30
-  delay: 5
   ignore_errors: true  
 
 - debug:

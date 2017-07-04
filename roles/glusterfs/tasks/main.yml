@@ -48,6 +48,8 @@
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
 
+
+# Check and remove existing glusterFS configuration
 - name: Edit fstab and unmount existing Glusterfs volume.
   mount:
     name: "{{ gluster_mount_dir }}"

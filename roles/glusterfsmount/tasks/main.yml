@@ -14,6 +14,9 @@
     opts: "defaults,_netdev"
     state: unmounted
 
+- pause:
+    seconds: 15
+
 #- mount: name=/glusterfs/volume1 src="{{inventory_hostname}}:/glustervol1" fstype=glusterfs state=mounted
 
 - name: Ensure Gluster volume is mounted.
