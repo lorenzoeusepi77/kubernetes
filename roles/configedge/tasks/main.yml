@@ -25,7 +25,7 @@
     - name: Join nodes to cluster
       command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
       register: node_join
-#      timeout: 120
+#      poll: 5
 #      ignore_errors: true
 
     - debug:
