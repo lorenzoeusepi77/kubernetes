@@ -87,23 +87,33 @@ Prerequisites:
     a) One server with git and ansible software:
         - Ansible version is 2.3.1.0
         - Git Hub Version 1.8.3.1
+    
     b) Kuberneter: N°1 "Master" Server
+    
     c) Kubernetes: N°1 or more "Edge" Servers
         - If you need persistent storage add secondary disk to Edge Servers
+    
     d) Full network connectivty between Kubernetes Servers and Ansible
+    
     e) Ansible can ssh into all Server and can sudo with no password prompt
+    
     f) Servers have access to the Internet
+    
     g) Servers are time-synchronized
      
 2) On Kubernetes Server:
+    
     a) Create User "centos";
+    
     b) Configure User "centos" in /etc/sudoers. Execute as root:
       
         echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
 3) On Ansbile machine:
+    
     a) Install git
         - yum install git-1.8.3.1-6.el7_2.1.x86_64
+    
     b) Install ansible
         - yum install epel-release
         - yum install ansible-2.3.1.0-1.el7.noarch
