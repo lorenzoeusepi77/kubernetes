@@ -83,6 +83,7 @@ There are different roles defined in this ansible playbook.
 Prerequisites: 
 
 1) Main:
+
     a) One server with git and ansible software:
         - Ansible version is 2.3.1.0
         - Git Hub Version 1.8.3.1
