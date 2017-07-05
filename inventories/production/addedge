@@ -11,8 +11,9 @@
 kubernetes_edgeadd
 
 # [clustername_master]
-# The master group should be empty 
+# The master group should have hostname and ip address of master node
 [kubernetes_master]
+master ansible_ssh_host=192.168.1.143
 
 # [clustername_edgeadd]
 # The edge group should have hostname and ip address for new node 

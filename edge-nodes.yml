@@ -13,4 +13,5 @@
   become_method: sudo
   gather_facts: no
   roles:
+    - base
     - edge
