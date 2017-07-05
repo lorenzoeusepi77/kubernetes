@@ -60,8 +60,8 @@
 
 - name: Stop existing Gluster Volume
   shell: gluster volume stop glustervol1
+#  shell: "echo yes | gluster volume stop glustervol1"
   register: gluster_stop_info
-  force: yes
   ignore_errors: True
 
 - debug:
