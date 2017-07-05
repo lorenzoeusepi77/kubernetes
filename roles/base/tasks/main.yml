@@ -1,43 +1,34 @@
+#Base tasks on all Kubernetes Servers
 ---
-# Create etc/hosts file on Kubernetes Servers with all Cluster entry
+
+# Create etc/hosts file on Kubernetes Servers
 - name: change file etc/hosts
   template: src=hosts.j2 dest=/etc/hosts
-  tags:
-    - file_hosts
   
-# Disable Firewalld on all Kubernetes Server
+# Disable Firewalld
 - name: == Service Stop - Disable autostart == Firewalld
   service:
     name: firewalld
     state: stopped
     enabled: no
-  tags:
-    - firewalld_dis  
   
 # Disable "SELinux"
 - name: == SYSTEM == Turn Off SELinux
   selinux:
     state: disabled
   ignore_errors: yes
-  tags:
-    - selinux_dis
 
-# Install and enable "chronyd" for ntp synchronization
+# Install and enable "chronyd" for time synchronization
 - name: Install chrony
   yum: name=chrony
+
 - name: Start the chronyd service
   action: service name=chronyd state=started
-  tags:
-    - chrony_ntp
   
-# Install utility "wget"
+# Install "wget" utility
 - name: Install wget
   yum: name=wget
-  tags:
-    - wget_add
   
-# Install utility "bash-completion"
+# Install "bash-completion" utility 
 - name: Install bash-completion
   yum: name=bash-completion
-  tags:
-    - bash_add 
