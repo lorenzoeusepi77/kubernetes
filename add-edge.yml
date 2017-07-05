@@ -1,9 +1,0 @@
-# Add and joining edge nodes to cluster
-- hosts: "{{ clustername }}_edgeadd"
-  become: yes
-  become_user: root
-  become_method: sudo
-  gather_facts: no
-  roles:
-    - base
-    - edgeadd
