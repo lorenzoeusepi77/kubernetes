@@ -1,15 +1,15 @@
 # Join Edge Nodes to cluster with kubeadm
 ---  
-#    - name: Save master_ip_address for new node
-#      shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
-#      delegate_to: 127.0.0.1
-#      become: false
+    - name: Save master_ip_address for new node
+      shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
+      delegate_to: 127.0.0.1
+      become: false
 
-#    - name: Read token
-#      include_vars: /cfg/{{ clustername }}/token.yml
+    - name: Read token
+      include_vars: /cfg/{{ clustername }}/token.yml
       
-#    - name: Read master_ip_address
-#      include_vars: /cfg/{{ clustername }}/master_ip_address.yml
+    - name: Read master_ip_address
+      include_vars: /cfg/{{ clustername }}/master_ip_address.yml
 
     - name: Reset old kubernetes installation
       command: kubeadm reset
@@ -26,7 +26,7 @@
       command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
       register: node_join
 #      poll: 5
-#      ignore_errors: true
+      ignore_errors: true
 
     - debug:
         var: node_join.stdout_lines
