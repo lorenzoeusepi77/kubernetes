@@ -29,8 +29,7 @@
     state: started
     enabled: yes
 
-#Tasks inizialize disk
-
+#Tasks inizialize disk with lvm
 - name: Set name and format gluster disk
   set_fact:
     version: "{{ glusterdev_name }}"
@@ -43,11 +42,9 @@
     part_start: 0%
     part_end: 100%
 
-#Create Volume Group
 - lvg:
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
-
 
 # Check and remove existing glusterFS configuration
 - name: Edit fstab and unmount existing Glusterfs volume.
@@ -62,7 +59,7 @@
 #  shell: gluster volume stop glustervol1
 #  register: gluster_stop_info
 #  ignore_errors: True
-
+ 
 - name: Stop existing Gluster Volume
   gluster_volume:
     state: stopped
@@ -108,7 +105,6 @@
 - pause:
     seconds: 5
 
-#Delete LV
 - lvol:
     vg: vg_brick1
     lv: lv_brick1
@@ -116,7 +112,6 @@
     force: yes
   ignore_errors: True  
 
-#Create LV
 - lvol:
     vg: vg_brick1
     lv: lv_brick1

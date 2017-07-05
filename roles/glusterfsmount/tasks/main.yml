@@ -1,5 +1,5 @@
 ---
-#Tasks mount "GlusterFS" replicated FS
+#Tasks mount "GlusterFS" replicated file system
 
 - name: Ensure Gluster mount directories exist.
   file: "path={{ item }} state=directory mode=0775"
@@ -16,8 +16,6 @@
 
 - pause:
     seconds: 15
-
-#- mount: name=/glusterfs/volume1 src="{{inventory_hostname}}:/glustervol1" fstype=glusterfs state=mounted
 
 - name: Ensure Gluster volume is mounted.
   mount:

@@ -1,4 +1,5 @@
 ---
+
 #Tasks install "Docker"
 - name: == YUM == Uninstall Docker & Utility old versions
   yum: name={{ item }} state=absent

@@ -1,6 +1,6 @@
 ---
-#Tasks configure "GlusterFS" replica
-  
+
+#Tasks configure "GlusterFS" replica  
 - name: Check if Gluster volumes already exist.
   shell: "gluster volume info"
   changed_when: false

@@ -1,6 +1,6 @@
 ---
 
-- name: Verify tokens.yml
+- name: Verify existing tokens.yml file
   stat:
     path:  /cfg/{{ clustername }}/token.yml
   register: token_file

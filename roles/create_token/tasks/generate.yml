@@ -1,5 +1,6 @@
 ---
-- name: Generate admission_token
+
+- name: Generate token
   shell: python -c 'import random; print "%0x.%0x" % (random.SystemRandom().getrandbits(3*8), random.SystemRandom().getrandbits(8*8))'
   register: token_raw
 
@@ -10,7 +11,7 @@
     path: /cfg/{{ clustername }}
     state: directory
 
-- name: Save token.yml
+- name: Save token.yml file
   copy:
     dest: /cfg/{{ clustername }}/token.yml
     content: "admission_token: {{ admission_token }}"
