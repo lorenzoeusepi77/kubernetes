@@ -1,7 +1,7 @@
 # Check kubeadm nodes status
 ---  
     - pause:
-        seconds: 30
+        seconds: 20
         
     - name: Wait for Nodes to be ready 1
       shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
@@ -10,3 +10,6 @@
       retries: 15
       delay: 10
       ignore_errors: true    
+
+      - debug:
+        var: task_result.stdout_lines   
