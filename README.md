@@ -147,7 +147,8 @@ Prerequisites:
        root@Ansible:~#ssh-copy-id centos@"Edge2ServerIP"
        root@Ansible:~#ssh-copy-id centos@"Edge3ServerIP"
 
-#### Create Kubernetes cluster with Kubeadm ####  
+
+### Create Kubernetes cluster with Kubeadm ### 
 Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
 
  You need to change this vars according on previous step:
