@@ -21,8 +21,15 @@
     force: yes
   run_once: true
 
+#- name: Start Gluster Volume
+#  shell: /usr/sbin/gluster volume start glustervol1
+#  register: gluster_start_info
+#  ignore_errors: True
+
 - name: Start Gluster Volume
-  shell: /usr/sbin/gluster volume start glustervol1
+  gluster_volume:
+    state: started
+    name: glustervol1
   register: gluster_start_info
   ignore_errors: True
 

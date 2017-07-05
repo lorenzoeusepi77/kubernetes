@@ -58,28 +58,44 @@
     opts: "defaults,_netdev"
     state: unmounted
 
+#- name: Stop existing Gluster Volume
+#  shell: gluster volume stop glustervol1
+#  register: gluster_stop_info
+#  ignore_errors: True
+
 - name: Stop existing Gluster Volume
-  shell: gluster volume stop glustervol1
-#  shell: "echo yes | gluster volume stop glustervol1"
+  gluster_volume:
+    state: stopped
+    name: glustervol1
   register: gluster_stop_info
   ignore_errors: True
 
 - debug:
         var: gluster_stop_info.stdout_lines
 
+#- name: Delete existing Gluster volume.
+#  gluster_volume:
+#    state: absent
+#    name: "{{ gluster_brick_name }}"
+#    brick: "{{ gluster_brick_dir }}"
+#    transport: tcp
+#    replicas: "{{ numedges }}"
+#    cluster: "{{ groups.gfsedge | join(',') }}"
+#    host: "{{ inventory_hostname }}"
+#    force: yes
+#  run_once: true
+#  ignore_errors: True
+
 - name: Delete existing Gluster volume.
   gluster_volume:
     state: absent
-    name: "{{ gluster_brick_name }}"
-    brick: "{{ gluster_brick_dir }}"
-    transport: tcp
-    replicas: "{{ numedges }}"
-    cluster: "{{ groups.gfsedge | join(',') }}"
-    host: "{{ inventory_hostname }}"
-    force: yes
-  run_once: true
+    name: glustervol1
+  register: gluster_deletevolume_info
   ignore_errors: True
-  
+
+- debug:
+        var: gluster_deletevolume.stdout_lines
+
 - name: Edit fstab and unmount exixting XFS volume
   mount:
     path: /bricks/brick1
