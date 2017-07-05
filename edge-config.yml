@@ -4,6 +4,21 @@
   become_user: root
   become_method: sudo
   gather_facts: no
+
+  pre_tasks:
+    
+    - name: Save master_ip_address for new node
+      shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
+      delegate_to: 127.0.0.1
+      become: false
+      
+    - name: Read token from file
+      include_vars: cfg/{{ cluster_name }}/token.yml
+      
+    - name: Read master_ip_address from file
+      include_vars: cfg/{{ cluster_name }}/master_ip_address.yml
+
+
   roles:
     - configedge
 
