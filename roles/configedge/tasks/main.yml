@@ -16,16 +16,18 @@
 
     - debug:
         var: admission_token
-#      run_once: true
+      run_once: true
 
     - debug:
         var: master_ip_address
-#      run_once: true
+      run_once: true
 
     - name: Join nodes to cluster
       command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
-#      args:
       register: node_join
+      until: task_result.rc == 0
+      retry: 2
+      delay: 10
       ignore_errors: true
     
     - debug:
