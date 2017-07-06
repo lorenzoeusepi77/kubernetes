@@ -15,5 +15,7 @@
 - include: edge-config.yml
 - include: checknodes.yml
 - include: plugins.yml
+- include: prova.yml
 - include: checknodes.yml
+- include: prova.yml
 - include: checkpods.yml

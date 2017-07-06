@@ -1,15 +1,13 @@
 ---
-
 # Check kubernetes pods status Running
-- pause:
-    seconds: 5
 
 - name: Wait for all pods to be Running
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces"
   register: task_result
-  until: '"NotReady" not in task_result.stdout'
-#  until: task_result.stdout.find("Running") != -1
-  retries: 15
+  until: 
+    - '"NotReady" not in task_result.stdout'
+    - '"Pending" not in task_result.stdout'
+  retries: 20
   delay: 10
   ignore_errors: true    
       

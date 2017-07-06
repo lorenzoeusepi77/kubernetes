@@ -45,7 +45,8 @@
     state: absent
     path: /etc/yum.repos.d/kubernetes.repo
 
-- copy:
+- name: Install kubernetes repo
+  copy:
     src: kubernetes.repo
     dest: /etc/yum.repos.d/
 

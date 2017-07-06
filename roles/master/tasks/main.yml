@@ -87,7 +87,8 @@
     state: absent
     path: /etc/yum.repos.d/kubernetes.repo
 
-- copy: 
+- name: Import kubernetes repo 
+  copy: 
     src: kubernetes.repo
     dest: /etc/yum.repos.d/
 
@@ -113,15 +114,17 @@
     state: started
     enabled: yes
 
-# Add sysctl vars for Kubernetesnet.bridge.bridge-nf-call-ip6tables = 1
-- sysctl:
+- name: Add sysctl vars for Kubernetesnet.bridge.bridge-nf-call-ip6tables = 1 
+  sysctl:
     name: net.bridge.bridge-nf-call-ip6tables
     value: 1
     sysctl_set: yes
     state: present
     reload: yes
 
-- sysctl:
+
+- name: Add sysctl vars for Kubernetesnet.bridge.bridge-nf-call-iptables = 1
+  sysctl:
     name: net.bridge.bridge-nf-call-iptables
     value: 1
     sysctl_set: yes
