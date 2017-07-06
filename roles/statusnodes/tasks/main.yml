@@ -12,5 +12,5 @@
   delay: 10
   ignore_errors: true    
 
-  - debug:
-      var: task_result.stdout_lines   
+- debug:
+    var: task_result.stdout_lines   
