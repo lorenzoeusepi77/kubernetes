@@ -1,7 +1,7 @@
 # Install dashboard on Master Node
 ---
 
-- name: Delete old Heapster containers 
+- name: Delete existing dashboard 
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
