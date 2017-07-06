@@ -130,12 +130,8 @@ Prerequisites:
     
     f) For "configure glusterfs for Kubernetes cluster" edit all the necessary parameters in accordance     with your environment in hosts file: "kubernetes/inventories/production/glusterfs"
         
-    g) Disable StrictHostKeyChecking: 
-       
-       root@Ansible:~# cp /etc/ansible/kubernetes/cfg/ansible/file/config /root/.ssh/
 
-
-    h) Create ssh key and copy an all Kubernetes Server (only if you use password authentication for  
+    g) Create ssh key and copy an all Kubernetes Server (only if you use password authentication for  
        your servers):
       
        root@Ansible:~# ssh-keygen
@@ -143,6 +139,10 @@ Prerequisites:
        root@Ansible:~# ssh-copy-id centos@"Edge1ServerIP"
        root@Ansible:~# ssh-copy-id centos@"Edge2ServerIP"
        root@Ansible:~# ssh-copy-id centos@"Edge3ServerIP"
+
+    h) Disable StrictHostKeyChecking: 
+       
+       root@Ansible:~# cp /etc/ansible/kubernetes/cfg/ansible/file/config /root/.ssh/
 
 
 ### Create Kubernetes cluster with Kubeadm ### 
