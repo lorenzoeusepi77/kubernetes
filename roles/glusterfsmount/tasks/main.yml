@@ -15,7 +15,7 @@
     state: unmounted
 
 - pause:
-    seconds: 15
+    seconds: 5
 
 - name: Ensure Gluster volume is mounted.
   mount:
