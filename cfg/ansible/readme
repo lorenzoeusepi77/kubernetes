@@ -1,0 +1,4 @@
+Ansible Server OS: CentOS 7.x
+
+- Disable Host Key Checking
+Copy https://github.com/lorenzoeusepi77/kubernetes/ansible/file/config on "Ansible Server" /root/.ssh/ 

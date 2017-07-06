@@ -2,9 +2,10 @@
 #
 # Read README.md for detail
 #
-# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
+# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_ckuster.yml -e clustername=kubernetes -u centos
 
 ---
+
 # Main file:
 - include: all-nodes.yml
 - include: master-node.yml

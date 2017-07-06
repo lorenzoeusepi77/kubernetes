@@ -1,4 +1,6 @@
 ---
+
+# Check kubernetes nodes status
 - hosts: "{{ clustername }}_master"
   become: yes
   become_user: root

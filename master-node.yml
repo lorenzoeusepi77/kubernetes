@@ -1,3 +1,5 @@
+---
+
 # Installing kubelet and kubeadm on master node
 - hosts: "{{ clustername }}_master"
   become: yes

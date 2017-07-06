@@ -1,4 +1,4 @@
-# Joining edge nodes to cluster
+# Joining edge nodes to kubernetes cluster
 - hosts: "{{ clustername }}_edge"
   become: yes
   become_user: root

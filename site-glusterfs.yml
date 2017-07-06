@@ -2,8 +2,9 @@
 #
 # Read README.md for detail
 #
-# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
+# ansible-playbook -i kubernetes/inventories/production/glusterhosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
 ---
+
 # Main file:
 - include: glusterFS.yml

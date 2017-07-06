@@ -1,4 +1,6 @@
 ---
+
+#Check kubernetes pods status
 - hosts: "{{ clustername }}_master"
   become: yes
   become_user: root

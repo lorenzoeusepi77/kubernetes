@@ -1,8 +1,0 @@
----
-- hosts: "{{ clustername }}_master"
-  become: yes
-  become_user: root
-  become_method: sudo
-  gather_facts: no
-  roles:
-    - containers

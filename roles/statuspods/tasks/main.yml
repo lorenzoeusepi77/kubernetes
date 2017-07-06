@@ -1,15 +1,16 @@
-# Install dashboard on Master Node
 ---
-    - pause:
-        seconds: 20
 
-    - name: Wait for all pods to be Running
-      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces"
-      register: task_result
-      until: task_result.stdout.find("Running") != -1
-      retries: 15
-      delay: 10
-      ignore_errors: true    
+# Check kubernetes pods status Running
+- pause:
+    seconds: 15
+
+- name: Wait for all pods to be Running
+  shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces"
+  register: task_result
+  until: task_result.stdout.find("Running") != -1
+  retries: 15
+  delay: 10
+  ignore_errors: true    
       
-    - debug:
-        var: task_result.stdout_lines   
+- debug:
+    var: task_result.stdout_lines   

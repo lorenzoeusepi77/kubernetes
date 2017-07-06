@@ -1,4 +1,6 @@
 ---
+
+# Install kubernetes plugin
 - hosts: "{{ clustername }}_master"
   become: yes
   become_user: root

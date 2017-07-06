@@ -166,7 +166,7 @@ How to add edge node to existing cluster.
 
        root@Ansible:~# cd /etc/ansible/
 
-       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedge kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
+       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedgehosts kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
 
 
 ### Add to Kubernetes cluster "GlusterFS" for Persistent Volume ###
@@ -174,11 +174,11 @@ How to add Gluster File System to kubernetes cluster.
 
        root@Ansible:~# cd /etc/ansible/
 
-       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/glusterfs kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
+       root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/glusterfshosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
 
 NOTE: If you are using ssh key to connect to hosts add this parameter to previous script 
 
     --private-key key.pub 
 
-    Note: The key must have chmod 400 permission   
+    Note: The key must have "chmod 400 permission"   

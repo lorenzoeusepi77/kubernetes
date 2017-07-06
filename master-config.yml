@@ -1,4 +1,6 @@
-# Initializing master
+---
+
+# Initializing kubernetes master node
 - hosts: "{{ clustername }}_master"
   become: yes
   become_user: root
