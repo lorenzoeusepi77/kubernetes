@@ -152,15 +152,9 @@ Prerequisites:
 ### Create Kubernetes cluster with Kubeadm ### 
 Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
 
- You need to change this vars according on previous step:
+ You need to change vars according on file:
 
        [root@ansible ansible]# vi /etc/ansible/kubernetes/inventories/production/hosts
-
-        - clustername = your cluster name
-
-        - username = user for remote systems access -u username 
-
-        - hostname, ip address and var 
 
 
 Execute playbook:
@@ -169,29 +163,47 @@ Execute playbook:
 
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
 
+       Note 1: Check note if you use ssh key
 
-Note1: if you use ssh key
-### Add to Kubernetes cluster "edge nodes" ###
-How to add edge node to existing cluster.
+
+### Add "edge nodes" to Kubernetes cluster  ###
+Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
+
+ You need to change vars according on file:
+
+       [root@ansible ansible]# vi /etc/ansible/kubernetes/inventories/production/hosts
+
+
+Execute playbook:
 
        root@Ansible:~# cd /etc/ansible/
 
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedgehosts kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
 
+       Note 1: Check note if you use ssh key
 
 Note1: if you use ssh key
-### Add to Kubernetes cluster "GlusterFS" for Persistent Volume ###
-How to add Gluster File System to kubernetes cluster.
+
+
+### Add "GlusterFS" to Kubernetes cluster for Persistent Storage Volume ###
+Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
+
+ You need to change vars according on file:
+
+       [root@ansible ansible]# vi /etc/ansible/kubernetes/inventories/production/glusterfshosts
+
+
+Execute playbook:
 
        root@Ansible:~# cd /etc/ansible/
 
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/glusterfshosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
+       Note 1: Check note if you use ssh key
 
-Note1: if you use ssh key
 
 
-NOTE1: If you are using ssh key to connect to hosts add this parameter to previous ansible script 
+Note 1: If you are using ssh key to connect to hosts add this parameter to previous ansible script 
 
        --private-key key.pub 
 
