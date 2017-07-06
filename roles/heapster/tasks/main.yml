@@ -15,19 +15,32 @@
     name: git-1.8.3.1-6.el7_2.1.x86_64
     state: present
 
-- git: 
+- name: Clone git repo
+  git: 
     repo: https://github.com/kubernetes/heapster.git
     dest: /home/centos/heapster
     clone: yes
 
-- name: Delete old Heapster containers 
+- name: Delete existing Heapster containers 
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system heapster
+  with_items:
+   - deployment
+   - svc
+   - serviceaccount
+  ignore_errors: true
+
+- name: Delete existing Grafana containers 
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-grafana
+  with_items:
+   - deployment
+   - svc
+  ignore_errors: true
+
+- name: Delete existing influxdb containers 
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system monitoring-influxdb
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system heapster
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system monitoring-grafana
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system monitoring-influxdb
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete serviceaccount --namespace=kube-system heapster
+  with_items:
+   - deployment
+   - svc
   ignore_errors: true
 
 - name: Deploy Heapster containers 
