@@ -2,9 +2,13 @@
 ---
 
 - name: Delete old Heapster containers 
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system kubernetes-dashboard
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system kubernetes-dashboard
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete serviceaccount --namespace=kube-system kubernetes-dashboard
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
+  with_items:
+   - deployment
+   - svc
+   - serviceaccount
   ignore_errors: true
 
 - name: Install dashboard
