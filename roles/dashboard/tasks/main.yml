@@ -9,21 +9,21 @@
 - debug:
     var: dashboard.stdout_lines   
 
-- set_fact:
-    dashboard_output: "{{ dashboard_raw.stdout_lines }}"
+#- set_fact:
+#    dashboard_output: "{{ dashboard_raw.stdout_lines }}"
 
-- debug:
-    var: dashboard_output
-    when: dashboard_output is defined
+#- debug:
+#    var: dashboard_output
+#    when: dashboard_output is defined
 
-- name: RBAC for Dashboard
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
-  register: rbac_raw
-  ignore_errors: true
+#- name: RBAC for Dashboard
+#  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
+#  register: rbac_raw
+#  ignore_errors: true
 
-- set_fact:
-    rbac_output: "{{ rbac_raw.stdout_lines }}"
+#- set_fact:
+#    rbac_output: "{{ rbac_raw.stdout_lines }}"
 
-- debug:
-    var: rbac_output
-    when: rbac_output is defined
+#- debug:
+#    var: rbac_output
+#    when: rbac_output is defined

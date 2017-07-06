@@ -1,13 +1,16 @@
 ---  
 
-# Check kubernetes nodes status Ready        
-    - name: Wait for Nodes to be ready 1
-      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
-      register: task_result
-      until: '"NotReady" not in task_result.stdout'
-      retries: 15
-      delay: 10
-      ignore_errors: true    
+# Check kubernetes nodes status Ready
+- pause:
+    seconds: 10
 
-    - debug:
-        var: task_result.stdout_lines   
+- name: Wait for Nodes to be ready 1
+  shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
+  register: task_result
+  until: '"NotReady" not in task_result.stdout'
+  retries: 15
+  delay: 10
+  ignore_errors: true    
+
+  - debug:
+      var: task_result.stdout_lines   
