@@ -26,7 +26,6 @@
 - name: Join edge nodes to cluster
   command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
   register: node_join
-#  ignore_errors: true
 
 - debug:
     var: node_join.stdout_lines     
