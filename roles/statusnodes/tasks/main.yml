@@ -7,7 +7,8 @@
 - name: Wait for Nodes to be ready 1
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
   register: task_result
-  until: '"NotReady" not in task_result.stdout'
+#  until: '"NotReady" not in task_result.stdout'
+  until: '"Pending" not in task_result.stdout'
   retries: 15
   delay: 10
   ignore_errors: true    
