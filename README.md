@@ -153,9 +153,17 @@ Prerequisites:
 Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
 
  You need to change this vars according on previous step:
-    - clustername = your cluster name
-    - username = user for remote systems access -u username 
-    - hostname, ip address and var 
+
+       [root@ansible ansible]# vi /etc/ansible/kubernetes/inventories/production/hosts
+
+        - clustername = your cluster name
+
+        - username = user for remote systems access -u username 
+
+        - hostname, ip address and var 
+
+
+Execute playbook:
 
        root@Ansible:~# cd /etc/ansible/
 
