@@ -111,12 +111,14 @@ Prerequisites:
 
 3) On Ansbile machine:
     
-    a) Install git
-        - yum install git-1.8.3.1-6.el7_2.1.x86_64
+    a) Install git:
+
+       root@Ansible:~#yum install git-1.8.3.1-6.el7_2.1.x86_64
     
-    b) Install ansible
-        - yum install epel-release
-        - yum install ansible-2.3.1.0-1.el7.noarch
+    b) Install ansible:
+
+       root@Ansible:~#yum install epel-release
+       root@Ansible:~#yum install ansible-2.3.1.0-1.el7.noarch
 
     c) Download the "Kubernetes" playbook from Git and replace value in inventory file     
        /etc/ansible/hosts;
