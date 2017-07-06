@@ -109,19 +109,18 @@ Prerequisites:
       
         echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
-3) On Ansbile machine:
+3) On Ansbile Server:
     
     a) Install git:
 
-       root@Ansible:~#yum install git-1.8.3.1-6.el7_2.1.x86_64
+       root@Ansible:~# yum install git-1.8.3.1-6.el7_2.1.x86_64
     
     b) Install ansible:
 
-       root@Ansible:~#yum install epel-release
-       root@Ansible:~#yum install ansible-2.3.1.0-1.el7.noarch
+       root@Ansible:~# yum install epel-release
+       root@Ansible:~# yum install ansible-2.3.1.0-1.el7.noarch
 
-    c) Download the "Kubernetes" playbook from Git and replace value in inventory file     
-       /etc/ansible/hosts;
+    c) Download the "Kubernetes" playbook from Git and replace value in inventory file:
         
        root@Ansible:~# cd /etc/ansible/
        root@Ansible:~# git init
@@ -137,17 +136,17 @@ Prerequisites:
         
     g) Disable StrictHostKeyChecking: 
        
-       root@Ansible:~#cp /etc/ansible/kubernetes/cfg/ansible/file/config /root/.ssh/
+       root@Ansible:~# cp /etc/ansible/kubernetes/cfg/ansible/file/config /root/.ssh/
 
 
     h) Create ssh key and copy an all Kubernetes Server (only if you use password authentication for  
        your servers):
       
-       root@Ansible:~#ssh-keygen
-       root@Ansible:~#ssh-copy-id centos@"MasterServerIP"
-       root@Ansible:~#ssh-copy-id centos@"Edge1ServerIP"
-       root@Ansible:~#ssh-copy-id centos@"Edge2ServerIP"
-       root@Ansible:~#ssh-copy-id centos@"Edge3ServerIP"
+       root@Ansible:~# ssh-keygen
+       root@Ansible:~# ssh-copy-id centos@"MasterServerIP"
+       root@Ansible:~# ssh-copy-id centos@"Edge1ServerIP"
+       root@Ansible:~# ssh-copy-id centos@"Edge2ServerIP"
+       root@Ansible:~# ssh-copy-id centos@"Edge3ServerIP"
 
 
 ### Create Kubernetes cluster with Kubeadm ### 
@@ -163,6 +162,7 @@ Run Ansible playbook with "kubernetes" as clustername and "centos" as user for y
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
 
 
+Note1: if you use ssh key
 ### Add to Kubernetes cluster "edge nodes" ###
 How to add edge node to existing cluster.
 
@@ -171,6 +171,7 @@ How to add edge node to existing cluster.
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedgehosts kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
 
 
+Note1: if you use ssh key
 ### Add to Kubernetes cluster "GlusterFS" for Persistent Volume ###
 How to add Gluster File System to kubernetes cluster.
 
@@ -179,8 +180,13 @@ How to add Gluster File System to kubernetes cluster.
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/glusterfshosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
 
-NOTE: If you are using ssh key to connect to hosts add this parameter to previous script 
+Note1: if you use ssh key
 
-    --private-key key.pub 
 
-    Note: The key must have "chmod 400 permission"   
+NOTE1: If you are using ssh key to connect to hosts add this parameter to previous ansible script 
+
+       --private-key key.pub 
+
+       The key must have this access permission 
+    
+       root@Ansible:~# chmod 400 key.pub   
