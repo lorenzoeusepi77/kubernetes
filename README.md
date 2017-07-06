@@ -130,15 +130,14 @@ Prerequisites:
     d) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
        environment in hosts file: "kubernetes/inventories/production/hosts"
     
-    e) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
+    e) For "add node to Kubernetes cluster" edit all the necessary parameters in accordance with your   
        environment in hosts file: "kubernetes/inventories/production/addedge"
     
-    f) For "new Kubernetes cluster" edit all the necessary parameters in accordance with your        
-       environment in hosts file: "kubernetes/inventories/production/glusterfs"
+    f) For "configure glusterfs for Kubernetes cluster" edit all the necessary parameters in accordance     with your environment in hosts file: "kubernetes/inventories/production/glusterfs"
         
-    g) Copy /kubernetes/ansible/config on /root/.ssh/config (Disable StrictHostKeyChecking); 
+    g) Disable StrictHostKeyChecking: 
        
-       root@Ansible:~#cp /etc/ansible/kubernetes/cfg/Ansible-Git/file/config /root/.ssh/
+       root@Ansible:~#cp /etc/ansible/kubernetes/cfg/ansible/file/config /root/.ssh/
 
 
     h) Create ssh key and copy an all Kubernetes Server:
