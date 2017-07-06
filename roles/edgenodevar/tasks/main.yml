@@ -6,5 +6,5 @@
 #  delegate_to: 127.0.0.1
 #  become: false
 
-- name: Reset existing kubernetes installation
-  command: kubeadm reset
+#- name: Reset existing kubernetes installation
+#  command: kubeadm reset
