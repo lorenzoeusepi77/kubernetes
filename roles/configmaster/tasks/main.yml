@@ -34,16 +34,16 @@
     insertafter=EOF
     create=True
 
-- name: Wait for Nodes to be ready 1
-  shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
-  register: task_result
-  until: '"NotReady" not in task_result.stdout'
-  retries: 15
-  delay: 10
-  ignore_errors: true    
+#- name: Wait for Nodes to be ready 1
+#  shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
+#  register: task_result
+#  until: '"NotReady" not in task_result.stdout'
+#  retries: 15
+#  delay: 10
+#  ignore_errors: true    
 
-- debug:
-    var: task_result.stdout_lines   
+#- debug:
+#    var: task_result.stdout_lines   
 
 # Add CNI network weave-kube
 - name: Install pod network "weave-kube 1.6"
