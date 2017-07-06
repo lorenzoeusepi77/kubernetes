@@ -12,14 +12,11 @@
 - name: Read master_ip_address
   include_vars: /cfg/{{ clustername }}/master_ip_address.yml
 
-- name: Reset existing kubernetes installation
-  command: kubeadm reset
+- debug:
+    var: admission_token
 
-#- debug:
-#    var: admission_token
-
-#- debug:
-#    var: master_ip_address
+- debug:
+    var: master_ip_address
 
 - name: Join edge nodes to cluster
   command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
