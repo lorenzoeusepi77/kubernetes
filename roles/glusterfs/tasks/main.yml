@@ -54,11 +54,6 @@
     fstype: glusterfs
     opts: "defaults,_netdev"
     state: unmounted
-
-#- name: Stop existing Gluster Volume
-#  shell: gluster volume stop glustervol1
-#  register: gluster_stop_info
-#  ignore_errors: True
  
 - name: Stop existing Gluster Volume
   gluster_volume:
@@ -69,19 +64,6 @@
 
 - debug:
         var: gluster_stop_info.stdout_lines
-
-#- name: Delete existing Gluster volume.
-#  gluster_volume:
-#    state: absent
-#    name: "{{ gluster_brick_name }}"
-#    brick: "{{ gluster_brick_dir }}"
-#    transport: tcp
-#    replicas: "{{ numedges }}"
-#    cluster: "{{ groups.gfsedge | join(',') }}"
-#    host: "{{ inventory_hostname }}"
-#    force: yes
-#  run_once: true
-#  ignore_errors: True
 
 - name: Delete existing Gluster volume.
   gluster_volume:
