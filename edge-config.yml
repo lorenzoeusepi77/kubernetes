@@ -5,6 +5,7 @@
   become_method: sudo
   gather_facts: no
   roles:
+    - edgenodevar
     - configedge
 
 - hosts: "{{ clustername }}_edgeadd"
@@ -13,4 +14,5 @@
   become_method: sudo
   gather_facts: no
   roles:
+    - edgenodevar
     - configedge
