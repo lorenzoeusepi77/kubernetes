@@ -72,10 +72,6 @@ There are different roles defined in this ansible playbook.
     - Persistent Storage using GlusterFS
     
 
-  Role: "heapster" -- Add-on to kubernetes cluster
-    
-    - Heapster with an InfluxDB backend and a Grafana UI
-
 
 
 ## Following the below steps to create Kubernetes cluster on Centos-7.
