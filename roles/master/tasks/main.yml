@@ -1,6 +1,6 @@
 ---
 #Tasks install "Docker"
-- name: == YUM == Uninstall Docker & Utility old versions
+- name: Uninstall Docker & Utility existing versions
   yum: name={{ item }} state=absent
   with_items:
    - docker
@@ -13,7 +13,7 @@
    - lvm2
   ignore_errors: True
 
-- name: == YUM == Install Docker utility
+- name: Install Docker utility
   yum: name={{ item }} state=latest
   with_items:
    - yum-utils
@@ -28,12 +28,12 @@
   command: yum-config-manager --add-repo  https://download.docker.com/linux/centos/docker-ce.repo
   when: not docker_repofile_result.stat.exists
   
-- name: == YUM == Install Docker
+- name: Install Docker
   yum: name={{ item }} state=latest
   with_items:
    - docker
 
-- name: == Service Start - Enable & Start Docker
+- name: Docker service Enable & Start
   service:
     name: docker
     state: started
@@ -82,7 +82,7 @@
     create=True
     
 # Tasks Install Kubernetes Repository
-- name: Clean old repo and install kubernetes repo 
+- name: Clean existing repo and install kubernetes repo 
   file:
     state: absent
     path: /etc/yum.repos.d/kubernetes.repo
@@ -92,7 +92,7 @@
     dest: /etc/yum.repos.d/
 
 # Tasks Installing kubelet and kubeadm    
-- name: == YUM == Uninstall old versions kubelet kubeadm kubernetes-cni
+- name: Uninstall old versions kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=absent
   with_items:
    - kubelet
@@ -100,14 +100,14 @@
    - kubernetes-cni
   ignore_errors: True
 
-- name: == YUM == Install kubelet kubeadm kubernetes-cni
+- name: Install kubelet kubeadm kubernetes-cni
   yum: name={{ item }} state=latest
   with_items:
    - kubelet
    - kubeadm
    - kubernetes-cni
 
-- name: == Service Start - Enable & Start kubelet
+- name: Kubelet service Enable & Start
   service:
     name: kubelet
     state: started
