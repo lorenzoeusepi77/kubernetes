@@ -1,5 +1,27 @@
 ---
 
+# Tasks Install Kubernetes Repository
+- name: Clean existing repo and install kubernetes repo 
+  file:
+    state: absent
+    path: /etc/yum.repos.d/kubernetes.repo
+
+- copy: 
+    src: kubernetes.repo
+    dest: /etc/yum.repos.d/
+
+# Tasks Installing kubelet and kubeadm    
+- name: Uninstall old versions kubelet kubeadm kubernetes-cni
+  yum: name={{ item }} state=absent
+  with_items:
+   - kubeadm
+  ignore_errors: True
+
+- name: Install kubelet kubeadm kubernetes-cni
+  yum: name={{ item }} state=latest
+  with_items:
+   - kubeadm
+
 - name: Generate token
 #  shell: python -c 'import random; print "%0x.%0x" % (random.SystemRandom().getrandbits(3*8), random.SystemRandom().getrandbits(8*8))'
   shell: kubeadm token generate
