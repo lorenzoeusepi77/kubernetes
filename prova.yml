@@ -1,9 +1,0 @@
-# Install dashboard on Master Node
----
-- hosts: "{{ clustername }}_master"
-  become: yes
-  become_user: root
-  become_method: sudo
-  gather_facts: no
-  roles:
-    - heapster
