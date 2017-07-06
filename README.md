@@ -140,7 +140,8 @@ Prerequisites:
        root@Ansible:~#cp /etc/ansible/kubernetes/cfg/ansible/file/config /root/.ssh/
 
 
-    h) Create ssh key and copy an all Kubernetes Server:
+    h) Create ssh key and copy an all Kubernetes Server (only if you use password authentication for  
+       your servers):
       
        root@Ansible:~#ssh-keygen
        root@Ansible:~#ssh-copy-id centos@"MasterServerIP"
