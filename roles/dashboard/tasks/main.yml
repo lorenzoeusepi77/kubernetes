@@ -1,6 +1,12 @@
 # Install dashboard on Master Node
 ---
-      
+
+- name: Delete old Heapster containers 
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete deployment --namespace=kube-system kubernetes-dashboard
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete svc --namespace=kube-system kubernetes-dashboard
+  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete serviceaccount --namespace=kube-system kubernetes-dashboard
+  ignore_errors: true
+
 - name: Install dashboard
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
   register: dashboard
@@ -8,22 +14,3 @@
 
 - debug:
     var: dashboard.stdout_lines   
-
-#- set_fact:
-#    dashboard_output: "{{ dashboard_raw.stdout_lines }}"
-
-#- debug:
-#    var: dashboard_output
-#    when: dashboard_output is defined
-
-#- name: RBAC for Dashboard
-#  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create clusterrolebinding permissive-binding --clusterrole=cluster-admin --user=admin --user=kubelet --group=system:serviceaccounts
-#  register: rbac_raw
-#  ignore_errors: true
-
-#- set_fact:
-#    rbac_output: "{{ rbac_raw.stdout_lines }}"
-
-#- debug:
-#    var: rbac_output
-#    when: rbac_output is defined

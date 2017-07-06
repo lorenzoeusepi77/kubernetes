@@ -37,14 +37,3 @@
 
 - debug:
     var: heapster.stdout_lines
-
-#- name: Wait for Heapster to be Running
-#      shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces | grep heapster"
-#      register: task_result
-#      until: task_result.stdout.find("Running") != -1
-#      retries: 15
-#      delay: 10
-#      ignore_errors: true    
-      
-#    - debug:
-#        var: task_result.stdout_lines   cd je  
