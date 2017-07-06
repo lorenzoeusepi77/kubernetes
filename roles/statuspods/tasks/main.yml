@@ -2,7 +2,7 @@
 
 # Check kubernetes pods status Running
 - pause:
-    seconds: 15
+    seconds: 5
 
 - name: Wait for all pods to be Running
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces"

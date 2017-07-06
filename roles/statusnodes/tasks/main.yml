@@ -2,7 +2,7 @@
 
 # Check kubernetes nodes status Ready
 - pause:
-    seconds: 10
+    seconds: 5
 
 - name: Wait for Nodes to be ready 1
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
