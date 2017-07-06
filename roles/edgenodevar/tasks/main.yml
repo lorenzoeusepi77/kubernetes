@@ -1,10 +1,10 @@
 # Edge Nodes vars ip address and token
 ---
 
-- name: Save master_ip_address for new node
-  shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
-  delegate_to: 127.0.0.1
-  become: false
+#- name: Save master_ip_address for new node
+#  shell: echo "master_ip_address{{ ':' }} {{ master_ip_address }}" > /cfg/{{ clustername }}/master_ip_address.yml
+#  delegate_to: 127.0.0.1
+#  become: false
 
 - name: Reset existing kubernetes installation
   command: kubeadm reset
