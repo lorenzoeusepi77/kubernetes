@@ -18,9 +18,6 @@
 - debug:
     var: master_ip_address
   run_once: true
-
-- pause:
-    seconds: 5
     
 - name: Join edge nodes to cluster
   command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
