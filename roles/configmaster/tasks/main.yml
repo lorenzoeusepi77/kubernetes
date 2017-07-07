@@ -49,13 +49,13 @@
 - name: Wait for Master Node to be ready 1
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
   register: task_result
-  until: result.stdout.find("Ready") != -1
+  until: task_result.stdout.find("Ready") != -1
   retries: 30
   delay: 10
   ignore_errors: true    
 
 - debug:
-    var: result.stdout_lines   
+    var: task_result.stdout_lines   
 
 # Wait for Kube-DNS running
 - name: Wait for Kube-DNS pod running 1
