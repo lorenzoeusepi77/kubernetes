@@ -43,7 +43,7 @@
     part_start: 0%
     part_end: 100%
 
-name: Create Volume Group
+- name: Create Volume Group
   lvg:
     vg: vg_brick1
     pvs: /dev/{{ glusterdev_name }}1
