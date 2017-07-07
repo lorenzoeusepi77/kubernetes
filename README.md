@@ -104,7 +104,7 @@ Prerequisites:
       
         echo "centos  ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 
-3) On Ansbile server:
+3) On Ansible server:
     
     a) Install git:
 
