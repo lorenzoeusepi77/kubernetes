@@ -90,13 +90,13 @@ Prerequisites:
     
     d) If you need persistent storage, add secondary disk to "Edge" servers
     
-    d) Full network connectivity between Kubernetes servers and Ansible
+    e) Full network connectivity between Kubernetes servers and Ansible
     
-    e) Ansible can ssh into all Server and can "sudo" with no password prompt
+    f) Ansible can ssh into all Server and can "sudo" with no password prompt
     
-    f) Servers have access to Internet
+    g) Servers have access to Internet
     
-    g) Servers are time-synchronized
+    h) Servers are time-synchronized
      
 2) On Kubernetes servers:
     
