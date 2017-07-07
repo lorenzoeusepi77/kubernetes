@@ -55,25 +55,25 @@
     opts: "defaults,_netdev"
     state: unmounted
  
-- name: Stop existing Gluster Volume
-  gluster_volume:
-    state: stopped
-    name: glustervol1
-  register: gluster_stop_info
-  ignore_errors: True
+#- name: Stop existing Gluster Volume
+#  gluster_volume:
+#    state: stopped
+#    name: glustervol1
+#  register: gluster_stop_info
+#  ignore_errors: True
 
-- debug:
-        var: gluster_stop_info.stdout_lines
+#- debug:
+#        var: gluster_stop_info.stdout_lines
 
-- name: Delete existing Gluster volume.
-  gluster_volume:
-    state: absent
-    name: glustervol1
-  register: gluster_deletevolume_info
-  ignore_errors: True
+#- name: Delete existing Gluster volume.
+#  gluster_volume:
+#    state: absent
+#    name: glustervol1
+#  register: gluster_deletevolume_info
+#  ignore_errors: True
 
-- debug:
-        var: gluster_deletevolume.stdout_lines
+#- debug:
+#        var: gluster_deletevolume.stdout_lines
 
 - name: Edit fstab and unmount exixting XFS volume
   mount:
@@ -87,21 +87,23 @@
 - pause:
     seconds: 5
 
-- lvol:
+- name: Delete existing Logical Volume
+  lvol:
     vg: vg_brick1
     lv: lv_brick1
     state: absent
     force: yes
   ignore_errors: True  
 
-- lvol:
+- name: Create Logical Volume
+  lvol:
     vg: vg_brick1
     lv: lv_brick1
     size: 100%FREE    
   ignore_errors: True
 
-#Format volume with XFS
-- filesystem: 
+- name: Format volume with XFS
+  filesystem: 
     fstype: xfs 
     dev: /dev/vg_brick1/lv_brick1
     force: yes
