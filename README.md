@@ -143,7 +143,7 @@ Prerequisites:
 
 
 ### Create Kubernetes cluster with Kubeadm ### 
-Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
+Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your servers. 
 
  You need to change vars according with your environment on inventory file:
 
@@ -160,7 +160,7 @@ Execute playbook:
 
 
 ### Add "edge nodes" to Kubernetes cluster  ###
-Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
+Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your servers. 
 
  You need to change vars according with your environment on inventory file:
 
@@ -179,7 +179,7 @@ Note1: if you use ssh key
 
 
 ### Add "GlusterFS" to Kubernetes cluster as Persistent Storage Volume ###
-Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
+Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your servers. 
 
  You need to change vars according with your environment on inventory file:
 
