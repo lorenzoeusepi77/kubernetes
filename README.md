@@ -1,6 +1,6 @@
 # Create Kubernetes Cluster using kubeadm
 
-Ansible playbook to create a Kubernetes cluster, latest release, using "kubeadm" on systems with CentOS-7.x operating system.
+Ansible playbook to create a Kubernetes cluster using "kubeadm" on systems with CentOS-7.x operating system.
 
 There are different roles defined in this ansible playbook.
 
