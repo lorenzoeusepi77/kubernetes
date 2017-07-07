@@ -43,11 +43,14 @@
 - debug:
     var: pod_network.stdout_lines
 
-- name: Wait for Nodes to be ready 1
+- pause:
+    seconds: 5
+
+- name: Wait for Master Node to be ready 1
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get nodes"
   register: task_result
-  until: '"NotReady" not in task_result.stdout'
-  retries: 15
+  until: result.stdout.find("Ready") != -1
+  retries: 30
   delay: 10
   ignore_errors: true    
 
