@@ -77,7 +77,9 @@ Prerequisites:
 1) Main:
 
     a) One server with git and ansible software:
-        - Ansible version is 2.3.1.0
+
+        - Ansible version 2.3.1.0
+        
         - Git Version 1.8.3.1
     
     b) Kubernetes: N° 1 "Master" server
