@@ -156,8 +156,12 @@ Execute playbook:
 
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/hosts kubernetes/site-create_cluster.yml -e clustername=kubernetes -u centos
 
-       Note 1: Check note if you use ssh key
 
+       Note: If you use ssh key add:
+
+       --private-key key.pub 
+
+       The key must have this access permission     root@Ansible:~# chmod 400 key.pub
 
 ### Add "edge nodes" to Kubernetes cluster  ###
 Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your servers. 
@@ -173,9 +177,13 @@ Execute playbook:
 
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/addedgehosts kubernetes/site-add_edgenode.yml -e clustername=kubernetes -u centos
 
-       Note 1: Check note if you use ssh key
 
-Note1: if you use ssh key
+       Note: If you use ssh key add:
+
+       --private-key key.pub 
+
+       The key must have this access permission     root@Ansible:~# chmod 400 key.pub
+
 
 
 ### Add "GlusterFS" to Kubernetes cluster as Persistent Storage Volume ###
@@ -192,14 +200,10 @@ Execute playbook:
 
        root@Ansible:~# ansible-playbook -i kubernetes/inventories/production/glusterfshosts kubernetes/site-glusterfs.yml -e clustername=kubernetes -u centos
 
-       Note 1: Check note if you use ssh key
 
-
-
-Note 1: If you are using ssh key to connect to hosts add this parameter to previous ansible script 
+       Note: If you use ssh key add:
 
        --private-key key.pub 
 
-       The key must have this access permission 
-    
-       root@Ansible:~# chmod 400 key.pub   
+       The key must have this access permission     root@Ansible:~# chmod 400 key.pub
+
