@@ -77,25 +77,25 @@
 #- debug:
 #        var: gluster_deletevolume.stdout_lines
 
-- name: Edit fstab and unmount exixting XFS volume
-  mount:
-    path: /bricks/brick1
-    src: /dev/vg_brick1/lv_brick1
-    fstype: xfs
-    opts: "noatime"
-    state: unmounted
-  ignore_errors: True
+#- name: Edit fstab and unmount exixting XFS volume
+#  mount:
+#    path: /bricks/brick1
+#    src: /dev/vg_brick1/lv_brick1
+#    fstype: xfs
+#    opts: "noatime"
+#    state: unmounted
+#  ignore_errors: True
 
-- pause:
-    seconds: 5
+#- pause:
+#    seconds: 5
 
-- name: Delete existing Logical Volume
-  lvol:
-    vg: vg_brick1
-    lv: lv_brick1
-    state: absent
-    force: yes
-  ignore_errors: True  
+#- name: Delete existing Logical Volume
+#  lvol:
+#    vg: vg_brick1
+#    lv: lv_brick1
+#    state: absent
+#    force: yes
+#  ignore_errors: True  
 
 - name: Create Logical Volume
   lvol:
