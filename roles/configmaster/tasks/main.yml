@@ -55,7 +55,7 @@
   ignore_errors: true    
 
 - debug:
-    var: task_result.stdout_lines   
+    var: result.stdout_lines   
 
 # Wait for Kube-DNS running
 - name: Wait for Kube-DNS pod running 1
