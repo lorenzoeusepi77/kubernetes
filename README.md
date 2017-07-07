@@ -108,12 +108,12 @@ Prerequisites:
     
     a) Install git:
 
-       root@Ansible:~# yum install git-1.8.3.1-6.el7_2.1.x86_64
+       root@Ansible:~# yum install git-1.8.3.1-6.el7_2.1.x86_64 -y
     
     b) Install ansible:
 
-       root@Ansible:~# yum install epel-release
-       root@Ansible:~# yum install ansible-2.3.1.0-1.el7.noarch
+       root@Ansible:~# yum install epel-release -y
+       root@Ansible:~# yum install ansible-2.3.1.0-1.el7.noarch -y
 
     c) Download "Kubernetes" playbook from Git repo:
         
