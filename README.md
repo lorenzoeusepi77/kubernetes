@@ -41,7 +41,7 @@ There are different roles defined in this ansible playbook.
     
   Role: "create_token" -- Create token needed for cluster initialization
     
-    - Generate token that will be used for node Master cluster inizialization and Nodes cluster join
+    - Generate token that will be used for Master node cluster inizialization and Edge nodes cluster join
       
 
   Role: "configmaster" -- Configuration for "kubernetes-master" node
