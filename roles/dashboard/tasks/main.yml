@@ -1,14 +1,6 @@
 # Install dashboard on Master Node
 ---
 
-- name: Delete existing dashboard 
-  command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf delete {{ item }} --namespace=kube-system kubernetes-dashboard
-  with_items:
-   - deployment
-   - svc
-   - serviceaccount
-  ignore_errors: true
-
 - name: Install dashboard
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml
   register: dashboard
