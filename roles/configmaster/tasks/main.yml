@@ -22,6 +22,9 @@
   args:
   register: master_init
   ignore_errors: true
+
+- debug:
+    var: master_init.stdout_lines
       
 - name: Copy admin file on user $HOME
   command: cp /etc/kubernetes/admin.conf $HOME/
@@ -34,7 +37,6 @@
     insertafter=EOF
     create=True
 
-# Add CNI network weave-kube
 - name: Install pod network "weave-kube 1.6"
   command: /usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf apply -f https://git.io/weave-kube-1.6
   register: pod_network
@@ -58,16 +60,7 @@
 
 - debug:
     var: task_result.stdout_lines   
-  
-#  until: task_result.stdout.find("Ready") != -1
-#  retries: 30
-#  delay: 10
-#  ignore_errors: true    
 
-#- debug:
-#    var: task_result.stdout_lines   
-
-# Wait for Kube-DNS running
 - name: Wait for Kube-DNS pod running 1
   shell: "/usr/bin/kubectl --kubeconfig /etc/{{ clustername }}/admin.conf get pods --all-namespaces | grep kube-dns"
   register: result
