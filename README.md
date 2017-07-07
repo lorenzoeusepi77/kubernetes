@@ -79,7 +79,7 @@ Prerequisites:
     a) One server with git and ansible software:
 
         - Ansible version 2.3.1.0
-        
+
         - Git Version 1.8.3.1
     
     b) Kubernetes: N° 1 "Master" server
@@ -115,18 +115,19 @@ Prerequisites:
        root@Ansible:~# yum install epel-release
        root@Ansible:~# yum install ansible-2.3.1.0-1.el7.noarch
 
-    c) Download the "Kubernetes" playbook from Git:
+    c) Download "Kubernetes" playbook from Git repo:
         
        root@Ansible:~# cd /etc/ansible/
        root@Ansible:~# git clone https://github.com/lorenzoeusepi77/kubernetes.git
 
-    d) For "new Kubernetes cluster" edit all necessary parameters in accordance with your        
-       environment in hosts file: "kubernetes/inventories/production/hosts"
+    d) For "Kubernetes cluster setup" edit all necessary parameters in accordance with your        
+       environment in inventory file: "kubernetes/inventories/production/hosts"
     
-    e) For "add node to Kubernetes cluster" edit all necessary parameters in accordance with your   
-       environment in hosts file: "kubernetes/inventories/production/addedge"
+    e) For "Add edge nodes to existing Kubernetes cluster" edit all necessary parameters in accordance with your   
+       environment in inventory file: "kubernetes/inventories/production/addedgehosts"
     
-    f) For "configure glusterfs for Kubernetes cluster" edit all necessary parameters in accordance with your environment in hosts file: "kubernetes/inventories/production/glusterfs"
+    f) For "configure persistent storage glusterfs for Kubernetes cluster" edit all necessary parameters in accordance with your 
+       environment in inventory file: "kubernetes/inventories/production/glusterfshosts"
         
     g) Create ssh key and copy an all Kubernetes servers (only if you use password authentication for servers):
       
@@ -177,7 +178,7 @@ Execute playbook:
 Note1: if you use ssh key
 
 
-### Add "GlusterFS" to Kubernetes cluster for Persistent Storage Volume ###
+### Add "GlusterFS" to Kubernetes cluster as Persistent Storage Volume ###
 Run Ansible playbook with "kubernetes" as clustername and "centos" as user for your server. 
 
  You need to change vars according with your environment on inventory file:
