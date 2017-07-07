@@ -46,7 +46,7 @@
 - name: Create Volume Group
   lvg:
     vg: vg_brick1
-    pvs: /dev/{{ glusterdev_name }}
+    pvs: /dev/{{ glusterdev_name }}1
 
 #Configure Volume format xfs and mount volume
 - name: Create Logical Volume
