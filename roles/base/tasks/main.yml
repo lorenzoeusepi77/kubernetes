@@ -26,3 +26,7 @@
   
 - name: Install bash-completion utility
   yum: name=bash-completion
+
+- name: Set 1 bridge-nf-call-iptables
+  shell: |
+    echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
