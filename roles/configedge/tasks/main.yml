@@ -23,6 +23,10 @@
   debug:
     msg: "Admission token: {{ admission_token }}"
 
+- name: Set 1 bridge-nf-call-iptables
+  shell: |
+    echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+
 - name: Join edge nodes to cluster
   command: kubeadm join --token {{ admission_token }} {{ master_ip_address }}:6443
   register: node_join
